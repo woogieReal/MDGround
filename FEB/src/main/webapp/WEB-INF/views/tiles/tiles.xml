@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC 
+"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+	<!--▶layout -->
+	<definition name="layout" template="/WEB-INF/views/tiles/layouts/layout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp"/>
+		<put-attribute name="container" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/footer.jsp"/>
+	</definition>
+	
+	<!-- layout 동적화면 적용 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+	
+	<!-- sign_in.jsp -->
+ 	<definition name="*/sign_in" extends="layout">
+		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="container" value="/WEB-INF/views/{1}/sign_in.jsp"/>
+	</definition>
+
+	<!-- sign_up.jsp -->
+ 	<definition name="*/sign_up" extends="layout">
+		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="container" value="/WEB-INF/views/{1}/sign_up.jsp"/>
+	</definition>
+	
+	<!-- main.jsp -->
+ 	<definition name="*/main" extends="layout">
+		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="container" value="/WEB-INF/views/{1}/main.jsp"/>
+	</definition>
+	
+	<!-- post_reg.jsp -->
+ 	<definition name="*/post_reg" extends="layout">
+		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="container" value="/WEB-INF/views/{1}/post_reg.jsp"/>
+	</definition>
+
+	<!-- post_detail.jsp -->
+ 	<definition name="*/post_detail" extends="layout">
+		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="container" value="/WEB-INF/views/{1}/post_detail.jsp"/>
+	</definition>
+
+	<!-- post_mod.jsp -->
+ 	<definition name="*/post_mod" extends="layout">
+		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="container" value="/WEB-INF/views/{1}/post_mod.jsp"/>
+	</definition>
+	
+	
+	
+	<!--// layout 동적화면 적용 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+
+	
+
+
+</tiles-definitions>

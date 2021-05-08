@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.feb.member">
+
+	<!-- doRegister -->
+	<insert id="doRegister" parameterType="MemberVO">
+		INSERT INTO MEMBER (
+				member_no,       
+				name,     
+				email,  
+				pw,       
+				location     
+		)VALUES (       
+				MEMBER_SEQ.nextval,         
+				#{name},         
+				#{email},         
+				#{pw},         
+				#{location}          
+		)
+	</insert>
+	
+	<!-- doLoginCheck -->
+	<select id="doLoginCheck" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM member
+		WHERE email = #{email}
+		AND pw = #{pw}	
+	</select>
+	
+	<!-- doCheckDuplicatedId -->
+	<select id="doCheckDuplicatedId" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM member
+		WHERE email = #{email}
+	</select>
+	
+	<!-- doSelectOne -->
+	<select id="doSelectOne" parameterType="MemberVO" resultType="MemberVO">
+		SELECT
+		    member_no AS memberNo,
+		    name,
+		    email,
+		    pw,
+		    location,
+		    intro,
+		    reg_dt AS regDt
+		FROM member
+		WHERE email = #{email}
+	</select>
+
+</mapper>

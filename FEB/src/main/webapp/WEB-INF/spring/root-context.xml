@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactoryBean"/>
+	</bean>
+
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<property name="mapperLocations" value="classpath:mapper/**/*.xml"></property>
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- aspectj Transaction처리  -->		
+	<!--PlatformTransactionManager구현 클래스 : DataSourceTransactionManager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	 
+	<!-- 트랜잭션 advice -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="do*" read-only="true"  />
+			<tx:method name="up*" read-only="false"/>
+		</tx:attributes>	
+	</tx:advice>
+	
+	<!-- 트랜잭션 advisor -->
+	<aop:config>
+	    <aop:pointcut expression="execution(* com.sist.feb..*ServiceImpl.*(..))" id="txPointcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+	<!--// aspectj Transaction처리  -->
+	
+
+	<!-- database.properties파일 read -->
+    <context:property-placeholder
+     location="classpath:/resources/config/database.properties"
+    />
+    		
+ 	<!-- DataSource구형 class  SimpleDriverDataSource-->
+ 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+ 		<property name="driverClassName" value="${jdbc.driverClass}"/>
+ 		<property name="url"             value="${jdbc.url}"/>
+ 		<property name="username"        value="${jdbc.username}"/>
+ 		<property name="password"        value="${jdbc.password}"/>
+ 		<!-- 최대 접속 허용 갯수 -->
+ 		<property name="maxActive" value="${jdbc.maxActive}" />
+ 		<!-- 여분으로 남겨질 Connection -->
+ 		<property name="maxIdle" value="${jdbc.maxIdle}"/>
+ 		<!-- DB연결 대기 시간 -->
+ 		<property name="maxWait" value="${jdbc.maxWait}" />
+ 		<!-- Connection 잘못 관리되어 버려진 연결 찾아 재활용 -->
+ 		<property name="removeAbandoned" value="${jdbc.removeAbandoned}"/>
+ 		<!-- 버려진 연결로 인식할 기본 시간 -->
+ 		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}"/>
+ 	</bean>
+    
+	<!-- DAO성능 측정 -->
+	<!-- 성능측정 Advice -->
+	<bean id="performanceAdivce" class="com.sist.feb.cmn.PerformanceAdivce"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.sist.feb..*Impl.do*(..))" id="performancePointcut"/>
+		<aop:aspect ref="performanceAdivce">
+			<aop:around method="performanceLog" pointcut-ref="performancePointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+</beans>
+

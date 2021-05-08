@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+div {
+	word-break:break-all;
+}
+
+.form-floating {
+	margin: 15px 0px;
+	padding: 0px;
+}
+
+/* div */
+.eachPart {
+	margin: 100px 0px;
+	padding: 0px;
+}
+
+.sign_entire_div {
+	width: 400px;
+	margin: auto;
+	padding: 0px;
+}
+
+.basic_div {
+	width: 800px;
+	margin: auto;
+	padding: 0px;
+}
+
+.squircle_div {
+	border: 0.5px solid lightgray;
+	border-radius: 5px;
+	margin: auto;
+}
+
+.right_div {
+	float: right;
+}
+
+.i_icon_div {
+	margin: 10px 0px;
+	text-align: right;
+}
+
+
+.text_div {
+	padding: 20px;
+}
+
+.inline_block_div {
+	display: inline-block;
+}
+
+
+
+/* img */
+.squircle_img {
+	border-radius: 5px;
+	margin: 10px 0px;
+	padding: 0px;
+}
+
+.i_icon {
+	font-size: 2rem;
+}
+
+.thumb_nail_img {
+	width: 100%; 
+	height: 300px; 
+	object-fit: cover;
+}
+
+/* Button */
+.btn-right {
+	float: right;
+	margin: 0px 0px 10px 0px;
+}
+
+.btn-enhance {
+	background-color: #263343;
+}
+
+.btn-image {
+	background-color: transparent; 
+	border: none;
+	margin: 5px;
+	padding: 0px;
+}

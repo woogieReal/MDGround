@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.feb.post">
+
+	<insert id="doInsert" parameterType="PostVO">
+		INSERT INTO post (
+		    post_no,
+		    title,
+		    text_md,
+		    text_html,
+		    category,
+		    member_no
+		) VALUES (
+		    post_seq.nextval,
+		    #{title},
+		    #{textMd},
+		    #{textHtml},
+		    #{category},
+		    #{memberNo}
+		)	
+	</insert>
+	
+	<select id="doRetrieve" parameterType="SearchVO" resultType="PostVO">
+		SELECT
+		    t1.post_no AS postNo,
+		    t1.title AS title,
+		    t1.text_md AS textMd,
+		    t1.text_html AS textHtml,
+		    t1.read_cnt AS readCnt,
+		    t1.like_cnt AS likeCnt,
+		    t1.hate_cnt AS hateCnt,
+		    t1.category AS category,
+			CASE WHEN TO_CHAR(SYSDATE,'YYYY/MM/DD') = TO_CHAR(t1.reg_dt,'YYYY/MM/DD')           
+				THEN TO_CHAR(t1.reg_dt,'HH24:MI')                                               
+			ELSE TO_CHAR(t1.reg_dt,'YYYY/MM/DD')                                                
+			END AS regDt,
+		    t1.mod_dt AS modDt,
+		    t1.member_no AS memberNo,
+            t2.path || t2.save_name AS thumbNail
+		FROM post t1, image t2
+		WHERE t1.post_no = t2.from_no
+        AND t2.from_tb = 1
+        AND t2.main_image = 1 
+		<choose>
+			<when test="searchDiv == 'postCategoryNo' and searchWord == '1'">
+				AND category = 1
+			</when>
+		</choose>			
+	</select>
+
+	<select id="doSelect" parameterType="PostVO" resultType="PostVO">
+		SELECT
+		    post_no AS postNo,
+		    title AS title,
+		    text_md AS textMd,
+		    text_html AS textHtml,
+		    read_cnt AS readCnt,
+		    like_cnt AS likeCnt,
+		    hate_cnt AS hateCnt,
+		    category AS category,
+			CASE WHEN TO_CHAR(SYSDATE,'YYYY/MM/DD') = TO_CHAR(reg_dt,'YYYY/MM/DD')           
+				THEN TO_CHAR(reg_dt,'HH24:MI')                                               
+			ELSE TO_CHAR(reg_dt,'YYYY/MM/DD')                                                
+			END AS regDt,
+		    mod_dt AS modDt,
+		    member_no AS memberNo
+		FROM post
+		WHERE post_no = #{postNo}	
+	</select>
+	
+	<update id="doUpdate" parameterType="PostVO">
+		UPDATE post
+		SET
+		    title = #{title},
+		    text_md = #{textMd},
+		    text_html = #{textHtml},
+		    category = #{category},
+		    mod_dt = sysdate
+		WHERE post_no = #{postNo}
+	</update>
+	
+	<delete id="doDelete" parameterType="PostVO">
+		DELETE FROM post
+		WHERE post_no = #{postNo}
+	</delete>
+	
+	
+	
+</mapper>

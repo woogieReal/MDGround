@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+ 	<settings>
+ 		<setting name="mapUnderscoreToCamelCase" value="false"/>
+ 	</settings>
+ 	<typeAliases>
+ 		<!-- Domain에 별칭부여 VO를 간략히 사용 -->
+ 		<typeAlias type="com.sist.feb.cmn.SearchVO" alias="SearchVO"/>
+ 		<typeAlias type="com.sist.feb.member.domain.MemberVO" alias="MemberVO"/>
+ 		<typeAlias type="com.sist.feb.post.domain.PostVO" alias="PostVO"/>
+ 		<typeAlias type="com.sist.feb.image.domain.ImageVO" alias="ImageVO"/>
+ 		
+
+		
+ 	</typeAliases>
+ </configuration>
