@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.feb.storage">
+
+	<insert id="doStore" parameterType="StorageVO">
+		INSERT INTO storage (
+		    storage_no,
+		    store_type,
+		    reg_dt,
+		    member_email,
+		    post_no
+		) VALUES (
+		    STORAGE_SEQ.nextval,
+		    #{storeType},
+		    sysdate,
+		    #{memberEmail},
+		    #{postNo}
+		)	
+	</insert>
+	
+	<delete id="doCancelStore" parameterType="StorageVO">
+		DELETE FROM storage
+		WHERE store_type = #{storeType}
+		AND member_email = #{memberEmail}
+		AND post_no = #{postNo}
+	</delete>
+
+	<select id="doCheckStore" parameterType="StorageVO" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM storage
+		WHERE store_type = #{storeType}
+		AND member_email = #{memberEmail}
+		AND post_no = #{postNo}			
+	</select>
+
+</mapper>

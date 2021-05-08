@@ -51,5 +51,16 @@ public class PostDaoImpl {
 		return this.sqlSessionTemplate.delete(this.NAMESPACE + ".doDelete", dto);
 	}
 	
+	public int doLike(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.update(this.NAMESPACE + ".doLike", dto);
+	}
+	
+	public int doCancelLike(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.update(this.NAMESPACE + ".doCancelLike", dto);
+	}
+
+	
+	
+	
 	
 }

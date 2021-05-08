@@ -20,9 +20,8 @@ import com.sist.feb.cmn.DTO;
 
 public class MemberVO extends DTO{
 
-	private int    memberNo; //멤버번호
-	private String name;      //이름
 	private String email;     //이메일
+	private String name;      //이름
 	private String pw;        //비밀번호
 	private String location;  //위치
 	private String intro;     //소개글
@@ -32,31 +31,14 @@ public class MemberVO extends DTO{
 		
 	}
 
-	public MemberVO(int memberNo, String name, String email, String pw, String location, String intro, String regDt) {
+	public MemberVO(String email, String name, String pw, String location, String intro, String regDt) {
 		super();
-		this.memberNo = memberNo;
-		this.name = name;
 		this.email = email;
+		this.name = name;
 		this.pw = pw;
 		this.location = location;
 		this.intro = intro;
 		this.regDt = regDt;
-	}
-
-	public int getMemberNo() {
-		return memberNo;
-	}
-
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getEmail() {
@@ -65,6 +47,14 @@ public class MemberVO extends DTO{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPw() {
@@ -101,8 +91,9 @@ public class MemberVO extends DTO{
 
 	@Override
 	public String toString() {
-		return "MemberVO [memberNo=" + memberNo + ", name=" + name + ", email=" + email + ", pw=" + pw + ", location="
-				+ location + ", intro=" + intro + ", regDt=" + regDt + ", toString()=" + super.toString() + "]";
+		return "MemberVO [email=" + email + ", name=" + name + ", pw=" + pw + ", location=" + location + ", intro="
+				+ intro + ", regDt=" + regDt + ", toString()=" + super.toString() + "]";
 	}
+
 	
 }

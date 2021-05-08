@@ -122,7 +122,7 @@ function post(){
 	let title = document.getElementById("title").value;
 	let text = document.getElementById("text").value;
 	let category = document.getElementById("category").value;
-	let memberNo = document.getElementById("memberNo").value;
+	let memberEmail = document.getElementById("memberEmail").value;
 	
 	let imageList = document.getElementById("imageList").value;
 	let fromTb = document.getElementById("fromTb").value;
@@ -131,7 +131,7 @@ function post(){
 	console.log("title: "+title);
 	console.log("category: "+category);
 	console.log("text: "+text);
-	console.log("memberNo: "+memberNo);
+	console.log("memberEmail: "+memberEmail);
 	
 	console.log("imageList: "+imageList);
 	console.log("fromTb: "+fromTb);
@@ -146,7 +146,7 @@ function post(){
   			title: title,
   			textMd: text,
   			category: category,
-  			memberNo: memberNo
+  			memberEmail: memberEmail
   		},
   		success:function(data){//통신 성공
   			

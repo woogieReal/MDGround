@@ -9,14 +9,14 @@
 		    text_md,
 		    text_html,
 		    category,
-		    member_no
+		    member_email
 		) VALUES (
 		    post_seq.nextval,
 		    #{title},
 		    #{textMd},
 		    #{textHtml},
 		    #{category},
-		    #{memberNo}
+		    #{memberEmail}
 		)	
 	</insert>
 	
@@ -35,7 +35,7 @@
 			ELSE TO_CHAR(t1.reg_dt,'YYYY/MM/DD')                                                
 			END AS regDt,
 		    t1.mod_dt AS modDt,
-		    t1.member_no AS memberNo,
+		    t1.member_email AS memberEmail,
             t2.path || t2.save_name AS thumbNail
 		FROM post t1, image t2
 		WHERE t1.post_no = t2.from_no
@@ -63,7 +63,7 @@
 			ELSE TO_CHAR(reg_dt,'YYYY/MM/DD')                                                
 			END AS regDt,
 		    mod_dt AS modDt,
-		    member_no AS memberNo
+		    member_email AS memberEmail
 		FROM post
 		WHERE post_no = #{postNo}	
 	</select>
@@ -83,6 +83,19 @@
 		DELETE FROM post
 		WHERE post_no = #{postNo}
 	</delete>
+	
+	<update id="doLike" parameterType="PostVO">
+		UPDATE post
+		SET like_cnt = like_cnt + 1
+		WHERE post_no = #{postNo}
+	</update>
+	
+	<update id="doCancelLike" parameterType="PostVO">
+		UPDATE post
+		SET like_cnt = like_cnt - 1
+		WHERE post_no = #{postNo}
+	</update>
+	
 	
 	
 	

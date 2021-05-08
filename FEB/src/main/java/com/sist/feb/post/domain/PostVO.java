@@ -7,14 +7,14 @@ public class PostVO extends DTO {
 	private int    postNo;         //post_seq.nextval
 	private String title;          //null(NN)
 	private String textMd;         //null
-	private String textHtml;         //null
+	private String textHtml;       //null
 	private int    readCnt;        //0
 	private int    likeCnt;        //0
 	private int    hateCnt;        //0
-	private String category;     //1
+	private String category;       //1
 	private String regDt;          //sysdate
 	private String modDt;          //null
-	private int    memberNo;       //creator
+	private String memberEmail;    //creator
 	private String thumbNail;      //post thumb nail
 	
 	
@@ -22,7 +22,7 @@ public class PostVO extends DTO {
 
 
 	public PostVO(int postNo, String title, String textMd, String textHtml, int readCnt, int likeCnt, int hateCnt,
-			String category, String regDt, String modDt, int memberNo, String thumbNail) {
+			String category, String regDt, String modDt, String memberEmail, String thumbNail) {
 		super();
 		this.postNo = postNo;
 		this.title = title;
@@ -34,7 +34,7 @@ public class PostVO extends DTO {
 		this.category = category;
 		this.regDt = regDt;
 		this.modDt = modDt;
-		this.memberNo = memberNo;
+		this.memberEmail = memberEmail;
 		this.thumbNail = thumbNail;
 	}
 
@@ -139,13 +139,13 @@ public class PostVO extends DTO {
 	}
 
 
-	public int getMemberNo() {
-		return memberNo;
+	public String getMemberEmail() {
+		return memberEmail;
 	}
 
 
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 
 
@@ -163,7 +163,7 @@ public class PostVO extends DTO {
 	public String toString() {
 		return "PostVO [postNo=" + postNo + ", title=" + title + ", textMd=" + textMd + ", textHtml=" + textHtml
 				+ ", readCnt=" + readCnt + ", likeCnt=" + likeCnt + ", hateCnt=" + hateCnt + ", category=" + category
-				+ ", regDt=" + regDt + ", modDt=" + modDt + ", memberNo=" + memberNo + ", thumbNail=" + thumbNail
+				+ ", regDt=" + regDt + ", modDt=" + modDt + ", memberEmail=" + memberEmail + ", thumbNail=" + thumbNail
 				+ ", toString()=" + super.toString() + "]";
 	}
 

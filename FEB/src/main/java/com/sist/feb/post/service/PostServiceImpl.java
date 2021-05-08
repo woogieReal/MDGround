@@ -49,4 +49,14 @@ public class PostServiceImpl {
 		return postDao.doDelete(dto);
 	}
 	
+	public int doLike(DTO dto) throws SQLException {
+		return postDao.doLike(dto);
+	}
+	
+	public int doCancelLike(DTO dto) throws SQLException {
+		return postDao.doCancelLike(dto);
+	}
+
+	
+	
 }

@@ -29,7 +29,7 @@
         </div>
         
         <c:choose>
-          <c:when test="${sessionScope.member.memberNo == vo.memberNo}">
+          <c:when test="${sessionScope.member.email == vo.memberEmail}">
 			<div class='container btn-group i_icon_div inline_block_div'>
 			  <form id="postViewFrm" name="postViewFrm" method="post">
 			    <input type="hidden" id="postNo" name="postNo" value="${vo.postNo}">                                                       
@@ -39,15 +39,27 @@
 			  </form>
 			</div> 
           </c:when>
-         <c:when test="${sessionScope.member.memberNo != vo.memberNo && sessionScope.member != null}">
+         <c:when test="${sessionScope.member.email != vo.memberEmail && sessionScope.member != null}">
 	        <div class="container i_icon_div">
-		      <div class="inline_block_div" id="post_icon_heart">
-	  	        <i class="bi bi-heart i_icon"></i>
-		        <i class="bi bi-heart-fill i_icon"></i>
+		      <div class="inline_block_div" id="post_icon_bookmark${vo.postNo}">
+		        <c:choose>
+		          <c:when test="${bookmarkFlag == 1}">
+		            <button type="button" onclick="doCancelStore(1, '${sessionScope.member.email}', ${vo.postNo});" class="btn-image"><i class="bi bi-bookmark-fill i_icon"></i></button>
+		          </c:when>
+		          <c:when test="${bookmarkFlag == 0}">
+		            <button type="button" onclick="doStore(1, '${sessionScope.member.email}', ${vo.postNo});" class="btn-image"><i class="bi bi-bookmark i_icon"></i></button>
+		          </c:when>
+		        </c:choose>
 		      </div>
-		      <div class="inline_block_div" id="post_icon_bookmark">
-		        <i class="bi bi-bookmark i_icon"></i>
-		        <i class="bi bi-bookmark-fill i_icon"></i>
+		      <div class="inline_block_div" id="post_icon_heart${vo.postNo}">
+		        <c:choose>
+		          <c:when test="${likeFlag == 1}">
+		            <button type="button" onclick="doCancelStore(2, '${sessionScope.member.email}', ${vo.postNo});" class="btn-image"><i class="bi bi-heart-fill i_icon"></i></button>
+		          </c:when>
+		          <c:when test="${likeFlag == 0}">
+		            <button type="button" onclick="doStore(2, '${sessionScope.member.email}', ${vo.postNo});" class="btn-image"><i class="bi bi-heart i_icon"></i></button>
+		          </c:when>
+		        </c:choose>
 		      </div>
 	        </div>
           </c:when>

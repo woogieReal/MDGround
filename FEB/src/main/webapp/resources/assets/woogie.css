@@ -42,6 +42,10 @@ div {
 	text-align: right;
 }
 
+.i_icon_div_main {
+	margin: 10px -10px -10px 0px;
+	text-align: right;
+}
 
 .text_div {
 	padding: 20px;
@@ -51,7 +55,9 @@ div {
 	display: inline-block;
 }
 
-
+#post_images {
+	text-align: center;
+}
 
 /* img */
 .squircle_img {
@@ -62,6 +68,11 @@ div {
 
 .i_icon {
 	font-size: 2rem;
+}
+
+.i_icon_logo {
+	font-size: 3rem;
+	color: white;
 }
 
 .thumb_nail_img {

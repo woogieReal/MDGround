@@ -207,6 +207,25 @@ public class ImageController {
 		MessageVO message = new MessageVO();
 		message.setMsgId(Integer.toString(imageService.upUpdateImages(Integer.parseInt(fromTb), Integer.parseInt(fromNo), imageListDel, imageListNew, mainImageNum)));
 		
+		for(ImageVO vo : imageListDel) {
+			
+			StringBuffer sb = new StringBuffer();
+			sb.append("C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload");
+			String imageRegDt = vo.getRegDt();
+			
+			String[] imageRegDtArr = imageRegDt.split("-");
+			for(int i = 0; i < imageRegDtArr.length-1; i++) {
+				sb.append(File.separator);
+				sb.append(imageRegDtArr[i]);
+			}
+			String imageFullPath = sb.toString() + File.separator + vo.getSaveName();
+			LOG.debug("imageFullPath: "+imageFullPath);
+			
+			Path file = Paths.get(imageFullPath);
+			Files.deleteIfExists(file);
+			
+		}
+		
 		if(message.getMsgId().equals("1")) message.setMsgContents("Images are Successfully edited");
 		else message.setMsgContents("Failure to edit images");
 		

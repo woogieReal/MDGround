@@ -45,7 +45,7 @@
 	        <form class="needs-validation" name="post_frm" id="post_frm" novalidate>
 	          <div class="row g-3">
 
-				<input type="hidden" name="memberNo" id="memberNo" value="${sessionScope.member.memberNo}"/>
+				<input type="hidden" name="memberEmail" id="memberEmail" value="${sessionScope.member.email}"/>
 				<input type="hidden" name="imageList" id="imageList" value=""/>
 				<input type="hidden" name="whichMainImage" id="whichMainImage" value="0"/>
 	

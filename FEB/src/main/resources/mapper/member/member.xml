@@ -5,15 +5,13 @@
 	<!-- doRegister -->
 	<insert id="doRegister" parameterType="MemberVO">
 		INSERT INTO MEMBER (
-				member_no,       
-				name,     
 				email,  
+				name,     
 				pw,       
 				location     
 		)VALUES (       
-				MEMBER_SEQ.nextval,         
-				#{name},         
 				#{email},         
+				#{name},         
 				#{pw},         
 				#{location}          
 		)
@@ -37,9 +35,8 @@
 	<!-- doSelectOne -->
 	<select id="doSelectOne" parameterType="MemberVO" resultType="MemberVO">
 		SELECT
-		    member_no AS memberNo,
-		    name,
 		    email,
+		    name,
 		    pw,
 		    location,
 		    intro,

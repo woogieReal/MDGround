@@ -15,7 +15,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	<meta name="generator" content="Hugo 0.82.0">
-	<title>ENHANCE</title>
+	<title>MDGround</title>
 
 	<script src="${hContext}/resources/js/jquery.min.js"></script>
 	<script src="${hContext}/resources/js/bootstrap.min.js"></script>
@@ -33,6 +33,7 @@
 	<script src="${hContext}/resources/js/sign.js"></script>
 	<script src="${hContext}/resources/js/post.js"></script>
 	<script src="${hContext}/resources/js/main.js"></script>
+	<script src="${hContext}/resources/js/storage.js"></script>
 	
 </head>
 

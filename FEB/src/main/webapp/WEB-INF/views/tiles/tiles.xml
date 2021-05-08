@@ -17,37 +17,37 @@
 	
 	<!-- sign_in.jsp -->
  	<definition name="*/sign_in" extends="layout">
-		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="title" value="MDGround"/>
 		<put-attribute name="container" value="/WEB-INF/views/{1}/sign_in.jsp"/>
 	</definition>
 
 	<!-- sign_up.jsp -->
  	<definition name="*/sign_up" extends="layout">
-		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="title" value="MDGround"/>
 		<put-attribute name="container" value="/WEB-INF/views/{1}/sign_up.jsp"/>
 	</definition>
 	
 	<!-- main.jsp -->
  	<definition name="*/main" extends="layout">
-		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="title" value="MDGround"/>
 		<put-attribute name="container" value="/WEB-INF/views/{1}/main.jsp"/>
 	</definition>
 	
 	<!-- post_reg.jsp -->
  	<definition name="*/post_reg" extends="layout">
-		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="title" value="MDGround"/>
 		<put-attribute name="container" value="/WEB-INF/views/{1}/post_reg.jsp"/>
 	</definition>
 
 	<!-- post_detail.jsp -->
  	<definition name="*/post_detail" extends="layout">
-		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="title" value="MDGround"/>
 		<put-attribute name="container" value="/WEB-INF/views/{1}/post_detail.jsp"/>
 	</definition>
 
 	<!-- post_mod.jsp -->
  	<definition name="*/post_mod" extends="layout">
-		<put-attribute name="title" value="ENHANCE"/>
+		<put-attribute name="title" value="MDGround"/>
 		<put-attribute name="container" value="/WEB-INF/views/{1}/post_mod.jsp"/>
 	</definition>
 	

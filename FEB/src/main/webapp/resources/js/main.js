@@ -2,13 +2,15 @@
  * main.js
  */
  
-function doRetrieve(searchDiv, searchWord) {
+ 
+function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
 	console.log("doMovePost()");
+	console.log("loginMemberEamil: "+loginMemberEamil);
 	
 	$.ajax({
   		type: "POST",
   		url:"/feb/post/do_retrieve.do",
-  		asyn:"true",
+  		asyn:false,
   		dataType:"html",
   		data:{
   			searchDiv: searchDiv,
@@ -40,18 +42,27 @@ function doRetrieve(searchDiv, searchWord) {
 				html += "          <div class='card-body'>                                                                                                                                         ";
 				html += "            <span style='font-weight: bold;'>"+ value.title +"</span>     ";
 				html += "            <div class='d-flex justify-content-between align-items-center'>                                                                                               ";
-				html += "              <small class='text-muted'>"+ value.category +"</small>                                                                                                                    ";
+				html += "              <small class='text-muted'>"+ value.category +"<br>"+ value.memberEmail +"</small>                                                                                                                    ";
+				html += "            </div>                                                                                                                                                        ";
+				html += "		     <div class='i_icon_div_main'>                                                                                                                                                          ";
+				html += "		       <div class='inline_block_div' id='post_icon_bookmark"+ value.postNo +"'></div>                                                                                                                                                          ";
+				html += "		       <div class='inline_block_div' id='post_icon_heart"+ value.postNo +"'></div>                                                                                                                                                          ";
 				html += "            </div>                                                                                                                                                        ";
 				html += "          </div>                                                                                                                                                          ";
 				html += "        </form>                                                        ";
 				html += "      </div>                                                                                                                                                            ";
 				html += "    </div>                                                                                                                                                              ";
 
+				if(value.memberEmail != loginMemberEamil && loginMemberEamil != ""){
+					doCheckStore(1, loginMemberEamil, value.postNo);
+					doCheckStore(2, loginMemberEamil, value.postNo);
+				}
 			});
 			
 			//console.log(html);
 			
 			document.getElementById("mainPostsDiv").innerHTML = html;
+			
   		
   		},
   		error:function(data){//실패시 처리
@@ -74,7 +85,38 @@ function doSelectPost(no) {
 	frm.submit();
 }
 
+function doCheckStore(type, email, no) {
 
+	$.ajax({
+  		type: "POST",
+  		url:"/feb/storage/do_check_store.do",
+  		asyn:false,
+  		dataType:"html",
+  		data:{
+  			storeType: type,
+  			memberEmail: email,
+  			postNo: no
+  		},
+  		success:function(data){//통신 성공
+  			
+  			var parseData = JSON.parse(data);
+
+			if(parseData.msgId == 1 && type == 1){
+				document.getElementById("post_icon_bookmark"+no).innerHTML = "<button type='button' onclick='doCancelStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-bookmark-fill i_icon'></i></button>";
+			} else if(parseData.msgId == 0 && type == 1) {
+				document.getElementById("post_icon_bookmark"+no).innerHTML = "<button type='button' onclick='doStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-bookmark i_icon'></i></button>";
+			} else if(parseData.msgId == 1 && type == 2) {
+				document.getElementById("post_icon_heart"+no).innerHTML = "<button type='button' onclick='doCancelStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-heart-fill i_icon'></i></button>";
+			} else if(parseData.msgId == 0 && type == 2) {
+				document.getElementById("post_icon_heart"+no).innerHTML = "<button type='button' onclick='doStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-heart i_icon'></i></button>";
+			}		
+  		},
+  		error:function(data){//실패시 처리
+  			console.log("error:"+data);
+  		}
+  	});	
+  	
+}
 
 
 

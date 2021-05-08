@@ -2,6 +2,8 @@ package com.sist.feb.post.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,11 @@ import com.sist.feb.cmn.SearchVO;
 import com.sist.feb.cmn.StringUtil;
 import com.sist.feb.image.domain.ImageVO;
 import com.sist.feb.image.service.ImageServiceImpl;
+import com.sist.feb.member.domain.MemberVO;
 import com.sist.feb.post.domain.PostVO;
 import com.sist.feb.post.service.PostServiceImpl;
+import com.sist.feb.storage.domain.StorageVO;
+import com.sist.feb.storage.service.StorageServiceImpl;
 
 @Controller
 public class PostController {
@@ -34,6 +39,9 @@ public class PostController {
 	
 	@Autowired
 	private ImageServiceImpl imageService;
+	
+	@Autowired
+	private StorageServiceImpl storageService;
 	
 	
 //	▼ 생성자 ==============================================================	
@@ -100,7 +108,7 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="post/do_select_post.do",method = RequestMethod.GET)
-	public String doSelectPost(Model model, PostVO PostInVO) throws Exception {
+	public String doSelectPost(Model model, PostVO PostInVO, HttpSession session) throws Exception {
 		
 		LOG.debug("doSelectPost");
 		
@@ -112,8 +120,16 @@ public class PostController {
 		
 		List<ImageVO> imageList = imageService.doRetrieveImages(imageInVO);
 		
-		for(ImageVO imageVO : imageList) {
-			LOG.debug("imageVO: "+imageVO.toString());
+		int bookmarkFlag = 0;
+		int likeFlag = 0;
+		
+		if(null != session.getAttribute("member")) {
+			MemberVO loginMember = (MemberVO) session.getAttribute("member");
+			StorageVO bookmarkVO = new StorageVO(0, 1, null, loginMember.getEmail(), postOutVO.getPostNo());
+			StorageVO likeVO = new StorageVO(0, 2, null, loginMember.getEmail(), postOutVO.getPostNo());
+			
+			bookmarkFlag = storageService.doCheckStore(bookmarkVO);
+			likeFlag = storageService.doCheckStore(likeVO);
 		}
 		
 		Gson gson = new Gson();
@@ -121,6 +137,9 @@ public class PostController {
 		model.addAttribute("vo", postOutVO);
 		model.addAttribute("imageList", imageList);
 		model.addAttribute("imageListStr", gson.toJson(imageList.toArray()));
+		
+		model.addAttribute("bookmarkFlag", bookmarkFlag);
+		model.addAttribute("likeFlag", likeFlag);
 		
 		return "post/post_detail";
 	}
