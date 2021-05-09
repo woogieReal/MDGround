@@ -58,6 +58,7 @@
 	              <label for="category" class="form-label">Category</label>
 	              <select class="form-select form-select-lg mb-3" id="category" style="font-size: medium;" aria-label=".form-select-lg example">
 				  	<option value="daily life" selected="selected">daily life</option>          
+				  	<option value="java">java</option>          
 				  	<option value="javascript">javascript</option>                 
 	              </select>
 	            </div>

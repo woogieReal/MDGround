@@ -34,6 +34,7 @@
 	<script src="${hContext}/resources/js/post.js"></script>
 	<script src="${hContext}/resources/js/main.js"></script>
 	<script src="${hContext}/resources/js/storage.js"></script>
+	<script src="${hContext}/resources/js/member.js"></script>
 	
 </head>
 

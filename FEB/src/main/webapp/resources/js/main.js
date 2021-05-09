@@ -36,13 +36,17 @@ function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
 				html += "    <div class='col'>                                                                                                                                                   ";
 				html += "      <div class='card shadow-sm'>                                                                                                                                      ";
 				html += "        <form id='imageFrm"+ value.postNo +"' name='imageFrm"+ value.postNo +"' method='get'>         ";
+				html += "		   <div class='card-header'>                                                                                                                                                                ";
+				html += "		     <button type='button' onclick='doSelectMember("+ value.postNo +", \""+ value.memberEmail +"\");' class='btn-image'><span style='font-weight: bold;'>"+ value.memberEmail +"</span></button>                                                                                                                                                                ";
+				html += "		   </div>                                                                                                                                                                ";
+				html += "		                                                                                                                                                                 ";
 				html += "		   <input type='hidden' id='postNo"+ value.postNo +"' name='postNo"+ value.postNo +"' value='' >                                                                                                                                                              ";
 				html += "		   <button type='button' class='btn-image'><img class='bd-placeholder-img card-img-top thumb_nail_img' onclick='doSelectPost("+ value.postNo +");' src='/feb"+ imagePath +"'></button>                                             ";
 				html += "		                                                                                                                                                                 ";
 				html += "          <div class='card-body'>                                                                                                                                         ";
 				html += "            <span style='font-weight: bold;'>"+ value.title +"</span>     ";
 				html += "            <div class='d-flex justify-content-between align-items-center'>                                                                                               ";
-				html += "              <small class='text-muted'>"+ value.category +"<br>"+ value.memberEmail +"</small>                                                                                                                    ";
+				html += "              <small class='text-muted'>"+ value.category +"</small><br>                                                                                                                     ";
 				html += "            </div>                                                                                                                                                        ";
 				html += "		     <div class='i_icon_div_main'>                                                                                                                                                          ";
 				html += "		       <div class='inline_block_div' id='post_icon_bookmark"+ value.postNo +"'></div>                                                                                                                                                          ";
@@ -118,5 +122,22 @@ function doCheckStore(type, email, no) {
   	
 }
 
+/* <i class='bi bi-person-plus i_icon'></i> */
+/* <i class='bi bi-person-plus-fill i_icon'></i> */
 
+function doSelectMember(no, email) {
+	//console.log("no: "+no);
+	//console.log("email: "+email);
+	
+	var frm = document.getElementById("imageFrm"+no+"");
+	frm.action = "/feb/member/do_select_one.do";
+	
+	document.getElementById("postNo"+no+"").setAttribute("name", "email");
+	document.getElementById("postNo"+no+"").setAttribute("id", "email");
+	document.getElementById("email").value = email;	
+	
+	//console.log("email: "+document.getElementById("email").value);
+	frm.submit();	
+	
+}
 

@@ -13,6 +13,7 @@
  		<typeAlias type="com.sist.feb.post.domain.PostVO" alias="PostVO"/>
  		<typeAlias type="com.sist.feb.image.domain.ImageVO" alias="ImageVO"/>
  		<typeAlias type="com.sist.feb.storage.domain.StorageVO" alias="StorageVO"/>
+ 		<typeAlias type="com.sist.feb.member.domain.FollowVO" alias="FollowVO"/>
 
 		
  	</typeAliases>

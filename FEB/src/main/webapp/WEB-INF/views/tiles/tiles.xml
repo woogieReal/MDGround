@@ -51,6 +51,11 @@
 		<put-attribute name="container" value="/WEB-INF/views/{1}/post_mod.jsp"/>
 	</definition>
 	
+	<!-- my_page.jsp -->
+ 	<definition name="*/my_page" extends="layout">
+		<put-attribute name="title" value="MDGround"/>
+		<put-attribute name="container" value="/WEB-INF/views/{1}/my_page.jsp"/>
+	</definition>
 	
 	
 	<!--// layout 동적화면 적용 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->

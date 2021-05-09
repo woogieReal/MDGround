@@ -45,4 +45,28 @@
 		WHERE email = #{email}
 	</select>
 
+	<!-- doCheckFollowing -->
+	<select id="doCheckFollowing" parameterType="FollowVO" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM follow
+		WHERE following_email = #{followingEmail}
+		AND followed_email = #{followedEmail}	
+	</select>
+
+	<!-- doCountFollowing -->
+	<select id="doCountFollowing" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM follow
+		WHERE followed_email = #{followedEmail}
+	</select>
+	
+	<!-- doCountFollowed -->
+	<select id="doCountFollowed" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM follow
+		WHERE following_email = #{followingEmail}
+	</select>
+
+
+	
 </mapper>

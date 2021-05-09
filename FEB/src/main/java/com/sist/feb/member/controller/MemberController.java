@@ -122,4 +122,18 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping(value="member/do_select_one.do",method = RequestMethod.GET)
+	public String doSelectOne(Model model, MemberVO inVO) throws Exception {
+		
+		LOG.debug("doSelectOne");
+		
+		MemberVO outVO = memberService.doSelectOne(inVO);
+		LOG.debug("outVO: "+outVO);
+		model.addAttribute("memberVO", outVO);
+		
+		return "member/my_page";
+	}
+	
+	
+	
 }
