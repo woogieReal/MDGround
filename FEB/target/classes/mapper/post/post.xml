@@ -46,6 +46,11 @@
 				AND category = 1
 			</when>
 		</choose>			
+		<choose>
+			<when test="searchDiv2 == 'eachMember'">
+				AND t1.member_email = #{searchWord2}
+			</when>
+		</choose>			
 	</select>
 
 	<select id="doSelect" parameterType="PostVO" resultType="PostVO">

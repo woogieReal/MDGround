@@ -7,7 +7,7 @@
 <%-- ${vo} --%>
 
     <article class="my-3" id="card">
-      <div class="container basic_div squircle_div">
+      <div class="container basic_div_900 squircle_div">
   		
   		
         <div class="card-header">
@@ -16,7 +16,24 @@
           	<tbody>
           	  <tr>
           	  	<td rowspan="3">
-          	  	  <button type="button" class="btn-image"><img class="bd-placeholder-img profile_img_my_page" src="/feb/resources/image_source/javascript.png"></button>
+          	  	  <form name="image_frm" id="image_frm">
+          	  	    <input type="hidden" name="fromTb" id="fromTb" value="2"/>
+          	  	    <input type="hidden" name="fromNo" id="fromNo" value="${memberVO.memberNo}"/>
+          	  	    <input type="hidden" name="profileImagePath" id="profileImagePath" value="${profileImage.path}"/>
+          	  	    <input type="hidden" name="profileImageName" id="profileImageName" value="${profileImage.saveName}"/>
+          	  	    <button type="button" <c:if test="${sessionScope.member.email == memberVO.email}">onclick="showPopup(this.form);"</c:if> class="btn-image">
+          	  	      <img class="bd-placeholder-img profile_img_my_page" 
+          	  	        <c:choose>
+          	  	          <c:when test="${profileImage == null}">
+          	  	            src="/feb/resources/image_source/nothing.jpg"
+          	  	          </c:when>
+          	  	          <c:when test="${profileImage != null}">
+          	  	            src="/feb${profileImage.path}${profileImage.saveName}"
+          	  	          </c:when>
+          	  	        </c:choose>
+          	  	      />
+          	  	    </button>
+          	  	  </form>
           	  	</td>
           	  	<td>
           	  	  <h2>${memberVO.email}</h2>
@@ -64,7 +81,17 @@
         </div>		
 		
         
-        <div class="container text_div">
+        <div id="post_images" class="container text_div">
+
+		  <c:forEach var="i"  begin="0"  end="${postList.size()-1}" step="1">
+		    <div class="inline_block_div">
+		      <form id="imageFrm${postList.get(i).getPostNo()}" name="imageFrm${postList.get(i).getPostNo()}" method="get">
+		        <input type="hidden" id="postNo${postList.get(i).getPostNo()}" name="postNo${postList.get(i).getPostNo()}" value="" >
+		        <button type="button" class="btn-image" style="margin: 4px 1px;" ><img alt="img" onclick="doSelectPost(${postList.get(i).getPostNo()});" class="img-fluid my_page_img" src="/feb${postList.get(i).getThumbNail()}"></button>
+		  	  </form>
+		  	</div>
+		  </c:forEach>  
+        
         </div>
  
           

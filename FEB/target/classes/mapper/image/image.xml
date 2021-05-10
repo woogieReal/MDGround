@@ -58,4 +58,29 @@
 		AND from_no = #{fromNo}	
 	</select>	
 	
+	<!-- doSelectProfileImage -->
+	<select id="doSelectProfileImage" parameterType="MemberVO" resultType="ImageVO">
+		SELECT
+		    image_no AS imageNo,
+		    main_image AS mainImage,
+		    org_name AS orgName,
+		    save_name AS saveName,
+		    path AS path,
+		    file_size AS fileSize,
+		    file_ext AS fileExt,
+		    from_tb AS fromTb,
+		    from_no AS fromNo,
+		    reg_dt AS regDt
+		FROM image
+		WHERE from_tb = 2
+		AND from_no = #{memberNo}	
+	</select>
+	
+	<!-- doDeleteProfileImage -->
+	<select id="doDeleteProfileImage" parameterType="MemberVO">
+		DELETE FROM image
+		WHERE from_tb = 2
+		AND from_no = #{memberNo}
+	</select>
+	
 </mapper>

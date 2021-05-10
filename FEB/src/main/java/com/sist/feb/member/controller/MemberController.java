@@ -1,5 +1,7 @@
 package com.sist.feb.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,10 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.sist.feb.cmn.MessageVO;
+import com.sist.feb.cmn.SearchVO;
 import com.sist.feb.follow.domain.FollowVO;
 import com.sist.feb.follow.service.FollowServiceImpl;
+import com.sist.feb.image.domain.ImageVO;
+import com.sist.feb.image.service.ImageServiceImpl;
 import com.sist.feb.member.domain.MemberVO;
 import com.sist.feb.member.service.MemberServiceImpl;
+import com.sist.feb.post.domain.PostVO;
+import com.sist.feb.post.service.PostServiceImpl;
 
 @Controller
 public class MemberController {
@@ -30,6 +37,12 @@ public class MemberController {
 	
 	@Autowired
 	FollowServiceImpl followService;
+	
+	@Autowired
+	private PostServiceImpl postService;
+	
+	@Autowired
+	ImageServiceImpl imageService;
 	
 //	▼ 생성자 ==============================================================	
 
@@ -144,11 +157,18 @@ public class MemberController {
 			followFlag = followService.doCheckFollowing(followVO);
 		}
 		
+		SearchVO searchVo = new SearchVO("postCategoryNo", "0", "eachMember", outVO.getEmail());
+		List<PostVO> postList = postService.doRetrieve(searchVo);
+		
+		ImageVO profileImage = imageService.doSelectProfileImage(outVO);
+		
 		//LOG.debug("outVO: "+outVO);
 		model.addAttribute("memberVO", outVO);
 		model.addAttribute("followingCount", followingCount);
 		model.addAttribute("followedCount", followedCount);
 		model.addAttribute("followFlag", followFlag);
+		model.addAttribute("postList", postList);
+		model.addAttribute("profileImage", profileImage);
 		
 		return "member/my_page";
 	}

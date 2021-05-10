@@ -20,6 +20,7 @@ import com.sist.feb.cmn.DTO;
 
 public class MemberVO extends DTO{
 
+	private int    memberNo;
 	private String email;     //이메일
 	private String name;      //이름
 	private String pw;        //비밀번호
@@ -31,14 +32,23 @@ public class MemberVO extends DTO{
 		
 	}
 
-	public MemberVO(String email, String name, String pw, String location, String intro, String regDt) {
+	public MemberVO(int memberNo, String email, String name, String pw, String location, String intro, String regDt) {
 		super();
+		this.memberNo = memberNo;
 		this.email = email;
 		this.name = name;
 		this.pw = pw;
 		this.location = location;
 		this.intro = intro;
 		this.regDt = regDt;
+	}
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public String getEmail() {
@@ -91,8 +101,8 @@ public class MemberVO extends DTO{
 
 	@Override
 	public String toString() {
-		return "MemberVO [email=" + email + ", name=" + name + ", pw=" + pw + ", location=" + location + ", intro="
-				+ intro + ", regDt=" + regDt + ", toString()=" + super.toString() + "]";
+		return "MemberVO [memberNo=" + memberNo + ", email=" + email + ", name=" + name + ", pw=" + pw + ", location="
+				+ location + ", intro=" + intro + ", regDt=" + regDt + ", toString()=" + super.toString() + "]";
 	}
 
 	

@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ import com.sist.feb.cmn.MessageVO;
 import com.sist.feb.cmn.StringUtil;
 import com.sist.feb.image.domain.ImageVO;
 import com.sist.feb.image.service.ImageServiceImpl;
+import com.sist.feb.member.domain.MemberVO;
 
 @Controller
 public class ImageController {
@@ -48,9 +51,13 @@ public class ImageController {
 			,produces = "application/json;charset=UTF-8")
 	public String view(
 			@RequestParam(value = "fromTb", required = false)String fromTb,
+			@RequestParam(value = "profileImagePath", required = false)String profileImagePath,
+			@RequestParam(value = "profileImageName", required = false)String profileImageName,
 			Model model) throws Exception {
 		LOG.debug("fromTb: "+fromTb);
 		model.addAttribute("fromTb", fromTb);
+		model.addAttribute("profileImagePath", profileImagePath);
+		model.addAttribute("profileImageName", profileImageName);
 		return "image/file_upload_popup";
 	}
 	
@@ -112,6 +119,118 @@ public class ImageController {
 		
 	}
 	
+	@RequestMapping(value = "image/do_delete_profile_image.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doDeleteProfileImage(@RequestParam(value = "profileImagePath", required = false)String profileImagePath,
+									   @RequestParam(value = "profileImageName", required = false)String profileImageName,
+									   HttpSession session
+	) throws Exception {
+		
+			
+		StringBuffer sb = new StringBuffer();
+		sb.append("C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload");
+		String imageRegDt = profileImagePath;
+		
+		String[] imageRegDtArr = imageRegDt.split("/");
+		for(int i = 3; i < imageRegDtArr.length; i++) {
+			sb.append(File.separator);
+			sb.append(imageRegDtArr[i]);
+			//LOG.debug("**********************"+imageRegDtArr[i]);
+		}
+		String imageFullPath = sb.toString() + File.separator + profileImageName;
+		LOG.debug("imageFullPath: "+imageFullPath);
+		
+		Path file = Paths.get(imageFullPath);
+		boolean deleteFlag = Files.deleteIfExists(file);
+		if(deleteFlag) LOG.debug("Old profile image file is deleted");
+		
+		MemberVO loginMember = new MemberVO();
+		if(null != session.getAttribute("member")) {
+			loginMember = (MemberVO) session.getAttribute("member");
+		}
+		
+		MessageVO message = new MessageVO();
+		message.setMsgId(Integer.toString(imageService.doDeleteProfileImage(loginMember)));
+		
+		if(message.getMsgId().equals("1")) message.setMsgContents("The Profile image is deleted");
+		else message.setMsgContents("There were no profile image");
+		
+		Gson gson = new Gson();
+		
+		LOG.debug("메세지: "+gson.toJson(message));
+		
+		return gson.toJson(message);
+		
+		
+	}
+	
+	@RequestMapping(value = "image/do_upload_profile_image.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doUploadProfileImage(MultipartHttpServletRequest request, HttpSession session) throws Exception {
+		
+		List<MultipartFile> fileList = request.getFiles("file_list");
+		
+		Gson gson = new Gson();
+		
+		String year = StringUtil.formatDate("yyyy");
+		String month = StringUtil.formatDate("MM");
+		
+		//파일이 업로드 될 경로
+		String path = "C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload"+ File.separator + year + File.separator + month;
+		String simplePath = "/resources/upload/" + year + "/" + month + "/";
+		
+		LOG.debug("path: "+path);
+		LOG.debug("simplePath: "+simplePath);
+		
+		//위에서 설정한 경로의 폴더가 없을 경우 생성
+		File dir = new File(path);
+		
+		if(dir.isDirectory()==false) {
+			dir.mkdirs();
+		}
+		
+		List<ImageVO> imageList = new ArrayList<ImageVO>();
+		
+		for(MultipartFile file : fileList){
+			if(!file.isEmpty()) {
+				String orgName = file.getOriginalFilename();
+				String saveName = StringUtil.getUUID() + orgName;
+				int fileSize = (int) file.getSize();
+				String fileExt = orgName.substring(orgName.lastIndexOf("."));
+				
+				ImageVO image = new ImageVO();
+				image.setOrgName(orgName);
+				image.setSaveName(saveName);
+				image.setPath(simplePath);
+				image.setFileSize(fileSize);
+				image.setFileExt(fileExt);
+				
+				imageList.add(image);
+				
+				file.transferTo(new File(path, saveName));
+			}
+		}
+		
+		int memberNo = 0;
+		
+		if(null != session.getAttribute("member")) {
+			MemberVO loginMember = (MemberVO) session.getAttribute("member");
+			memberNo = loginMember.getMemberNo();
+		}
+		
+		MessageVO message = new MessageVO();
+		message.setMsgId(Integer.toString(imageService.upRegisterImages(imageList, "2", memberNo)));
+		
+		if(message.getMsgId().equals("1")) message.setMsgContents("Successfully the profile image is uploaded");
+		else message.setMsgContents("Failure to upload the profile image");
+		
+		LOG.debug("메세지: "+gson.toJson(message));
+		
+		return gson.toJson(message);
+		
+	}
 	
 	@RequestMapping(value = "image/do_insert.do", method = RequestMethod.POST
 			,produces = "application/json;charset=UTF-8")

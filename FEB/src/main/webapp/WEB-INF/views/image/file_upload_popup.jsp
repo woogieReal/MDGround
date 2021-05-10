@@ -29,6 +29,7 @@
 	<script src="${hContext}/resources/assets/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="${hContext}/resources/js/sign.js"></script>
 	<script src="${hContext}/resources/js/post.js"></script>
+	<script src="${hContext}/resources/js/member.js"></script>
 	
 </head>
 
@@ -37,21 +38,28 @@
   <!-- contents -->
   <c:choose>
 	<c:when test="${fromTb == 1}">
-	   <span class="page_title_name" style="font-size: x-large;"><c:out value="Post Images Upload"></c:out></span>
+	  <span class="page_title_name" style="font-size: x-large;"><c:out value="Post Images Upload"></c:out></span>
+      <input type="button" class="btn btn-primary btn-right" onclick="doUploadImages();" id="file_upload" value="upload" />
 	</c:when>
 	<c:when test="${fromTb == 2}">
-	   <span class="page_title_name" style="font-size: x-large;"><c:out value="Recipe Images Upload"></c:out></span>
+	  <span class="page_title_name" style="font-size: x-large;"><c:out value="Profile Image Upload"></c:out></span>
+      <input type="button" class="btn btn-primary btn-right" onclick="doUploadProfileImage();" id="file_upload" value="upload" />
 	</c:when>
   </c:choose>
-  <input type="button" class="btn btn-primary btn-right" onclick="doUploadImages();" id="file_upload" value="등록" />
   <hr>
   
-	<!-- 레시피 or 상품등록 페이지에서 넘겨받은 값 -->
 	<input type="hidden" name="fromTb" id="fromTb" value="${fromTb}" />
 
+	<c:if test="${fromTb == 2}">
+	  <input type="hidden" name="profileImagePath" id="profileImagePath" value="${profileImagePath}"/>
+	  <input type="hidden" name="profileImageName" id="profileImageName" value="${profileImageName}"/>
+	</c:if>
+	
   <form action="${hContext}/image/do_upload.do" id="uploadFrm" id="uploadFrm" method="post" enctype="multipart/form-data" accept-charset="UTF-8" >
 	
-	<input type="file" class="form-control" name="file_list" id="file_list" multiple="multiple" style="width: 400px" />
+	
+	<input type="file" class="form-control" name="file_list" id="file_list" <c:if test="${fromTb == 1}">multiple="multiple"</c:if> style="width: 400px" />
+    
   
   </form>
   <!-- //contents -->

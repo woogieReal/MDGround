@@ -14,7 +14,11 @@ function doMoveToMain() {
  
 function showPopup(frm) { 
 	console.log('showPopup()');
-	document.getElementById("whichMainImage").value = "";
+	if(document.getElementById("fromTb").value == 1) {
+		document.getElementById("whichMainImage").value = "";
+	} if(document.getElementById("fromTb").value == 2) {
+		console.log(document.getElementById("fromNo").value);
+	}
  
     // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
     var _left = Math.ceil(( window.screen.width - 500 )/2);
@@ -57,7 +61,7 @@ function doUploadImages() {
 
       },
       error: function(data) {
-        console.log('error');
+        console.log('error'+data);
       }
     });
 

@@ -1,5 +1,6 @@
 package com.sist.feb.image.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sist.feb.cmn.DTO;
 import com.sist.feb.image.dao.ImageDaoImpl;
 import com.sist.feb.image.domain.ImageVO;
 
@@ -50,20 +52,18 @@ public class ImageServiceImpl {
 				}
 
 			} 
-//			else if (fromTb.equals("2")) {
-//				int recipeSeqCurr = imageDao.doInquireRecipeSeqCurr();
-//
-//				for (ImageVO vo : imageList) {
-//					
-//					if(cnt == mainImageNum) vo.setMainImage(1);  
-//					
-//					vo.setFromTb(Integer.parseInt(fromTb));
-//					vo.setFromNo(recipeSeqCurr);
-//					flag = imageDao.doInsert(vo);
-//					
-//					cnt += 1;
-//				}
-//			}
+			else if (fromTb.equals("2")) {
+				int memberNo = mainImageNum;
+
+				for (ImageVO vo : imageList) {
+					
+					vo.setFromTb(Integer.parseInt(fromTb));
+					vo.setFromNo(memberNo);
+					flag = imageDao.doInsert(vo);
+					
+					cnt += 1;
+				}
+			}
 
 		}
 
@@ -109,5 +109,12 @@ public class ImageServiceImpl {
 		return imageDao.doRetrieve(image);
 	}
 	
+	public ImageVO doSelectProfileImage(DTO dto) throws SQLException {
+		return imageDao.doSelectProfileImage(dto);
+	}
+	
+	public int doDeleteProfileImage(DTO dto) throws SQLException {
+		return imageDao.doDeleteProfileImage(dto);
+	}
 	
 }
