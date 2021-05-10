@@ -6,7 +6,7 @@
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       
-      <button type="button" class="btn-image" style="margin: 0px 5px;" onclick="doMoveToMain();"><i class="bi bi-markdown i_icon_logo"></i></button> 
+      <button type="button" class="btn-image" style="margin: -8px 5px;" onclick="doMoveToMain();"><i class="bi bi-markdown i_icon_logo"></i></button> 
       
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 text-white">Home</a></li>

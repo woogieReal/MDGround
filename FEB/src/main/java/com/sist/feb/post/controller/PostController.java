@@ -19,6 +19,8 @@ import com.sist.feb.cmn.MDParser;
 import com.sist.feb.cmn.MessageVO;
 import com.sist.feb.cmn.SearchVO;
 import com.sist.feb.cmn.StringUtil;
+import com.sist.feb.follow.domain.FollowVO;
+import com.sist.feb.follow.service.FollowServiceImpl;
 import com.sist.feb.image.domain.ImageVO;
 import com.sist.feb.image.service.ImageServiceImpl;
 import com.sist.feb.member.domain.MemberVO;
@@ -42,6 +44,9 @@ public class PostController {
 	
 	@Autowired
 	private StorageServiceImpl storageService;
+	
+	@Autowired
+	FollowServiceImpl followService;
 	
 	
 //	▼ 생성자 ==============================================================	
@@ -122,14 +127,17 @@ public class PostController {
 		
 		int bookmarkFlag = 0;
 		int likeFlag = 0;
+		int followFlag = 0;
 		
 		if(null != session.getAttribute("member")) {
 			MemberVO loginMember = (MemberVO) session.getAttribute("member");
 			StorageVO bookmarkVO = new StorageVO(0, 1, null, loginMember.getEmail(), postOutVO.getPostNo());
 			StorageVO likeVO = new StorageVO(0, 2, null, loginMember.getEmail(), postOutVO.getPostNo());
+			FollowVO followVO = new FollowVO(0, postOutVO.getMemberEmail(), loginMember.getEmail(), null);
 			
 			bookmarkFlag = storageService.doCheckStore(bookmarkVO);
 			likeFlag = storageService.doCheckStore(likeVO);
+			followFlag = followService.doCheckFollowing(followVO);
 		}
 		
 		Gson gson = new Gson();
@@ -140,6 +148,7 @@ public class PostController {
 		
 		model.addAttribute("bookmarkFlag", bookmarkFlag);
 		model.addAttribute("likeFlag", likeFlag);
+		model.addAttribute("followFlag", followFlag);
 		
 		return "post/post_detail";
 	}

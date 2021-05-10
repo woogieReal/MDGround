@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.sist.feb.cmn.MessageVO;
+import com.sist.feb.follow.domain.FollowVO;
+import com.sist.feb.follow.service.FollowServiceImpl;
 import com.sist.feb.member.domain.MemberVO;
 import com.sist.feb.member.service.MemberServiceImpl;
 
@@ -25,6 +27,9 @@ public class MemberController {
 	
 	@Autowired
 	MemberServiceImpl memberService;
+	
+	@Autowired
+	FollowServiceImpl followService;
 	
 //	▼ 생성자 ==============================================================	
 
@@ -123,13 +128,27 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="member/do_select_one.do",method = RequestMethod.GET)
-	public String doSelectOne(Model model, MemberVO inVO) throws Exception {
+	public String doSelectOne(Model model, MemberVO inVO, HttpSession session) throws Exception {
 		
 		LOG.debug("doSelectOne");
 		
 		MemberVO outVO = memberService.doSelectOne(inVO);
-		LOG.debug("outVO: "+outVO);
+		
+		int followingCount = followService.doCountFollowing(inVO);
+		int followedCount = followService.doCountFollowed(inVO);
+		int followFlag = 0;
+		
+		if(null != session.getAttribute("member")) {
+			MemberVO loginMember = (MemberVO) session.getAttribute("member");
+			FollowVO followVO = new FollowVO(0, outVO.getEmail(), loginMember.getEmail(), null);
+			followFlag = followService.doCheckFollowing(followVO);
+		}
+		
+		//LOG.debug("outVO: "+outVO);
 		model.addAttribute("memberVO", outVO);
+		model.addAttribute("followingCount", followingCount);
+		model.addAttribute("followedCount", followedCount);
+		model.addAttribute("followFlag", followFlag);
 		
 		return "member/my_page";
 	}

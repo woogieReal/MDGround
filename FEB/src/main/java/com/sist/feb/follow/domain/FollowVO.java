@@ -1,4 +1,4 @@
-package com.sist.feb.member.domain;
+package com.sist.feb.follow.domain;
 
 import com.sist.feb.cmn.DTO;
 

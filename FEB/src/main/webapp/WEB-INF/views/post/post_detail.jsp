@@ -25,7 +25,8 @@
         </div>
         
         <div class="container text_div" id="post_text">
-			${vo.textHtml}
+		  ${vo.textHtml}
+		  <span>${vo.regDt}</span>
         </div>
         
         <c:choose>
@@ -41,6 +42,18 @@
           </c:when>
          <c:when test="${sessionScope.member.email != vo.memberEmail && sessionScope.member != null}">
 	        <div class="container i_icon_div">
+	          <div class="inline_block_div" id="my_page_icon_follow">
+          	    <c:choose>
+           	  	  <c:when test="${followFlag == 0}">
+          	  	    <button type="button" class="btn-image" onclick="doFollow('${vo.memberEmail}', '${sessionScope.member.email}');" style="margin: -5px 0px 0px 15px;" ><i class="bi bi-person-plus i_icon"></i></button>
+            	  </c:when>
+          	  	</c:choose>
+          	  	<c:choose>
+          	  	  <c:when test="${followFlag == 1}">
+          	  	    <button type="button" class="btn-image" onclick="doCancelFollow('${vo.memberEmail}', '${sessionScope.member.email}');" style="margin: -5px 0px 0px 15px;" ><i class="bi bi-person-plus-fill i_icon"></i></button>
+          	  	  </c:when>
+          	  	</c:choose>	          
+	          </div>
 		      <div class="inline_block_div" id="post_icon_bookmark${vo.postNo}">
 		        <c:choose>
 		          <c:when test="${bookmarkFlag == 1}">

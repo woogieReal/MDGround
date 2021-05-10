@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.feb.follow">
+
+	<!-- doCheckFollowing -->
+	<select id="doCheckFollowing" parameterType="FollowVO" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM follow
+		WHERE following_email = #{followingEmail}
+		AND followed_email = #{followedEmail}	
+	</select>
+
+	<!-- doCountFollowing -->
+	<select id="doCountFollowing" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM follow
+		WHERE followed_email = #{email}
+	</select>
+	
+	<!-- doCountFollowed -->
+	<select id="doCountFollowed" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM follow
+		WHERE following_email = #{email}
+	</select>
+
+	<!-- doFollow -->
+	<insert id="doFollow" parameterType="FollowVO">
+		INSERT INTO follow (
+		    follow_no,
+		    following_email,
+		    followed_email,
+		    reg_dt
+		) VALUES (
+		    FOLLOW_SEQ.nextval,
+		    #{followingEmail},
+		    #{followedEmail},
+		    sysdate
+		)	
+	</insert>
+
+	<!-- doCancelFollow -->
+	<delete id="doCancelFollow">
+		DELETE FROM follow
+		WHERE following_email = #{followingEmail}
+		AND followed_email = #{followedEmail}	
+	</delete>
+
+
+	
+</mapper>

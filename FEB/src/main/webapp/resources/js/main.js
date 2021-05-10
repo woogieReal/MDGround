@@ -48,6 +48,7 @@ function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
 				html += "            <div class='d-flex justify-content-between align-items-center'>                                                                                               ";
 				html += "              <small class='text-muted'>"+ value.category +"</small><br>                                                                                                                     ";
 				html += "            </div>                                                                                                                                                        ";
+				html += "            <small class='text-muted'>"+ value.regDt +"</small><br>                                                                                                                     ";
 				html += "		     <div class='i_icon_div_main'>                                                                                                                                                          ";
 				html += "		       <div class='inline_block_div' id='post_icon_bookmark"+ value.postNo +"'></div>                                                                                                                                                          ";
 				html += "		       <div class='inline_block_div' id='post_icon_heart"+ value.postNo +"'></div>                                                                                                                                                          ";
