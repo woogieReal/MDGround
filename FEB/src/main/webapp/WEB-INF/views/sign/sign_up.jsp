@@ -5,7 +5,7 @@
 	  <main class="form-signin">
 	  
 		<div class="py-5 text-center">
-		  <h2>회원가입</h2>
+		  <h2>Sign up</h2>
 		</div>
 
         <form id="signUpFrm" name="signUpFrm">
@@ -14,16 +14,16 @@
 	  	
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="button" onclick="doCheckDuplicatedId();" class="btn btn-primary btn-sm btn-right" value="중복체크" id="idCheckBtn" />
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="입력 후 중복체크를 해주세요">
+            <input type="button" onclick="doCheckDuplicatedId();" class="btn btn-primary btn-sm btn-right" value="Check" id="idCheckBtn" />
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email address to use as login ID">
           </div>
           <div class="mb-3">
             <label for="pw" class="form-label">Password</label>
-            <input type="password" class="form-control" id="pw">
+            <input type="password" class="form-control"  placeholder="7 and 15 characters with at least one number" id="pw">
           </div>
           <div class="mb-3">
-            <label for="pw_check" class="form-label">Password check</label>
-            <input type="password" class="form-control" id="pw_check" placeholder="비밀번호를 한 번 더 입력해 주세요">
+            <label for="pw_check" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="pw_check">
           </div>
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
@@ -73,7 +73,7 @@
             </select>
           </div>
         </form>
-          <button type="submit" onclick="doSignUp();" class="btn btn-primary">회원등록</button><br/><br/>
+          <button type="submit" onclick="doSignUp();" class="btn btn-primary">Sign up</button><br/><br/>
 	  </main>	
     </div>
   </div>

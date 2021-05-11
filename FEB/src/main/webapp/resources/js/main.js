@@ -37,6 +37,7 @@ function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
 				html += "      <div class='card shadow-sm'>                                                                                                                                      ";
 				html += "        <form id='imageFrm"+ value.postNo +"' name='imageFrm"+ value.postNo +"' method='get'>         ";
 				html += "		   <div class='card-header'>                                                                                                                                                                ";
+				html += "		     <div class='inline_block_div' id='postProfileImageDiv"+ value.postNo +"' name='postProfileImageDiv"+ value.postNo +"' ></div>                                                                                                                                                            ";
 				html += "		     <button type='button' onclick='doSelectMember("+ value.postNo +", \""+ value.memberEmail +"\");' class='btn-image'><span style='font-weight: bold;'>"+ value.memberEmail +"</span></button>                                                                                                                                                                ";
 				html += "		   </div>                                                                                                                                                                ";
 				html += "		                                                                                                                                                                 ";
@@ -66,6 +67,9 @@ function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
 					doCheckStore(1, loginMemberEamil, value.postNo);
 					doCheckStore(2, loginMemberEamil, value.postNo);
 				}
+				
+				doSelectProfileImageEachPost(value.memberEmail, value.postNo);
+				
 			});
 			
 			//console.log(html);
@@ -81,6 +85,39 @@ function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
   			console.log("error:"+data);
   		}
   	});	
+}
+
+function doSelectProfileImageEachPost(email, no) {
+
+	$.ajax({
+  		type: "POST",
+  		url:"/feb/image/do_select_profile_image.do",
+  		asyn:true,
+  		dataType:"html",
+  		data:{
+  			email: email
+  		},
+  		success:function(data){//통신 성공
+  			
+  			let srcValue = "";
+  			var parseData = JSON.parse(data);
+  			
+  			if(parseData != null){
+  				srcValue = parseData.path + parseData.saveName;
+  			} else if(parseData == null){
+  				srcValue = "/resources/image_source/nothing.jpg";
+  			}
+  			
+  			//console.log("srcValue: "+srcValue);
+  			
+			document.getElementById("postProfileImageDiv"+no+"").innerHTML = "  <button type='button' style='margin: 0px;' onclick='doClickProfileImage(\""+ email +"\");' class='btn-image'><img class='profile_img_header' src='/feb/"+ srcValue +"'></button>";
+			
+  		},
+  		error:function(data){//실패시 처리
+  			console.log("error:"+data);
+  		}
+  	});
+	
 }
 
 function doSelectProfileImage(email) {

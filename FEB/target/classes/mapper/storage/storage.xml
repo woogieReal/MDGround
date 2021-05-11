@@ -51,7 +51,8 @@
 		    t1.member_email AS memberEmail
 		FROM post t1, storage t2
         WHERE t2.member_email = #{memberEmail}
-        AND t1.post_no = t2.post_no	
+        AND t1.post_no = t2.post_no
+        AND t2.store_type = 1	
 	</select>
 
 

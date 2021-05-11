@@ -26,7 +26,29 @@
         
         <div class="container text_div" id="post_text">
 		  ${vo.textHtml}
-		  <span>${vo.regDt}</span>
+		  <table class="member_simple_table_post_detail">
+		  	<tbody>
+		  	  <tr>
+		  	    <td rowspan="2">
+		  	      <form id="headerProfileImageFrm" name="headerProfileImageFrm">
+		  	        <input type="hidden" id="tmpEmail" name="tmpEmail" value="">
+		  	        <button type="button" onclick="doClickProfileImage('${vo.memberEmail}');" class="btn-image" >
+		  	          <img class="profile_img_header" src="/feb${profileImage.path}${profileImage.saveName}">
+		  	        </button>
+		  	      </form>
+		  	    </td>
+		  	  	<td>
+		  	  	  ${vo.memberEmail}
+		  	  	</td>
+		  	  </tr>
+		  	  <tr>
+		  	  	<td>
+		  	  	  ${vo.regDt}
+		  	  	</td>
+		  	  </tr>
+		  	</tbody>
+		  </table>
+		  
         </div>
         
         <c:choose>

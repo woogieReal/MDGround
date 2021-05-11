@@ -21,7 +21,10 @@
           	  	    <input type="hidden" name="fromNo" id="fromNo" value="${memberVO.memberNo}"/>
           	  	    <input type="hidden" name="profileImagePath" id="profileImagePath" value="${profileImage.fullPath}"/>
           	  	    <input type="hidden" name="profileImageName" id="profileImageName" value="${profileImage.saveName}"/>
-          	  	    <button type="button" <c:if test="${sessionScope.member.email == memberVO.email}">onclick="showPopup(this.form);"</c:if> class="btn-image">
+          	  	    
+          	  	    <c:if test="${sessionScope.member.email == memberVO.email}">
+          	  	      <button type="button" onclick="showPopup(this.form);" class="btn-image">
+          	  	    </c:if>  
           	  	      <img class="bd-placeholder-img profile_img_my_page" 
           	  	        <c:choose>
           	  	          <c:when test="${profileImage == null}">
@@ -32,7 +35,9 @@
           	  	          </c:when>
           	  	        </c:choose>
           	  	      />
-          	  	    </button>
+          	  	    <c:if test="${sessionScope.member.email == memberVO.email}">
+          	  	      </button>
+          	  	    </c:if> 
           	  	  </form>
           	  	</td>
           	  	<td>
@@ -115,7 +120,7 @@
 			</c:if>  
           </div>
           <div class="tab-pane fade" id="nav-bookmark" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <c:if test="${postList.size() > 0}">
+            <c:if test="${bookmarkList.size() > 0}">
 			  <c:forEach var="i"  begin="0"  end="${bookmarkList.size()-1}" step="1">
 			    <div class="inline_block_div" id="my_page_post_div" style="margin: 2px;">
 	  			  <div class="col" style="width: 240px;">                                                                                                                                                   

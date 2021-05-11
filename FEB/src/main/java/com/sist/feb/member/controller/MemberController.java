@@ -198,6 +198,7 @@ public class MemberController {
 			} else {
 				postVO.setThumbNail(imageVO.getPath()+imageVO.getSaveName());
 			}
+			LOG.debug("**********"+postVO.getTitle()+"*************");
 		}
 		
 		

@@ -24,6 +24,7 @@ import com.sist.feb.follow.service.FollowServiceImpl;
 import com.sist.feb.image.domain.ImageVO;
 import com.sist.feb.image.service.ImageServiceImpl;
 import com.sist.feb.member.domain.MemberVO;
+import com.sist.feb.member.service.MemberServiceImpl;
 import com.sist.feb.post.domain.PostVO;
 import com.sist.feb.post.service.PostServiceImpl;
 import com.sist.feb.storage.domain.StorageVO;
@@ -47,7 +48,9 @@ public class PostController {
 	
 	@Autowired
 	FollowServiceImpl followService;
-	
+
+	@Autowired
+	MemberServiceImpl memberService;
 	
 //	▼ 생성자 ==============================================================	
 	
@@ -142,6 +145,9 @@ public class PostController {
 			followFlag = followService.doCheckFollowing(followVO);
 		}
 		
+		MemberVO outVO = memberService.doSelectOne(new MemberVO(0, postOutVO.getMemberEmail(), null, null, null, null, null));
+		ImageVO profileImage = imageService.doSelectProfileImage(outVO);
+		
 		Gson gson = new Gson();
 		
 		model.addAttribute("vo", postOutVO);
@@ -151,6 +157,8 @@ public class PostController {
 		model.addAttribute("bookmarkFlag", bookmarkFlag);
 		model.addAttribute("likeFlag", likeFlag);
 		model.addAttribute("followFlag", followFlag);
+		
+		model.addAttribute("profileImage", profileImage);
 		
 		return "post/post_detail";
 	}
