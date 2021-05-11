@@ -25,6 +25,8 @@ import com.sist.feb.member.domain.MemberVO;
 import com.sist.feb.member.service.MemberServiceImpl;
 import com.sist.feb.post.domain.PostVO;
 import com.sist.feb.post.service.PostServiceImpl;
+import com.sist.feb.storage.domain.StorageVO;
+import com.sist.feb.storage.service.StorageServiceImpl;
 
 @Controller
 public class MemberController {
@@ -44,6 +46,9 @@ public class MemberController {
 	
 	@Autowired
 	ImageServiceImpl imageService;
+	
+	@Autowired
+	StorageServiceImpl storageService;
 	
 //	▼ 생성자 ==============================================================	
 
@@ -170,14 +175,31 @@ public class MemberController {
 				case "java": postVO.setThumbNail("/resources/image_source/java.png"); break;
 				case "javascript": postVO.setThumbNail("/resources/image_source/javascript.png"); break;
 				}
-			LOG.debug("postVO.getThumbNail(): "+postVO.getThumbNail());
+			//LOG.debug("postVO.getThumbNail(): "+postVO.getThumbNail());
 			} else {
 				postVO.setThumbNail(imageVO.getPath()+imageVO.getSaveName());
 			}
 		}
 			
-		
 		ImageVO profileImage = imageService.doSelectProfileImage(outVO);
+		
+		List<PostVO> bookmarkList = storageService.doRetrieveBookmark(new StorageVO(0, 0, null, outVO.getEmail(), 0));
+		
+		for(PostVO postVO : bookmarkList) {
+			ImageVO imageVO = imageService.doSelectMainImage(postVO);
+			if(Objects.isNull(imageVO)) {
+				//LOG.debug("************null****************");
+				switch (postVO.getCategory()) {
+				case "daily life": postVO.setThumbNail("/resources/image_source/markdown.png"); break;
+				case "java": postVO.setThumbNail("/resources/image_source/java.png"); break;
+				case "javascript": postVO.setThumbNail("/resources/image_source/javascript.png"); break;
+				}
+				//LOG.debug("postVO.getThumbNail(): "+postVO.getThumbNail());
+			} else {
+				postVO.setThumbNail(imageVO.getPath()+imageVO.getSaveName());
+			}
+		}
+		
 		
 		//LOG.debug("outVO: "+outVO);
 		model.addAttribute("memberVO", outVO);
@@ -186,6 +208,7 @@ public class MemberController {
 		model.addAttribute("followFlag", followFlag);
 		model.addAttribute("postList", postList);
 		model.addAttribute("profileImage", profileImage);
+		model.addAttribute("bookmarkList", bookmarkList);
 		
 		return "member/my_page";
 	}

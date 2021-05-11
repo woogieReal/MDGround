@@ -1,6 +1,7 @@
 package com.sist.feb.storage.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.feb.cmn.DTO;
+import com.sist.feb.post.domain.PostVO;
 
 @Repository
 public class StorageDaoImpl {
@@ -41,7 +43,9 @@ public class StorageDaoImpl {
 		return this.sqlSessionTemplate.selectOne(this.NAMESPACE + ".doCheckStore", dto);
 	}
 	
-	
+	public List<PostVO> doRetrieveBookmark(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.selectList(this.NAMESPACE + ".doRetrieveBookmark", dto);
+	}
 	
 	
 }

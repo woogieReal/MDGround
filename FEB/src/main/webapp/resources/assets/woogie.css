@@ -117,6 +117,15 @@ div {
 	border-radius: 55px;
 }
 
+.profile_img_header {
+	background-color: white;
+	width: 46px;
+	height: 46px;
+	object-fit: cover;
+	border-radius: 23px;
+	margin: 0px;
+}
+
 .my_page_img {
 	width: 160px; 
 	height: 160px; 

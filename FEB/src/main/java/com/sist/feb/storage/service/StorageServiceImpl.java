@@ -1,6 +1,7 @@
 package com.sist.feb.storage.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sist.feb.cmn.DTO;
+import com.sist.feb.post.domain.PostVO;
 import com.sist.feb.storage.dao.StorageDaoImpl;
 
 @Service
@@ -40,7 +42,9 @@ public class StorageServiceImpl {
 		return storageDao.doCheckStore(dto);
 	}
 
-
+	public List<PostVO> doRetrieveBookmark(DTO dto) throws SQLException {
+		return storageDao.doRetrieveBookmark(dto);
+	}
 
 
 }

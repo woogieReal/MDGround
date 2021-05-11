@@ -28,6 +28,7 @@ import com.sist.feb.cmn.StringUtil;
 import com.sist.feb.image.domain.ImageVO;
 import com.sist.feb.image.service.ImageServiceImpl;
 import com.sist.feb.member.domain.MemberVO;
+import com.sist.feb.member.service.MemberServiceImpl;
 import com.sist.feb.post.domain.PostVO;
 
 @Controller
@@ -39,6 +40,9 @@ public class ImageController {
 
 	@Autowired
 	ImageServiceImpl imageService;
+	
+	@Autowired
+	MemberServiceImpl memberService;
 	
 	final String BASIC_PATH = "C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload";
 	
@@ -228,6 +232,17 @@ public class ImageController {
 		return gson.toJson(message);
 		
 	}
+	
+	@RequestMapping(value = "image/do_select_profile_image.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doSelectProfileImage(MemberVO inVO) throws Exception {
+		MemberVO outVO = memberService.doSelectOne(inVO);
+		ImageVO imageVO = imageService.doSelectProfileImage(outVO);
+		Gson gson = new Gson();
+		return gson.toJson(imageVO);
+	}
+	
 	
 	@RequestMapping(value = "image/do_insert.do", method = RequestMethod.POST
 			,produces = "application/json;charset=UTF-8")

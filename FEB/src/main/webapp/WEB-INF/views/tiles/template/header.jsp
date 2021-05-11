@@ -25,6 +25,9 @@
       	  <c:when test="${sessionScope.member != null}">
             <button type="button" onclick="doMovePost();" class="btn btn-outline-light me-2">post</button>
             <button type="button" onclick="doLogOut();" class="btn btn-outline-light me-2">Log out</button>
+            <div id="headerProfileImageDiv" class="inline_block_div">
+              
+            </div>
       	  </c:when>
       	  <c:when test="${sessionScope.member == null}">
             <button type="button" onclick="doMoveToSignIn();" class="btn btn-outline-light me-2">Login</button>

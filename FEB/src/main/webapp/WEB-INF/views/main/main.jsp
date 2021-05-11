@@ -35,7 +35,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		console.log("main");
+		//console.log("main");
 		doRetrieve("postCategoryNo", "0", '${sessionScope.member.email}');
 	});
 </script>

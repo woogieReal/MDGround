@@ -33,4 +33,26 @@
 		AND post_no = #{postNo}			
 	</select>
 
+	<select id="doRetrieveBookmark" parameterType="StorageVO" resultType="PostVO">
+		SELECT
+		    t1.post_no AS postNo,
+		    t1.title AS title,
+		    t1.text_md AS textMd,
+		    t1.text_html AS textHtml,
+		    t1.read_cnt AS readCnt,
+		    t1.like_cnt AS likeCnt,
+		    t1.hate_cnt AS hateCnt,
+		    t1.category AS category,
+			CASE WHEN TO_CHAR(SYSDATE,'YYYY/MM/DD') = TO_CHAR(t1.reg_dt,'YYYY/MM/DD')           
+				THEN TO_CHAR(t1.reg_dt,'HH24:MI')                                               
+			ELSE TO_CHAR(t1.reg_dt,'YYYY/MM/DD')                                                
+			END AS regDt,
+		    t1.mod_dt AS modDt,
+		    t1.member_email AS memberEmail
+		FROM post t1, storage t2
+        WHERE t2.member_email = #{memberEmail}
+        AND t1.post_no = t2.post_no	
+	</select>
+
+
 </mapper>

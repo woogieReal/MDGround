@@ -39,6 +39,8 @@ function doSignIn() {
   			} else {
 	  			alert(parseData.msgContents);
   			}
+  			
+  			
   		
   		},
   		error:function(data){//실패시 처리
