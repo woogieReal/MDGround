@@ -99,6 +99,14 @@ div {
 	width: 100%; 
 	height: 300px; 
 	object-fit: cover;
+	border: 0.5px solid lightgray;
+}
+
+.thumb_nail_img_small {
+	width: 100%; 
+	height: 220px; 
+	object-fit: cover;
+	border: 0.5px solid lightgray;
 }
 
 .profile_img_my_page {

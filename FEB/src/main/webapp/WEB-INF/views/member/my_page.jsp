@@ -84,11 +84,22 @@
         <div id="post_images" class="container text_div">
 
 		  <c:forEach var="i"  begin="0"  end="${postList.size()-1}" step="1">
-		    <div class="inline_block_div">
-		      <form id="imageFrm${postList.get(i).getPostNo()}" name="imageFrm${postList.get(i).getPostNo()}" method="get">
-		        <input type="hidden" id="postNo${postList.get(i).getPostNo()}" name="postNo${postList.get(i).getPostNo()}" value="" >
-		        <button type="button" class="btn-image" style="margin: 4px 1px;" ><img alt="img" onclick="doSelectPost(${postList.get(i).getPostNo()});" class="img-fluid my_page_img" src="/feb${postList.get(i).getThumbNail()}"></button>
-		  	  </form>
+		    <div class="inline_block_div" style="margin: 2px;">
+  			  <div class="col" style="width: 240px;">                                                                                                                                                   
+			    <div class="card shadow-sm">                                                                                                                                      
+			      <form id="imageFrm${postList.get(i).getPostNo()}" name="imageFrm${postList.get(i).getPostNo()}" method="get">                                                                                                                                                                        
+				                                                                                                                                                                 
+				     <input type="hidden" id="postNo${postList.get(i).getPostNo()}" name="postNo${postList.get(i).getPostNo()}" value="" >                                                                                                                                                              
+				     <div id="mainImageDiv${postList.get(i).getPostNo()}">                                                                                                                                                              
+				       <button type="button" class="btn-image"><img class="bd-placeholder-img card-img-top thumb_nail_img_small" onclick="doSelectPost(${postList.get(i).getPostNo()});" src="/feb${postList.get(i).getThumbNail()}"></button>                                             
+				     </div>                                                                                                                                                              
+				                                                                                                                                                                 
+			        <div class="card-body">                                                                                                                                         
+			          <span style="font-weight: bold;">${postList.get(i).getTitle()}</span>                                                                                                                                                                                                                                                                                                                    
+			        </div>                                                                                                                                                          
+			      </form>                                                        
+			    </div>                                                                                                                                                            
+			  </div>		  	  
 		  	</div>
 		  </c:forEach>  
         

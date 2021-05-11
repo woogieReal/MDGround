@@ -60,6 +60,7 @@
 	              <label for="category" class="form-label">Category</label>
 	              <select class="form-select form-select-lg mb-3" id="category" style="font-size: medium;" aria-label=".form-select-lg example">
 				  	<option value="daily life" <c:if test="${vo.category == 'daily life'}">selected</c:if> >daily life</option>          
+				  	<option value="java" <c:if test="${vo.category == 'java'}">selected</c:if> >java</option>                 
 				  	<option value="javascript" <c:if test="${vo.category == 'javascript'}">selected</c:if> >javascript</option>                 
 	              </select>
 	            </div>
