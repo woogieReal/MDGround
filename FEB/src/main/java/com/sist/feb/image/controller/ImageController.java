@@ -28,6 +28,7 @@ import com.sist.feb.cmn.StringUtil;
 import com.sist.feb.image.domain.ImageVO;
 import com.sist.feb.image.service.ImageServiceImpl;
 import com.sist.feb.member.domain.MemberVO;
+import com.sist.feb.post.domain.PostVO;
 
 @Controller
 public class ImageController {
@@ -38,6 +39,8 @@ public class ImageController {
 
 	@Autowired
 	ImageServiceImpl imageService;
+	
+	final String BASIC_PATH = "C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload";
 	
 	
 //	▼ 생성자 ==============================================================	
@@ -54,11 +57,13 @@ public class ImageController {
 			@RequestParam(value = "profileImagePath", required = false)String profileImagePath,
 			@RequestParam(value = "profileImageName", required = false)String profileImageName,
 			Model model) throws Exception {
+		
 		LOG.debug("fromTb: "+fromTb);
 		model.addAttribute("fromTb", fromTb);
 		model.addAttribute("profileImagePath", profileImagePath);
 		model.addAttribute("profileImageName", profileImageName);
 		return "image/file_upload_popup";
+		
 	}
 	
 	@RequestMapping(value = "image/do_upload.do", method = RequestMethod.POST
@@ -74,7 +79,7 @@ public class ImageController {
 		String month = StringUtil.formatDate("MM");
 		
 		//파일이 업로드 될 경로
-		String path = "C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload"+ File.separator + year + File.separator + month;
+		String path = BASIC_PATH+ File.separator + year + File.separator + month;
 		String simplePath = "/resources/upload/" + year + "/" + month + "/";
 		
 		LOG.debug("path: "+path);
@@ -100,6 +105,7 @@ public class ImageController {
 				ImageVO image = new ImageVO();
 				image.setOrgName(orgName);
 				image.setSaveName(saveName);
+				image.setFullPath(path);
 				image.setPath(simplePath);
 				image.setFileSize(fileSize);
 				image.setFileExt(fileExt);
@@ -127,18 +133,8 @@ public class ImageController {
 									   HttpSession session
 	) throws Exception {
 		
-			
-		StringBuffer sb = new StringBuffer();
-		sb.append("C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload");
-		String imageRegDt = profileImagePath;
 		
-		String[] imageRegDtArr = imageRegDt.split("/");
-		for(int i = 3; i < imageRegDtArr.length; i++) {
-			sb.append(File.separator);
-			sb.append(imageRegDtArr[i]);
-			//LOG.debug("**********************"+imageRegDtArr[i]);
-		}
-		String imageFullPath = sb.toString() + File.separator + profileImageName;
+		String imageFullPath = profileImagePath + File.separator + profileImageName;
 		LOG.debug("imageFullPath: "+imageFullPath);
 		
 		Path file = Paths.get(imageFullPath);
@@ -178,7 +174,7 @@ public class ImageController {
 		String month = StringUtil.formatDate("MM");
 		
 		//파일이 업로드 될 경로
-		String path = "C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload"+ File.separator + year + File.separator + month;
+		String path = BASIC_PATH+ File.separator + year + File.separator + month;
 		String simplePath = "/resources/upload/" + year + "/" + month + "/";
 		
 		LOG.debug("path: "+path);
@@ -203,6 +199,7 @@ public class ImageController {
 				ImageVO image = new ImageVO();
 				image.setOrgName(orgName);
 				image.setSaveName(saveName);
+				image.setFullPath(path);
 				image.setPath(simplePath);
 				image.setFileSize(fileSize);
 				image.setFileExt(fileExt);
@@ -271,17 +268,8 @@ public class ImageController {
 		List<ImageVO> imageList = gson.fromJson(jsonStr, new TypeToken<List<ImageVO>>() {}.getType());
 		
 		for(ImageVO vo : imageList) {
-			
-			StringBuffer sb = new StringBuffer();
-			sb.append("C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload");
-			String imageRegDt = vo.getRegDt();
-			
-			String[] imageRegDtArr = imageRegDt.split("-");
-			for(int i = 0; i < imageRegDtArr.length-1; i++) {
-				sb.append(File.separator);
-				sb.append(imageRegDtArr[i]);
-			}
-			String imageFullPath = sb.toString() + File.separator + vo.getSaveName();
+
+			String imageFullPath = vo.getFullPath() + File.separator + vo.getSaveName();
 			LOG.debug("imageFullPath: "+imageFullPath);
 			
 			Path file = Paths.get(imageFullPath);
@@ -328,16 +316,7 @@ public class ImageController {
 		
 		for(ImageVO vo : imageListDel) {
 			
-			StringBuffer sb = new StringBuffer();
-			sb.append("C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload");
-			String imageRegDt = vo.getRegDt();
-			
-			String[] imageRegDtArr = imageRegDt.split("-");
-			for(int i = 0; i < imageRegDtArr.length-1; i++) {
-				sb.append(File.separator);
-				sb.append(imageRegDtArr[i]);
-			}
-			String imageFullPath = sb.toString() + File.separator + vo.getSaveName();
+			String imageFullPath = vo.getFullPath() + File.separator + vo.getSaveName();
 			LOG.debug("imageFullPath: "+imageFullPath);
 			
 			Path file = Paths.get(imageFullPath);
@@ -364,7 +343,14 @@ public class ImageController {
 		return gson.toJson(imageList.toArray());
 	}
 	
-	
-	
+	@RequestMapping(value = "image/do_select_main_image.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doSelectMainImage(PostVO postVO) throws Exception {
+		LOG.debug("doSelectMainImage");
+		ImageVO imageVO = imageService.doSelectMainImage(postVO);
+		Gson gson = new Gson();
+		return gson.toJson(imageVO);
+	}
 	
 }

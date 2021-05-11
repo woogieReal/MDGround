@@ -8,6 +8,7 @@ public class ImageVO extends DTO {
 	private int    mainImage;    //메인이미지
 	private String orgName;      //원본파일명
 	private String saveName;     //저장파일명
+	private String fullPath;
 	private String path;          //경로
 	private int    fileSize;     //파일용량
 	private String fileExt;      //확장자
@@ -17,13 +18,14 @@ public class ImageVO extends DTO {
 	
 	public ImageVO() {}
 
-	public ImageVO(int imageNo, int mainImage, String orgName, String saveName, String path, int fileSize,
-			String fileExt, int fromTb, int fromNo, String regDt) {
+	public ImageVO(int imageNo, int mainImage, String orgName, String saveName, String fullPath, String path,
+			int fileSize, String fileExt, int fromTb, int fromNo, String regDt) {
 		super();
 		this.imageNo = imageNo;
 		this.mainImage = mainImage;
 		this.orgName = orgName;
 		this.saveName = saveName;
+		this.fullPath = fullPath;
 		this.path = path;
 		this.fileSize = fileSize;
 		this.fileExt = fileExt;
@@ -62,6 +64,14 @@ public class ImageVO extends DTO {
 
 	public void setSaveName(String saveName) {
 		this.saveName = saveName;
+	}
+
+	public String getFullPath() {
+		return fullPath;
+	}
+
+	public void setFullPath(String fullPath) {
+		this.fullPath = fullPath;
 	}
 
 	public String getPath() {
@@ -115,9 +125,10 @@ public class ImageVO extends DTO {
 	@Override
 	public String toString() {
 		return "ImageVO [imageNo=" + imageNo + ", mainImage=" + mainImage + ", orgName=" + orgName + ", saveName="
-				+ saveName + ", path=" + path + ", fileSize=" + fileSize + ", fileExt=" + fileExt + ", fromTb=" + fromTb
-				+ ", fromNo=" + fromNo + ", regDt=" + regDt + ", toString()=" + super.toString() + "]";
+				+ saveName + ", fullPath=" + fullPath + ", path=" + path + ", fileSize=" + fileSize + ", fileExt="
+				+ fileExt + ", fromTb=" + fromTb + ", fromNo=" + fromNo + ", regDt=" + regDt + ", toString()="
+				+ super.toString() + "]";
 	}
-	
+
 	
 }

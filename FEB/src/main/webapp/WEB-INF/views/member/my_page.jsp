@@ -19,7 +19,7 @@
           	  	  <form name="image_frm" id="image_frm">
           	  	    <input type="hidden" name="fromTb" id="fromTb" value="2"/>
           	  	    <input type="hidden" name="fromNo" id="fromNo" value="${memberVO.memberNo}"/>
-          	  	    <input type="hidden" name="profileImagePath" id="profileImagePath" value="${profileImage.path}"/>
+          	  	    <input type="hidden" name="profileImagePath" id="profileImagePath" value="${profileImage.fullPath}"/>
           	  	    <input type="hidden" name="profileImageName" id="profileImageName" value="${profileImage.saveName}"/>
           	  	    <button type="button" <c:if test="${sessionScope.member.email == memberVO.email}">onclick="showPopup(this.form);"</c:if> class="btn-image">
           	  	      <img class="bd-placeholder-img profile_img_my_page" 

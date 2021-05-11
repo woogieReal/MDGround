@@ -109,6 +109,10 @@ public class ImageServiceImpl {
 		return imageDao.doRetrieve(image);
 	}
 	
+	public ImageVO doSelectMainImage(DTO dto) throws SQLException {
+		return imageDao.doSelectMainImage(dto);
+	}
+	
 	public ImageVO doSelectProfileImage(DTO dto) throws SQLException {
 		return imageDao.doSelectProfileImage(dto);
 	}

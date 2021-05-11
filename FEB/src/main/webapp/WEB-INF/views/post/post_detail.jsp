@@ -17,11 +17,11 @@
         </div>		
 		
 		<div id="post_images">
-		
-		  <c:forEach var="i"  begin="0"  end="${imageList.size()-1}" step="1">
-		    <img alt="img" class="img-fluid squircle_img" src="/feb${imageList.get(i).getPath()}${imageList.get(i).getSaveName()}">
-		  </c:forEach>		  		
-  		  
+		  <c:if test="${imageList.size() > 0}">
+		    <c:forEach var="i"  begin="0"  end="${imageList.size()-1}" step="1">
+		      <img alt="img" class="img-fluid squircle_img" src="/feb${imageList.get(i).getPath()}${imageList.get(i).getSaveName()}">
+		    </c:forEach>		  		
+  		  </c:if> 
         </div>
         
         <div class="container text_div" id="post_text">

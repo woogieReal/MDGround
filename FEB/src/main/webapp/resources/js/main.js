@@ -41,7 +41,9 @@ function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
 				html += "		   </div>                                                                                                                                                                ";
 				html += "		                                                                                                                                                                 ";
 				html += "		   <input type='hidden' id='postNo"+ value.postNo +"' name='postNo"+ value.postNo +"' value='' >                                                                                                                                                              ";
-				html += "		   <button type='button' class='btn-image'><img class='bd-placeholder-img card-img-top thumb_nail_img' onclick='doSelectPost("+ value.postNo +");' src='/feb"+ imagePath +"'></button>                                             ";
+				html += "		   <div id='mainImageDiv"+ value.postNo +"'>                                                                                                                                                              ";
+				//html += "		     <button type='button' class='btn-image'><img class='bd-placeholder-img card-img-top thumb_nail_img' onclick='doSelectPost("+ value.postNo +");' src='/feb"+ imagePath +"'></button>                                             ";
+				html += "		   </div>                                                                                                                                                              ";
 				html += "		                                                                                                                                                                 ";
 				html += "          <div class='card-body'>                                                                                                                                         ";
 				html += "            <span style='font-weight: bold;'>"+ value.title +"</span>     ";
@@ -58,6 +60,8 @@ function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
 				html += "      </div>                                                                                                                                                            ";
 				html += "    </div>                                                                                                                                                              ";
 
+				doSelectMainImage(value.postNo, value.category);
+				
 				if(value.memberEmail != loginMemberEamil && loginMemberEamil != ""){
 					doCheckStore(1, loginMemberEamil, value.postNo);
 					doCheckStore(2, loginMemberEamil, value.postNo);
@@ -74,6 +78,46 @@ function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
   			console.log("error:"+data);
   		}
   	});	
+}
+
+
+function doSelectMainImage(no, category) {
+	//console.log("doSelectMainImage("+ no +")");
+	//console.log(category);
+	
+	$.ajax({
+  		type: "POST",
+  		url:"/feb/image/do_select_main_image.do",
+  		asyn:false,
+  		dataType:"html",
+  		data:{
+  			postNo: no
+  		},
+  		success:function(data){//통신 성공
+  			
+  			let srcValue = "";
+  			var parseData = JSON.parse(data);
+  			
+  			if(parseData != null){
+  				srcValue = parseData.path + parseData.saveName;
+  			} else if(parseData == null){
+  				switch(category){
+  					case "daily life": srcValue="/resources/image_source/markdown.png";   break;
+  					case "java":       srcValue="/resources/image_source/java.png";       break;
+  					case "javascript": srcValue="/resources/image_source/javascript.png"; break;
+  				}
+  			}
+  			
+  			console.log("srcValue: "+srcValue);
+  			
+			document.getElementById("mainImageDiv"+no+"").innerHTML = "<button type='button' class='btn-image'><img class='bd-placeholder-img card-img-top thumb_nail_img' onclick='doSelectPost("+ no +");' src='/feb"+ srcValue +"'></button>";
+			
+  		},
+  		error:function(data){//실패시 처리
+  			console.log("error:"+data);
+  		}
+  	});
+  		
 }
 
 function doSelectPost(no) {
@@ -123,8 +167,6 @@ function doCheckStore(type, email, no) {
   	
 }
 
-/* <i class='bi bi-person-plus i_icon'></i> */
-/* <i class='bi bi-person-plus-fill i_icon'></i> */
 
 function doSelectMember(no, email) {
 	//console.log("no: "+no);
@@ -139,6 +181,5 @@ function doSelectMember(no, email) {
 	
 	//console.log("email: "+document.getElementById("email").value);
 	frm.submit();	
-	
 }
 

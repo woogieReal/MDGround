@@ -1,6 +1,7 @@
 package com.sist.feb.member.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
@@ -159,6 +160,22 @@ public class MemberController {
 		
 		SearchVO searchVo = new SearchVO("postCategoryNo", "0", "eachMember", outVO.getEmail());
 		List<PostVO> postList = postService.doRetrieve(searchVo);
+		
+		for(PostVO postVO : postList) {
+			ImageVO imageVO = imageService.doSelectMainImage(postVO);
+			if(Objects.isNull(imageVO)) {
+				//LOG.debug("************null****************");
+				switch (postVO.getCategory()) {
+				case "daily life": postVO.setThumbNail("/resources/image_source/markdown.png"); break;
+				case "java": postVO.setThumbNail("/resources/image_source/java.png"); break;
+				case "javascript": postVO.setThumbNail("/resources/image_source/javascript.png"); break;
+				}
+			LOG.debug("postVO.getThumbNail(): "+postVO.getThumbNail());
+			} else {
+				postVO.setThumbNail(imageVO.getPath()+imageVO.getSaveName());
+			}
+		}
+			
 		
 		ImageVO profileImage = imageService.doSelectProfileImage(outVO);
 		

@@ -155,7 +155,10 @@ function post(){
   		success:function(data){//통신 성공
   			
   			var parseData = JSON.parse(data);
-  			if(parseData.msgId == 1){
+  			
+  			console.log(imageList);
+  			
+  			if(parseData.msgId == 1 && imageList != ""){
 	  			
 				$.ajax({
 			  		type: "POST",
@@ -187,6 +190,7 @@ function post(){
 	  			
   			} else {
 	  			alert(parseData.msgContents);
+	  			doMoveToMain();
   			}
   		
   		},
@@ -247,6 +251,7 @@ function doDelete() {
 	let imageList = document.getElementById("imageListStr").value;
 	console.log("postNo: "+postNo);
 	console.log("imageList: "+imageList);
+	console.log("stringify: "+JSON.stringify(imageList));
 	
 	$.ajax({
   		type: "POST",
@@ -260,7 +265,7 @@ function doDelete() {
   			
   			var parseData = JSON.parse(data);
   			
-  			if(parseData.msgId == 1 && imageList != ""){
+  			if(parseData.msgId == 1 && imageList != "[]"){
 	  			
 				$.ajax({
 			  		type: "POST",

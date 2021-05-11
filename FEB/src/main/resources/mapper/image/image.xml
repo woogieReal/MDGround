@@ -14,6 +14,7 @@
 		    main_image,
 		    org_name,
 		    save_name,
+		    full_path,
 		    path,
 		    file_size,
 		    file_ext,
@@ -25,6 +26,7 @@
 		    #{mainImage},
 		    #{orgName},
 		    #{saveName},
+		    #{fullPath},
 		    #{path},
 		    #{fileSize},
 		    #{fileExt},
@@ -47,6 +49,7 @@
 		    main_image AS mainImage,
 		    org_name AS orgName,
 		    save_name AS saveName,
+		    full_path AS fullPath,
 		    path AS path,
 		    file_size AS fileSize,
 		    file_ext AS fileExt,
@@ -58,13 +61,14 @@
 		AND from_no = #{fromNo}	
 	</select>	
 	
-	<!-- doSelectProfileImage -->
-	<select id="doSelectProfileImage" parameterType="MemberVO" resultType="ImageVO">
+	<!-- doSelectMainImage -->
+	<select id="doSelectMainImage" parameterType="PostVO" resultType="ImageVO">
 		SELECT
 		    image_no AS imageNo,
 		    main_image AS mainImage,
 		    org_name AS orgName,
 		    save_name AS saveName,
+		    full_path AS fullPath,
 		    path AS path,
 		    file_size AS fileSize,
 		    file_ext AS fileExt,
@@ -72,8 +76,28 @@
 		    from_no AS fromNo,
 		    reg_dt AS regDt
 		FROM image
-		WHERE from_tb = 2
-		AND from_no = #{memberNo}	
+		WHERE from_no = #{postNo}
+		AND from_tb = 1
+		AND main_image = 1	
+	</select>
+	
+	<!-- doSelectProfileImage -->
+	<select id="doSelectProfileImage" parameterType="MemberVO" resultType="ImageVO">
+		SELECT
+		    image_no AS imageNo,
+		    main_image AS mainImage,
+		    org_name AS orgName,
+		    save_name AS saveName,
+		    full_path AS fullPath,
+		    path AS path,
+		    file_size AS fileSize,
+		    file_ext AS fileExt,
+		    from_tb AS fromTb,
+		    from_no AS fromNo,
+		    reg_dt AS regDt
+		FROM image
+		WHERE from_no = #{memberNo}
+		AND from_tb = 2
 	</select>
 	
 	<!-- doDeleteProfileImage -->

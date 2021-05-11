@@ -48,6 +48,10 @@ public class ImageDaoImpl {
 		return this.sqlSessionTemplate.selectList(this.NAMESPACE + ".doRetrieve", dto);
 	}
 	
+	public ImageVO doSelectMainImage(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.selectOne(this.NAMESPACE + ".doSelectMainImage", dto);
+	}
+	
 	public ImageVO doSelectProfileImage(DTO dto) throws SQLException {
 		return this.sqlSessionTemplate.selectOne(this.NAMESPACE + ".doSelectProfileImage", dto);
 	}
