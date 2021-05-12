@@ -245,7 +245,14 @@ function doSelectProfileImageEach(email, no) {
   			
   			//console.log("srcValue: "+srcValue);
   			
-			document.getElementById("profileImageTd"+no+"").innerHTML = "  <button type='button' style='margin: 0px;' onclick='doClickProfileImage(\""+ email +"\");' class='btn-image'><img class='profile_img_header' src='/feb/"+ srcValue +"'></button>";
+  			var html = "";
+  			
+  			html += "        <form id='imageFrm"+ no +"' name='imageFrm"+ no +"' method='get'>         ";
+  			html += "		   <input type='hidden' id='anyNo"+ no +"' name='anyNo"+ no +"' value='' >     ";
+  			html += "          <button type='button' style='margin: 0px;' onclick='doSelectMember("+ no +", \""+ email +"\");' class='btn-image'><img class='profile_img_header' src='/feb/"+ srcValue +"'></button>";
+  			html += "        </form>                                                        ";
+			
+			document.getElementById("profileImageTd"+no+"").innerHTML = html;
 			
   		},
   		error:function(data){//실패시 처리

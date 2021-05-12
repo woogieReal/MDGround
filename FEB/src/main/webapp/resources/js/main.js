@@ -55,7 +55,7 @@ function doRetrievePost(searchDiv, searchWord, loginMemberEamil) {
 				html += "		     <button type='button' onclick='doSelectMember("+ value.postNo +", \""+ value.memberEmail +"\");' class='btn-image'><span style='font-weight: bold;'>"+ value.memberEmail +"</span></button>                                                                                                                                                                ";
 				html += "		   </div>                                                                                                                                                                ";
 				html += "		                                                                                                                                                                 ";
-				html += "		   <input type='hidden' id='postNo"+ value.postNo +"' name='postNo"+ value.postNo +"' value='' >                                                                                                                                                              ";
+				html += "		   <input type='hidden' id='anyNo"+ value.postNo +"' name='anyNo"+ value.postNo +"' value='' >                                                                                                                                                              ";
 				html += "		   <div id='mainImageDiv"+ value.postNo +"'>                                                                                                                                                              ";
 				//html += "		     <button type='button' class='btn-image'><img class='bd-placeholder-img card-img-top thumb_nail_img' onclick='doSelectPost("+ value.postNo +");' src='/feb"+ imagePath +"'></button>                                             ";
 				html += "		   </div>                                                                                                                                                              ";
@@ -234,8 +234,8 @@ function doSelectPost(no) {
 	var frm = document.getElementById("imageFrm"+no+"");
 	frm.action = "/feb/post/do_select_post.do";
 	
-	document.getElementById("postNo"+no+"").setAttribute("name", "postNo");
-	document.getElementById("postNo"+no+"").setAttribute("id", "postNo");
+	document.getElementById("anyNo"+no+"").setAttribute("name", "postNo");
+	document.getElementById("anyNo"+no+"").setAttribute("id", "postNo");
 	document.getElementById("postNo").value = no;
 	
 	//console.log("postNo: "+document.getElementById("postNo").value);
@@ -283,8 +283,8 @@ function doSelectMember(no, email) {
 	var frm = document.getElementById("imageFrm"+no+"");
 	frm.action = "/feb/member/do_select_one.do";
 	
-	document.getElementById("postNo"+no+"").setAttribute("name", "email");
-	document.getElementById("postNo"+no+"").setAttribute("id", "email");
+	document.getElementById("anyNo"+no+"").setAttribute("name", "email");
+	document.getElementById("anyNo"+no+"").setAttribute("id", "email");
 	document.getElementById("email").value = email;	
 	
 	//console.log("email: "+document.getElementById("email").value);
