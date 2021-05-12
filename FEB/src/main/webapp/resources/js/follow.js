@@ -1,5 +1,9 @@
 /**
  * follow.js
+ *
+ * doFollow(followingEmail, followedEmail): post_detail.jsp 에서 팔로우 처리
+ * doCancelFollow(followingEmail, followedEmail): post_detail.jsp 에서 언팔로우 처리
+ *
  */
  
 function doFollow(followingEmail, followedEmail) {

@@ -1,5 +1,16 @@
 /**
  * member.js
+ *
+ * doUploadProfileImage(): my_page.jsp 에서 프로필 이미지를 업로드
+ * doRetrieveFollowing(email, loginMemberEamil): 모달 div에 my_page 주인이 팔로우한 유저들을 출력
+ * doRetrieveFollowed(email, loginMemberEamil): 모달 div에 my_page 주인을 팔로우한 유저들을 출력
+ * doSelectProfileImageEach(email, no): 모달 div의 테이블에 유저들의 프로필 이미지를 출력
+ * doCheckFollowingWithLoginMember(followingEmail, followedEmail, no): 모달 div에 출력된 유저들과 로그인한 유저와의 팔로우 여부를 체크
+ * doCancelFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 언팔로우
+ * doFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 팔로우
+ * 
+ * 
+ * 
  */
  
 function doUploadProfileImage() {
@@ -137,12 +148,12 @@ function doRetrieveFollowing(email, loginMemberEamil){
 				console.log(value.followingEmail);
 				
 				html += " <tr> ";
-				html += "   <td id='followProfileImageTd"+ i +"'></td>  ";
+				html += "   <td id='profileImageTd"+ i +"'></td>  ";
 				html += "   <td>"+ value.followingEmail +"</td>  ";
 				html += "   <td id='followCheckTd"+ i +"'></td>  ";
 				html += " </tr> ";
 				
-	  			doSelectProfileImageEachFollow(value.followingEmail, i);
+	  			doSelectProfileImageEach(value.followingEmail, i);
 				
 				if(value.followingEmail != loginMemberEamil && loginMemberEamil != ""){
 					doCheckFollowingWithLoginMember(value.followingEmail, loginMemberEamil, i);
@@ -186,12 +197,12 @@ function doRetrieveFollowed(email, loginMemberEamil){
 				console.log(value.followedEmail);
 				
 				html += " <tr> ";
-				html += "   <td id='followProfileImageTd"+ i +"'></td>  ";
+				html += "   <td id='profileImageTd"+ i +"'></td>  ";
 				html += "   <td>"+ value.followedEmail +"</td>  ";
 				html += "   <td id='followCheckTd"+ i +"'></td>  ";
 				html += " </tr> ";
 				
-	  			doSelectProfileImageEachFollow(value.followedEmail, i);
+	  			doSelectProfileImageEach(value.followedEmail, i);
 				
 				if(value.followedEmail != loginMemberEamil && loginMemberEamil != ""){
 					doCheckFollowingWithLoginMember(value.followedEmail, loginMemberEamil, i);
@@ -211,7 +222,7 @@ function doRetrieveFollowed(email, loginMemberEamil){
 }
 
 
-function doSelectProfileImageEachFollow(email, no) {
+function doSelectProfileImageEach(email, no) {
 
 	$.ajax({
   		type: "POST",
@@ -234,7 +245,7 @@ function doSelectProfileImageEachFollow(email, no) {
   			
   			//console.log("srcValue: "+srcValue);
   			
-			document.getElementById("followProfileImageTd"+no+"").innerHTML = "  <button type='button' style='margin: 0px;' onclick='doClickProfileImage(\""+ email +"\");' class='btn-image'><img class='profile_img_header' src='/feb/"+ srcValue +"'></button>";
+			document.getElementById("profileImageTd"+no+"").innerHTML = "  <button type='button' style='margin: 0px;' onclick='doClickProfileImage(\""+ email +"\");' class='btn-image'><img class='profile_img_header' src='/feb/"+ srcValue +"'></button>";
 			
   		},
   		error:function(data){//실패시 처리

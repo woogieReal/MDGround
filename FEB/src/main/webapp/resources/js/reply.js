@@ -1,5 +1,12 @@
 /**
  * reply.js
+ * 
+ * doRetrieveReply(no): 댓글 목록을 출력
+ * doInsertReply(): 댓글을 입력
+ * 
+ * 
+ * 
+ * 
  */
  
 function doRetrieveReply(no){
@@ -22,7 +29,7 @@ function doRetrieveReply(no){
  			$.each(parseData, function(i, value) {
 				
 				html += " <tr> ";
-				html += "   <td rowspan='3' id='followProfileImageTd"+ i +"'></td> ";
+				html += "   <td rowspan='3' id='profileImageTd"+ i +"'></td> ";
 				html += "   <td style='background-color: #efebe9;'>"+ value.memberEmail +"</td> ";
 				html += "   <td style='background-color: #efebe9; text-align: right;'>"+ value.regDt +"</td> ";
 				html += " </tr> ";
@@ -34,7 +41,7 @@ function doRetrieveReply(no){
 				html += "   <td style='text-align: right;'>"+  +"</td>   ";
 				html += " </tr> ";
 				
-				doSelectProfileImageEachFollow(value.memberEmail, i);
+				doSelectProfileImageEach(value.memberEmail, i);
 				
 			});
 			

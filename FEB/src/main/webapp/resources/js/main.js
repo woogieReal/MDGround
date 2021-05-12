@@ -1,5 +1,19 @@
 /**
  * main.js
+ *
+ * doRetrievePost(searchDiv, searchWord, loginMemberEamil): main.jsp 에 모든 게시물을 출력 
+ *   doSelectProfileImageEachPost(email, no): 모든 게시물에 작성자의 프로필 이미지를 출력
+ *   doSelectMainImage(no, category): 모든 게시물에 게시물의 썸네일을 출력
+ *   doCheckStore(type, email, no): 로그인한 유저가 각 게시물에 대하여 북마크/좋아요를 했는지에 대한 체크와 출력
+ * 
+ * doSelectPost(no): 각 게시물을 클릭하면 post_detail.jsp 로 이동
+ * doSelectMember(no, email): 각 게시물의 작성자의 프로필 이미지를 클릭하면 my_page.jsp 로 이동
+ * 
+ * doSelectProfileImage(email): header.jsp 에 로그인한 유저의 프로필 이미지를 출력
+ * doClickProfileImage(email): header.jsp 에 있는 로그인 유저의 프로필 이미지를 클릭하여 my_page.jsp 로 이동
+ * 
+ * 
+ * 
  */
  
  
