@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.feb.reply">
+	
+	<insert id="doInsert" parameterType="ReplyVO">
+		INSERT INTO reply (
+		    reply_no,
+		    contents,
+		    depth,
+		    parent_reply,
+		    delete_check,
+		    reg_dt,
+		    post_no,
+		    member_email
+		) VALUES (
+		    REPLY_SEQ.nextval,
+		    #{contents},
+		    #{depth},
+		    #{parentReply},
+		    #{deleteCheck},
+		    sysdate,
+		    #{postNo},
+		    #{memberEmail}
+		)	
+	</insert>
+	
+	<update id="doChangeDelete" parameterType="ReplyVO">
+		UPDATE reply
+		SET delete_check = 1
+		WHERE reply_no = #{replyNo}	
+	</update>
+	
+	<select id="doRetrieve" parameterType="PostVO" resultType="ReplyVO">
+		SELECT
+			/*+ INDEX_DESC(reply REPLY_PK) */
+		    reply_no AS replyNo,
+		    contents AS contents,
+		    depth AS depth,
+		    parent_reply AS parentReply,
+		    delete_check AS deleteCheck,
+			CASE WHEN TO_CHAR(SYSDATE,'YYYY/MM/DD') = TO_CHAR(reg_dt,'YYYY/MM/DD')           
+				THEN TO_CHAR(reg_dt,'HH24:MI')                                               
+			ELSE TO_CHAR(reg_dt,'YYYY/MM/DD')                                                
+			END AS regDt,
+		    post_no AS postNo,
+		    member_email AS memberEmail
+		FROM reply
+		WHERE post_no = #{postNo}	
+	</select>
+	
+	
+	
+	
+	
+
+	
+</mapper>

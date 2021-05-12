@@ -3,7 +3,7 @@
  */
  
  
-function doRetrieve(searchDiv, searchWord, loginMemberEamil) {
+function doRetrievePost(searchDiv, searchWord, loginMemberEamil) {
 	//console.log("doMovePost()");
 	console.log("loginMemberEamil: "+loginMemberEamil);
 	

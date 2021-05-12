@@ -161,8 +161,17 @@ div {
 
 .member_simple_table_post_detail {
 	border-collapse: separate;
-	border-spacing: 20px 5px;
+	border-spacing: 20px 0px;
+	width: 100%;
 }
+
+.replyTable {
+	margin: 20px;
+}
+
+.replyTable tr {
+	border: 1px solid white;
+}   
 
 #followTable ~ tr, td {
 	vertical-align: middle;
