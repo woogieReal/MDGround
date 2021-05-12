@@ -4,7 +4,9 @@
  * doUploadProfileImage(): my_page.jsp 에서 프로필 이미지를 업로드
  * doRetrieveFollowing(email, loginMemberEamil): 모달 div에 my_page 주인이 팔로우한 유저들을 출력
  * doRetrieveFollowed(email, loginMemberEamil): 모달 div에 my_page 주인을 팔로우한 유저들을 출력
+ *
  * doSelectProfileImageEach(email, no): 모달 div의 테이블에 유저들의 프로필 이미지를 출력
+ *
  * doCheckFollowingWithLoginMember(followingEmail, followedEmail, no): 모달 div에 출력된 유저들과 로그인한 유저와의 팔로우 여부를 체크
  * doCancelFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 언팔로우
  * doFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 팔로우
@@ -70,60 +72,65 @@ function doUploadProfileImage() {
 
 window.onload = function(){
 	
-	document.getElementById('followingCountBtn').addEventListener('click', function() {
-	    modal('follow_modal');
-	});
+	//console.log(document.getElementById('followingCountBtn'));
+	if(document.getElementById('followingCountBtn') != null){
 	
-	document.getElementById('followedCountBtn').addEventListener('click', function() {
-	    modal('follow_modal');
-	});
+		document.getElementById('followingCountBtn').addEventListener('click', function() {
+		    modal('follow_modal');
+		});
+		
+		document.getElementById('followedCountBtn').addEventListener('click', function() {
+		    modal('follow_modal');
+		});
+		
+		function modal(id) {
+		    var zIndex = 9999;
+		    var modal = document.getElementById(id);
+		
+		    // 모달 div 뒤에 시꺼먼 레이어
+		    var bg = document.createElement("div");
+		    bg.setStyle({
+		        position: 'fixed',
+		        zIndex: zIndex,
+		        left: '0px',
+		        top: '0px',
+		        width: '100%',
+		        height: '100%',
+		        overflow: 'auto',
+		        backgroundColor: 'rgba(255,255,255,0.4)'
+		    });
+		    document.body.append(bg);
+		
+		    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+		    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+		        bg.remove();
+		        modal.style.display = 'none';
+		    });
+		
+		    modal.setStyle({
+		        position: 'fixed',
+		        display: 'block',
+		        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+		
+		        // 시꺼먼 레이어 보다 한칸 위에 보이기
+		        zIndex: zIndex + 1,
+		
+		        // div center 정렬
+		        top: '50%',
+		        left: '50%',
+		        transform: 'translate(-50%, -50%)',
+		        msTransform: 'translate(-50%, -50%)',
+		        webkitTransform: 'translate(-50%, -50%)'
+		    });
+		}
+		
+		Element.prototype.setStyle = function(styles) {
+		    for (var k in styles)
+		        this.style[k] = styles[k];
+		    return this;
+		};
 	
-	function modal(id) {
-	    var zIndex = 9999;
-	    var modal = document.getElementById(id);
-	
-	    // 모달 div 뒤에 시꺼먼 레이어
-	    var bg = document.createElement("div");
-	    bg.setStyle({
-	        position: 'fixed',
-	        zIndex: zIndex,
-	        left: '0px',
-	        top: '0px',
-	        width: '100%',
-	        height: '100%',
-	        overflow: 'auto',
-	        backgroundColor: 'rgba(255,255,255,0.4)'
-	    });
-	    document.body.append(bg);
-	
-	    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-	    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
-	        bg.remove();
-	        modal.style.display = 'none';
-	    });
-	
-	    modal.setStyle({
-	        position: 'fixed',
-	        display: 'block',
-	        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-	
-	        // 시꺼먼 레이어 보다 한칸 위에 보이기
-	        zIndex: zIndex + 1,
-	
-	        // div center 정렬
-	        top: '50%',
-	        left: '50%',
-	        transform: 'translate(-50%, -50%)',
-	        msTransform: 'translate(-50%, -50%)',
-	        webkitTransform: 'translate(-50%, -50%)'
-	    });
 	}
-	
-	Element.prototype.setStyle = function(styles) {
-	    for (var k in styles)
-	        this.style[k] = styles[k];
-	    return this;
-	};
 
 }
 

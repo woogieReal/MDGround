@@ -38,3 +38,10 @@
     </div>
   </div>
 </header>
+<script type="text/javascript">
+	$(document).ready(function() {
+		if(${sessionScope.member != null}){
+			doSelectProfileImage('${sessionScope.member.email}');
+		}
+	});
+</script>

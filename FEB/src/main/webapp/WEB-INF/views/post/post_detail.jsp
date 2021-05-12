@@ -32,9 +32,9 @@
 			<tbody>
 			  <tr>
 			    <td rowspan="2">
-			      <form id="headerProfileImageFrm" name="headerProfileImageFrm">
-			        <input type="hidden" id="tmpEmail" name="tmpEmail" value="">
-			        <button type="button" onclick="doClickProfileImage('${vo.memberEmail}');" class="btn-image" >
+			      <form id="imageFrm${vo.postNo}" name="imageFrm${vo.postNo}">
+			        <input type="hidden" id="anyNo${vo.postNo}" name="anyNo${vo.postNo}" value="">
+			        <button type="button" onclick="doSelectMember(${vo.postNo},'${vo.memberEmail}');" class="btn-image" >
 			          <img class="profile_img_header" src="/feb${profileImage.path}${profileImage.saveName}">
 			        </button>
 			      </form>

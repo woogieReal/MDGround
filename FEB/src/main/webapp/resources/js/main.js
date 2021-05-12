@@ -134,6 +134,107 @@ function doSelectProfileImageEachPost(email, no) {
 	
 }
 
+function doSelectMainImage(no, category) {
+	//console.log("doSelectMainImage("+ no +")");
+	//console.log(category);
+	
+	$.ajax({
+  		type: "POST",
+  		url:"/feb/image/do_select_main_image.do",
+  		asyn:false,
+  		dataType:"html",
+  		data:{
+  			postNo: no
+  		},
+  		success:function(data){//통신 성공
+  			
+  			let srcValue = "";
+  			var parseData = JSON.parse(data);
+  			
+  			if(parseData != null){
+  				srcValue = parseData.path + parseData.saveName;
+  			} else if(parseData == null){
+  				switch(category){
+  					case "daily life": srcValue="/resources/image_source/markdown.png";   break;
+  					case "java":       srcValue="/resources/image_source/java.png";       break;
+  					case "javascript": srcValue="/resources/image_source/javascript.png"; break;
+  				}
+  			}
+  			
+  			//console.log("srcValue: "+srcValue);
+  			
+			document.getElementById("mainImageDiv"+no+"").innerHTML = "<button type='button' class='btn-image'><img class='bd-placeholder-img card-img-top thumb_nail_img' onclick='doSelectPost("+ no +");' src='/feb"+ srcValue +"'></button>";
+			
+  		},
+  		error:function(data){//실패시 처리
+  			console.log("error:"+data);
+  		}
+  	});
+  		
+}
+
+function doCheckStore(type, email, no) {
+
+	$.ajax({
+  		type: "POST",
+  		url:"/feb/storage/do_check_store.do",
+  		asyn:false,
+  		dataType:"html",
+  		data:{
+  			storeType: type,
+  			memberEmail: email,
+  			postNo: no
+  		},
+  		success:function(data){//통신 성공
+  			
+  			var parseData = JSON.parse(data);
+
+			if(parseData.msgId == 1 && type == 1){
+				document.getElementById("post_icon_bookmark"+no).innerHTML = "<button type='button' onclick='doCancelStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-bookmark-fill i_icon'></i></button>";
+			} else if(parseData.msgId == 0 && type == 1) {
+				document.getElementById("post_icon_bookmark"+no).innerHTML = "<button type='button' onclick='doStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-bookmark i_icon'></i></button>";
+			} else if(parseData.msgId == 1 && type == 2) {
+				document.getElementById("post_icon_heart"+no).innerHTML = "<button type='button' onclick='doCancelStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-heart-fill i_icon'></i></button>";
+			} else if(parseData.msgId == 0 && type == 2) {
+				document.getElementById("post_icon_heart"+no).innerHTML = "<button type='button' onclick='doStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-heart i_icon'></i></button>";
+			}		
+  		},
+  		error:function(data){//실패시 처리
+  			console.log("error:"+data);
+  		}
+  	});	
+  	
+}
+
+function doSelectPost(no) {
+	//console.log("doSelectPost("+ no +")");
+	
+	var frm = document.getElementById("imageFrm"+no+"");
+	frm.action = "/feb/post/do_select_post.do";
+	
+	document.getElementById("anyNo"+no+"").setAttribute("name", "postNo");
+	document.getElementById("anyNo"+no+"").setAttribute("id", "postNo");
+	document.getElementById("postNo").value = no;
+	
+	//console.log("postNo: "+document.getElementById("postNo").value);
+	frm.submit();
+}
+
+function doSelectMember(no, email) {
+	//console.log("no: "+no);
+	//console.log("email: "+email);
+	
+	var frm = document.getElementById("imageFrm"+no+"");
+	frm.action = "/feb/member/do_select_one.do";
+	
+	document.getElementById("anyNo"+no+"").setAttribute("name", "email");
+	document.getElementById("anyNo"+no+"").setAttribute("id", "email");
+	document.getElementById("email").value = email;	
+	
+	//console.log("email: "+document.getElementById("email").value);
+	frm.submit();	
+}
+
 function doSelectProfileImage(email) {
 
 	$.ajax({
@@ -187,107 +288,5 @@ function doClickProfileImage(email) {
 	
 	frm.submit();	
 	
-}
-
-function doSelectMainImage(no, category) {
-	//console.log("doSelectMainImage("+ no +")");
-	//console.log(category);
-	
-	$.ajax({
-  		type: "POST",
-  		url:"/feb/image/do_select_main_image.do",
-  		asyn:false,
-  		dataType:"html",
-  		data:{
-  			postNo: no
-  		},
-  		success:function(data){//통신 성공
-  			
-  			let srcValue = "";
-  			var parseData = JSON.parse(data);
-  			
-  			if(parseData != null){
-  				srcValue = parseData.path + parseData.saveName;
-  			} else if(parseData == null){
-  				switch(category){
-  					case "daily life": srcValue="/resources/image_source/markdown.png";   break;
-  					case "java":       srcValue="/resources/image_source/java.png";       break;
-  					case "javascript": srcValue="/resources/image_source/javascript.png"; break;
-  				}
-  			}
-  			
-  			//console.log("srcValue: "+srcValue);
-  			
-			document.getElementById("mainImageDiv"+no+"").innerHTML = "<button type='button' class='btn-image'><img class='bd-placeholder-img card-img-top thumb_nail_img' onclick='doSelectPost("+ no +");' src='/feb"+ srcValue +"'></button>";
-			
-  		},
-  		error:function(data){//실패시 처리
-  			console.log("error:"+data);
-  		}
-  	});
-  		
-}
-
-function doSelectPost(no) {
-	//console.log("doSelectPost("+ no +")");
-	
-	var frm = document.getElementById("imageFrm"+no+"");
-	frm.action = "/feb/post/do_select_post.do";
-	
-	document.getElementById("anyNo"+no+"").setAttribute("name", "postNo");
-	document.getElementById("anyNo"+no+"").setAttribute("id", "postNo");
-	document.getElementById("postNo").value = no;
-	
-	//console.log("postNo: "+document.getElementById("postNo").value);
-	frm.submit();
-}
-
-function doCheckStore(type, email, no) {
-
-	$.ajax({
-  		type: "POST",
-  		url:"/feb/storage/do_check_store.do",
-  		asyn:false,
-  		dataType:"html",
-  		data:{
-  			storeType: type,
-  			memberEmail: email,
-  			postNo: no
-  		},
-  		success:function(data){//통신 성공
-  			
-  			var parseData = JSON.parse(data);
-
-			if(parseData.msgId == 1 && type == 1){
-				document.getElementById("post_icon_bookmark"+no).innerHTML = "<button type='button' onclick='doCancelStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-bookmark-fill i_icon'></i></button>";
-			} else if(parseData.msgId == 0 && type == 1) {
-				document.getElementById("post_icon_bookmark"+no).innerHTML = "<button type='button' onclick='doStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-bookmark i_icon'></i></button>";
-			} else if(parseData.msgId == 1 && type == 2) {
-				document.getElementById("post_icon_heart"+no).innerHTML = "<button type='button' onclick='doCancelStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-heart-fill i_icon'></i></button>";
-			} else if(parseData.msgId == 0 && type == 2) {
-				document.getElementById("post_icon_heart"+no).innerHTML = "<button type='button' onclick='doStore("+type+", \""+email+"\" ,"+no+");' class='btn-image'><i class='bi bi-heart i_icon'></i></button>";
-			}		
-  		},
-  		error:function(data){//실패시 처리
-  			console.log("error:"+data);
-  		}
-  	});	
-  	
-}
-
-
-function doSelectMember(no, email) {
-	//console.log("no: "+no);
-	//console.log("email: "+email);
-	
-	var frm = document.getElementById("imageFrm"+no+"");
-	frm.action = "/feb/member/do_select_one.do";
-	
-	document.getElementById("anyNo"+no+"").setAttribute("name", "email");
-	document.getElementById("anyNo"+no+"").setAttribute("id", "email");
-	document.getElementById("email").value = email;	
-	
-	//console.log("email: "+document.getElementById("email").value);
-	frm.submit();	
 }
 
