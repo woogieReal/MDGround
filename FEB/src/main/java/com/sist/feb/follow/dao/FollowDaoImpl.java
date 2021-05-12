@@ -1,6 +1,7 @@
 package com.sist.feb.follow.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.feb.cmn.DTO;
+import com.sist.feb.follow.domain.FollowVO;
 
 @Repository
 public class FollowDaoImpl {
@@ -49,6 +51,16 @@ public class FollowDaoImpl {
 	public int doCancelFollow(DTO dto) throws SQLException {
 		return this.sqlSessionTemplate.delete(this.NAMESPACE + ".doCancelFollow", dto);
 	}
+	
+	public List<FollowVO> doRetrieveFollowing(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.selectList(this.NAMESPACE + ".doRetrieveFollowing", dto);
+	}
+	
+	public List<FollowVO> doRetrieveFollowed(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.selectList(this.NAMESPACE + ".doRetrieveFollowed", dto);
+	}
+	
+	
 	
 	
 	

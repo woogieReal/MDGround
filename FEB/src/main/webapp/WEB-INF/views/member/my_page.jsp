@@ -9,6 +9,20 @@
     <article class="my-3" id="card">
       <div class="container basic_div_900 squircle_div">
   		
+  		<div id="follow_modal">
+  			<table class="table">
+  			  <thead>
+  			    <tr>
+  			      <th scope="col" style="display: none;" width="20%"></th>
+  			      <th scope="col" style="display: none;" width="60%"></th>
+  			      <th scope="col" style="display: none;" width="20%"></th>
+  			    </tr>
+  			  </thead>
+  			  <tbody id="followTable">
+  			  </tbody>
+  			</table>
+  			<button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
+  		</div>
   		
         <div class="card-header">
           
@@ -46,8 +60,8 @@
           	  </tr>
           	  <tr>
           	  	<td style="font-size: large;">
-          	  	  <button type="button" class="btn-image"><span style="font-weight: bold;">Follow ${followingCount}</span></button>
-          	  	  <button type="button" class="btn-image"><span style="font-weight: bold;">Follower ${followedCount}</span></button>
+          	  	  <button type="button" onclick="doRetrieveFollowing('${memberVO.email}', '${sessionScope.member.email}');" id="followingCountBtn" class="btn-image"><span style="font-weight: bold;">Follow ${followingCount}</span></button>
+          	  	  <button type="button" onclick="doRetrieveFollowed('${memberVO.email}', '${sessionScope.member.email}');" id="followedCountBtn"  class="btn-image"><span style="font-weight: bold;">Follower ${followedCount}</span></button>
           	  	</td>
           	  </tr>
           	  <tr>

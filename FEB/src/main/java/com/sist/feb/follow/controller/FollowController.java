@@ -1,5 +1,7 @@
 package com.sist.feb.follow.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import com.google.gson.Gson;
 import com.sist.feb.cmn.MessageVO;
 import com.sist.feb.follow.domain.FollowVO;
 import com.sist.feb.follow.service.FollowServiceImpl;
+import com.sist.feb.member.domain.MemberVO;
+import com.sist.feb.member.service.MemberServiceImpl;
 
 @Controller
 public class FollowController {
@@ -22,6 +26,9 @@ public class FollowController {
 	
 	@Autowired
 	FollowServiceImpl followService;
+	
+	@Autowired
+	MemberServiceImpl memberService;
 	
 
 //	▼ 생성자 ==============================================================	
@@ -89,8 +96,35 @@ public class FollowController {
 	}
 	
 	
+	@RequestMapping(value = "follow/do_retrieve_following.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doRetrieveFollowing(MemberVO inVO) throws Exception {
+		
+		LOG.debug("doRetrieveFollowing");
+		MemberVO outVO = memberService.doSelectOne(inVO);
+
+		List<FollowVO> followList = followService.doRetrieveFollowing(outVO);
+		Gson gson = new Gson();
+		
+		return gson.toJson(followList.toArray());
+		
+	}	
 	
-	
+	@RequestMapping(value = "follow/do_retrieve_followed.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doRetrieveFollowed(MemberVO inVO) throws Exception {
+		
+		LOG.debug("doRetrieveFollowed");
+		MemberVO outVO = memberService.doSelectOne(inVO);
+		
+		List<FollowVO> followList = followService.doRetrieveFollowed(outVO);
+		Gson gson = new Gson();
+		
+		return gson.toJson(followList.toArray());
+		
+	}	
 	
 	
 	

@@ -1,12 +1,14 @@
 package com.sist.feb.follow.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sist.feb.cmn.DTO;
 import com.sist.feb.follow.dao.FollowDaoImpl;
+import com.sist.feb.follow.domain.FollowVO;
 
 @Service
 public class FollowServiceImpl {
@@ -43,8 +45,13 @@ public class FollowServiceImpl {
 		return followDao.doCancelFollow(dto);
 	}
 	
+	public List<FollowVO> doRetrieveFollowing(DTO dto) throws SQLException {
+		return followDao.doRetrieveFollowing(dto);
+	}
 	
-	
+	public List<FollowVO> doRetrieveFollowed(DTO dto) throws SQLException {
+		return followDao.doRetrieveFollowed(dto);
+	}
 	
 	
 }

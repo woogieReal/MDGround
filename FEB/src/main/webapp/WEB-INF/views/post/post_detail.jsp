@@ -48,8 +48,8 @@
 		  	  </tr>
 		  	</tbody>
 		  </table>
-		  
         </div>
+        
         
         <c:choose>
           <c:when test="${sessionScope.member.email == vo.memberEmail}">
@@ -101,8 +101,7 @@
           <c:when test="${sessionScope.member == null}">
           </c:when>
         </c:choose>
-        
-        
+       
           
       </div>
     </article>

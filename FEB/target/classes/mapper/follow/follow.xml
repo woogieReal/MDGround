@@ -46,6 +46,27 @@
 		AND followed_email = #{followedEmail}	
 	</delete>
 
+	<!-- doRetrieveFollowing -->
+	<select id="doRetrieveFollowing" parameterType="MemberVO" resultType="FollowVO">
+		SELECT
+		    follow_no AS followNo,
+		    following_email AS followingEmail,
+		    followed_email AS followedEmail,
+		    reg_dt AS regDt
+		FROM follow
+		WHERE followed_email = #{email}	
+	</select>
+
+	<!-- doRetrieveFollowed -->
+	<select id="doRetrieveFollowed" parameterType="MemberVO" resultType="FollowVO">
+		SELECT
+		    follow_no AS followNo,
+		    following_email AS followingEmail,
+		    followed_email AS followedEmail,
+		    reg_dt AS regDt
+		FROM follow
+		WHERE following_email = #{email}		
+	</select>
 
 	
 </mapper>
