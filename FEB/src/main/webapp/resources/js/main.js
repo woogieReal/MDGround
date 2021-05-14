@@ -2,22 +2,18 @@
  * main.js
  *
  * doRetrievePost(searchDiv, searchWord, loginMemberEamil): main.jsp 에 모든 게시물을 출력 
- *   doSelectProfileImageEachPost(email, no): 모든 게시물에 작성자의 프로필 이미지를 출력
  *   doSelectMainImage(no, category): 모든 게시물에 게시물의 썸네일을 출력
  *   doCheckStore(type, email, no): 로그인한 유저가 각 게시물에 대하여 북마크/좋아요를 했는지에 대한 체크와 출력
  * 
  * doSelectPost(no): 각 게시물을 클릭하면 post_detail.jsp 로 이동
- * doSelectMember(no, email): 각 게시물의 작성자의 프로필 이미지를 클릭하면 my_page.jsp 로 이동
  * 
- * doSelectProfileImage(email): header.jsp 에 로그인한 유저의 프로필 이미지를 출력
- * doClickProfileImage(email): header.jsp 에 있는 로그인 유저의 프로필 이미지를 클릭하여 my_page.jsp 로 이동
  * 
  * 
  * 
  */
  
  
-function doRetrievePost(searchDiv, searchWord, loginMemberEamil) {
+function doRetrievePost(searchDiv, searchWord, searchDiv2, searchWord2, loginMemberEamil) {
 	//console.log("doMovePost()");
 	console.log("loginMemberEamil: "+loginMemberEamil);
 	
@@ -28,7 +24,9 @@ function doRetrievePost(searchDiv, searchWord, loginMemberEamil) {
   		dataType:"html",
   		data:{
   			searchDiv: searchDiv,
-  			searchWord: searchWord
+  			searchWord: searchWord,
+  			searchDiv2: searchDiv2,
+  			searchWord2: searchWord2
   		},
   		success:function(data){//통신 성공
   			
@@ -55,7 +53,7 @@ function doRetrievePost(searchDiv, searchWord, loginMemberEamil) {
 				html += "		     <button type='button' onclick='doSelectMember("+ value.postNo +", \""+ value.memberEmail +"\");' class='btn-image'><span style='font-weight: bold;'>"+ value.memberEmail +"</span></button>                                                                                                                                                                ";
 				html += "		   </div>                                                                                                                                                                ";
 				html += "		                                                                                                                                                                 ";
-				html += "		   <input type='hidden' id='anyNo"+ value.postNo +"' name='anyNo"+ value.postNo +"' value='' >                                                                                                                                                              ";
+				//html += "		   <input type='hidden' id='anyNo"+ value.postNo +"' name='anyNo"+ value.postNo +"' value='' >                                                                                                                                                              ";
 				html += "		   <div id='mainImageDiv"+ value.postNo +"'>                                                                                                                                                              ";
 				//html += "		     <button type='button' class='btn-image'><img class='bd-placeholder-img card-img-top thumb_nail_img' onclick='doSelectPost("+ value.postNo +");' src='/feb"+ imagePath +"'></button>                                             ";
 				html += "		   </div>                                                                                                                                                              ";
@@ -101,38 +99,6 @@ function doRetrievePost(searchDiv, searchWord, loginMemberEamil) {
   	});	
 }
 
-function doSelectProfileImageEachPost(email, no) {
-
-	$.ajax({
-  		type: "POST",
-  		url:"/feb/image/do_select_profile_image.do",
-  		asyn:true,
-  		dataType:"html",
-  		data:{
-  			email: email
-  		},
-  		success:function(data){//통신 성공
-  			
-  			let srcValue = "";
-  			var parseData = JSON.parse(data);
-  			
-  			if(parseData != null){
-  				srcValue = parseData.path + parseData.saveName;
-  			} else if(parseData == null){
-  				srcValue = "/resources/image_source/nothing.jpg";
-  			}
-  			
-  			//console.log("srcValue: "+srcValue);
-  			
-			document.getElementById("postProfileImageDiv"+no+"").innerHTML = "  <button type='button' style='margin: 0px;' onclick='doClickProfileImage(\""+ email +"\");' class='btn-image'><img class='profile_img_header' src='/feb/"+ srcValue +"'></button>";
-			
-  		},
-  		error:function(data){//실패시 처리
-  			console.log("error:"+data);
-  		}
-  	});
-	
-}
 
 function doSelectMainImage(no, category) {
 	//console.log("doSelectMainImage("+ no +")");
@@ -220,73 +186,17 @@ function doSelectPost(no) {
 	frm.submit();
 }
 
-function doSelectMember(no, email) {
-	//console.log("no: "+no);
-	//console.log("email: "+email);
-	
-	var frm = document.getElementById("imageFrm"+no+"");
-	frm.action = "/feb/member/do_select_one.do";
-	
-	document.getElementById("anyNo"+no+"").setAttribute("name", "email");
-	document.getElementById("anyNo"+no+"").setAttribute("id", "email");
-	document.getElementById("email").value = email;	
-	
-	//console.log("email: "+document.getElementById("email").value);
-	frm.submit();	
-}
 
-function doSelectProfileImage(email) {
-
-	$.ajax({
-  		type: "POST",
-  		url:"/feb/image/do_select_profile_image.do",
-  		asyn:true,
-  		dataType:"html",
-  		data:{
-  			email: email
-  		},
-  		success:function(data){//통신 성공
-  			
-  			let srcValue = "";
-  			var parseData = JSON.parse(data);
-  			
-  			if(parseData != null){
-  				srcValue = parseData.path + parseData.saveName;
-  			} else if(parseData == null){
-  				srcValue = "/resources/image_source/nothing.jpg";
-  			}
-  			
-  			//console.log("srcValue: "+srcValue);
-  			
-  			let html = "";
-  			html += "<form id='headerProfileImageFrm' name='headerProfileImageFrm'>";
-  			html += "  <input type='hidden' id='tmpEmail' name='tmpEmail' value='' >";
-  			html += "  <button type='button' onclick='doClickProfileImage(\""+ email +"\");' class='btn-image'><img class='profile_img_header' src='/feb/"+ srcValue +"'></button>";
-  			html += "</form>";
-  			
-  			//console.log(html);
-  			
-			document.getElementById("headerProfileImageDiv").innerHTML = html;
-			
-  		},
-  		error:function(data){//실패시 처리
-  			console.log("error:"+data);
-  		}
-  	});
+function chageCategorySelect(loginMemberEamil) {
+	//console.log("chageCategorySelect()");
 	
-}
-
-function doClickProfileImage(email) {
-	console.log("doClickProfileImage()");
+	let changeCategory = document.getElementById("categoryMainPage").value;
+	//console.log("changeCategory: "+changeCategory);
+	//console.log("loginMemberEamil: "+loginMemberEamil);
 	
-	var frm = document.getElementById("headerProfileImageFrm");
-	frm.action = "/feb/member/do_select_one.do";
+	doRetrievePost('postCategoryNo', changeCategory, 'nothing', '0', loginMemberEamil);
 	
-	document.getElementById("tmpEmail").setAttribute("name", "email");
-	document.getElementById("tmpEmail").setAttribute("id", "email");
-	document.getElementById("email").value = email;	
 	
-	frm.submit();	
 	
 }
 

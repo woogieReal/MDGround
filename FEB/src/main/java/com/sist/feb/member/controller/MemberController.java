@@ -163,7 +163,7 @@ public class MemberController {
 			followFlag = followService.doCheckFollowing(followVO);
 		}
 		
-		SearchVO searchVo = new SearchVO("postCategoryNo", "0", "eachMember", outVO.getEmail());
+		SearchVO searchVo = new SearchVO("nothing", "0", "eachMember", outVO.getEmail());
 		List<PostVO> postList = postService.doRetrieve(searchVo);
 		
 		for(PostVO postVO : postList) {

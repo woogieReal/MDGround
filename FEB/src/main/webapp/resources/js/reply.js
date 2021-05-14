@@ -1,10 +1,10 @@
 /**
  * reply.js
  * 
- * doRetrieveReply(no): 댓글 목록을 출력
+ * doRetrieveReply(no, loginMemberEmail): 댓글 목록을 출력
  * doInsertReply(): 댓글을 입력
- * 
- * 
+ * doDeleteReply(postNo ,replyNo, loginMemberEmail): 댓글 삭제
+ * doInsertReplyByEnter(): enter를 눌러 댓글을 입력
  * 
  * 
  */

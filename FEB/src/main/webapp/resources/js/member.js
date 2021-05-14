@@ -5,8 +5,6 @@
  * doRetrieveFollowing(email, loginMemberEamil): 모달 div에 my_page 주인이 팔로우한 유저들을 출력
  * doRetrieveFollowed(email, loginMemberEamil): 모달 div에 my_page 주인을 팔로우한 유저들을 출력
  *
- * doSelectProfileImageEach(email, no): 모달 div의 테이블에 유저들의 프로필 이미지를 출력
- *
  * doCheckFollowingWithLoginMember(followingEmail, followedEmail, no): 모달 div에 출력된 유저들과 로그인한 유저와의 팔로우 여부를 체크
  * doCancelFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 언팔로우
  * doFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 팔로우
@@ -229,45 +227,7 @@ function doRetrieveFollowed(email, loginMemberEamil){
 }
 
 
-function doSelectProfileImageEach(email, no) {
 
-	$.ajax({
-  		type: "POST",
-  		url:"/feb/image/do_select_profile_image.do",
-  		asyn:true,
-  		dataType:"html",
-  		data:{
-  			email: email
-  		},
-  		success:function(data){//통신 성공
-  			
-  			let srcValue = "";
-  			var parseData = JSON.parse(data);
-  			
-  			if(parseData != null){
-  				srcValue = parseData.path + parseData.saveName;
-  			} else if(parseData == null){
-  				srcValue = "/resources/image_source/nothing.jpg";
-  			}
-  			
-  			//console.log("srcValue: "+srcValue);
-  			
-  			var html = "";
-  			
-  			html += "        <form id='imageFrm"+ no +"' name='imageFrm"+ no +"' method='get'>         ";
-  			html += "		   <input type='hidden' id='anyNo"+ no +"' name='anyNo"+ no +"' value='' >     ";
-  			html += "          <button type='button' style='margin: 0px;' onclick='doSelectMember("+ no +", \""+ email +"\");' class='btn-image'><img class='profile_img_header' src='/feb/"+ srcValue +"'></button>";
-  			html += "        </form>                                                        ";
-			
-			document.getElementById("profileImageTd"+no+"").innerHTML = html;
-			
-  		},
-  		error:function(data){//실패시 처리
-  			console.log("error:"+data);
-  		}
-  	});
-	
-}
 
 function doCheckFollowingWithLoginMember(followingEmail, followedEmail, no) {
 

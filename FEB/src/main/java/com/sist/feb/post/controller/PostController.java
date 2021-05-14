@@ -105,7 +105,7 @@ public class PostController {
 		
 		LOG.debug("doRetrieve");
 		
-		search.setSearchDiv(StringUtil.nvl(search.getSearchDiv(), "postCategoryNo"));
+		search.setSearchDiv(StringUtil.nvl(search.getSearchDiv(), "nothing"));
 		search.setSearchWord(StringUtil.nvl(search.getSearchWord(), "0"));
 		search.setSearchDiv2(StringUtil.nvl(search.getSearchDiv2(), "nothing"));
 		search.setSearchWord2(StringUtil.nvl(search.getSearchWord2(), "0"));

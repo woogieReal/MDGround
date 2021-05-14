@@ -39,8 +39,8 @@
 		FROM post
         WHERE 1=1
 		<choose>
-			<when test="searchDiv == 'postCategoryNo' and searchWord == '1'">
-				AND category = 1
+			<when test="searchDiv == 'postCategoryNo'">
+				AND category = #{searchWord}
 			</when>
 		</choose>			
 		<choose>

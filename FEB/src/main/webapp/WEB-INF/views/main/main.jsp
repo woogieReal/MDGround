@@ -20,10 +20,14 @@
           You can see how your markdown text is affected in the preview below just by pressing Ctrl + Enter.
           We recommend you to sign up for a member and post!
         </p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
+        <div class="col-4" style="margin: auto;">
+          <label for="category" class="form-label">Category</label>
+          <select class="form-select form-select-lg mb-3" onchange="chageCategorySelect('${sessionScope.member.email}');" id="categoryMainPage" style="font-size: medium;" aria-label=".form-select-lg example">
+			<option value="daily life" selected="selected">daily life</option>          
+			<option value="java">java</option>          
+			<option value="javascript">javascript</option>                 
+          </select>
+        </div>          
       </div>
     </div>
   </section>
@@ -42,6 +46,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		//console.log("main");
-		doRetrievePost("postCategoryNo", "0", '${sessionScope.member.email}');
+		doRetrievePost("nothing", "0", "nothing", "0", '${sessionScope.member.email}');
 	});
 </script>

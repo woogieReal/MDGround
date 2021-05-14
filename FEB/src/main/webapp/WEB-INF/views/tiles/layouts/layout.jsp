@@ -30,6 +30,8 @@
 	<link href="${hContext}/resources/assets/woogie.css" rel="stylesheet">
 	
 	<script src="${hContext}/resources/assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="${hContext}/resources/js/cmn.js"></script>
+	<script src="${hContext}/resources/js/header.js"></script>
 	<script src="${hContext}/resources/js/sign.js"></script>
 	<script src="${hContext}/resources/js/post.js"></script>
 	<script src="${hContext}/resources/js/main.js"></script>
