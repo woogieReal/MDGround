@@ -115,10 +115,10 @@
 		  	    <td colspan="2">
 		  	      <input type="hidden" id="postNoInReply" value="${vo.postNo}">
 		  	      <input type="hidden" id="emailInReply" value="${sessionScope.member.email}">
-		  	      <input type="text" id="replyText" class="form-control">
+		  	      <input type="text"   id="replyText" onkeyup="doInsertReplyByEnter();" class="form-control">
 		  	    </td>
 		  	    <td>
-		  	      <button type="submit" onclick="doInsertReply();" class="btn btn-primary">Post comment</button>
+		  	      <button type="submit" onclick="doInsertReply();" class="btn btn-primary">Click</button>
 		  	    </td>
 		  	  </tr>
 		  	</c:if>
@@ -138,6 +138,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		//console.log("post_detail");
-		doRetrieveReply(${vo.postNo});
+		doRetrieveReply(${vo.postNo},'${sessionScope.member.email}');
 	});
 </script>

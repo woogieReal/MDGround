@@ -32,7 +32,7 @@
 	
 	<select id="doRetrieve" parameterType="PostVO" resultType="ReplyVO">
 		SELECT
-			/*+ INDEX_DESC(reply REPLY_PK) */
+			/*+ INDEX_ASC(reply REPLY_PK) */
 		    reply_no AS replyNo,
 		    contents AS contents,
 		    depth AS depth,
@@ -48,7 +48,10 @@
 		WHERE post_no = #{postNo}	
 	</select>
 	
-	
+	<delete id="doDelete" parameterType="ReplyVO">
+		DELETE FROM reply
+		WHERE reply_no = #{replyNo}	
+	</delete>
 	
 	
 	

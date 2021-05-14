@@ -9,9 +9,10 @@
  * 
  */
  
-function doRetrieveReply(no){
+function doRetrieveReply(no, loginMemberEmail){
 	//console.log("doRetrieveReply()");
 	console.log("postNo: "+no);
+	console.log("loginMember: "+loginMemberEmail);
 	
 	$.ajax({
   		type: "POST",
@@ -38,10 +39,13 @@ function doRetrieveReply(no){
 				html += " </tr> ";
 				html += " <tr> ";
 				html += "   <td></td> ";
-				html += "   <td style='text-align: right;'>"+  +"</td>   ";
+				html += "   <td style='text-align: right;'>";
+				if(loginMemberEmail == value.memberEmail) html += "<button type='button' onclick='doDeleteReply("+ value.postNo +", "+ value.replyNo +", \""+ loginMemberEmail +"\");' class='btn btn-danger'>Delete</button>";		
+				html += "   </td> ";		
 				html += " </tr> ";
 				
 				doSelectProfileImageEach(value.memberEmail, i);
+				
 				
 			});
 			
@@ -81,7 +85,8 @@ function doInsertReply() {
  			var parseData = JSON.parse(data);
  			
  			if(parseData.msgId == 1) {
-				doRetrieveReply(no);
+ 				document.getElementById("replyText").value = "";
+				doRetrieveReply(no, email);
 			} else {
 				alert(parseData.msgContents);
 			}		
@@ -92,10 +97,42 @@ function doInsertReply() {
   		}
   	});
 	
-	
-	
 }
 
 
+function doDeleteReply(postNo ,replyNo, loginMemberEmail) {
+	console.log("doDeleteReply()");
+	
+	$.ajax({
+  		type: "POST",
+  		url:"/feb/reply/do_delete.do",
+  		asyn:"true",
+  		dataType:"html",
+  		data:{
+  			replyNo: replyNo
+  		},
+  		success:function(data){//통신 성공
+  			
+ 			var parseData = JSON.parse(data);
+ 			
+ 			if(parseData.msgId == 1) {
+				doRetrieveReply(postNo, loginMemberEmail);
+			} else {
+				alert(parseData.msgContents);
+			}		
+			  		
+  		},
+  		error:function(data){//실패시 처리
+  			console.log("error:"+data);
+  		}
+  	});	
+
+}
+
+function doInsertReplyByEnter() {
+	
+	if (window.event.keyCode == 13) doInsertReply();
+	
+}
 
 

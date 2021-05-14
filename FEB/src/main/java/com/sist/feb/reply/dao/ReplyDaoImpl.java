@@ -44,6 +44,9 @@ public class ReplyDaoImpl {
 		return this.sqlSessionTemplate.selectList(this.NAMESPACE + ".doRetrieve", dto);
 	}
 	
+	public int doDelete(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.delete(this.NAMESPACE + ".doDelete", dto);
+	}
 	
 	
 	

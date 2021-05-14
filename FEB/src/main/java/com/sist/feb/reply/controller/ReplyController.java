@@ -88,6 +88,21 @@ public class ReplyController {
 		
 	}
 	
-	
+	@RequestMapping(value = "reply/do_delete.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doDelete(ReplyVO replyVO) throws Exception {
+		
+		LOG.debug("doDelete");
+		message.setMsgId(Integer.toString(replyService.doDelete(replyVO)));
+		
+		if(message.getMsgId().equals("1")) message.setMsgContents("Successfully deleted");
+		else message.setMsgContents("Failure to delete");
+		
+		LOG.debug("메세지: "+gson.toJson(message));
+		
+		return gson.toJson(message);
+		
+	}
+
 	
 }

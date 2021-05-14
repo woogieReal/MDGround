@@ -41,5 +41,8 @@ public class ReplyServiceImpl {
 		return replyDao.doRetrieve(dto);
 	}
 
+	public int doDelete(DTO dto) throws SQLException {
+		return replyDao.doDelete(dto);
+	}
 	
 }

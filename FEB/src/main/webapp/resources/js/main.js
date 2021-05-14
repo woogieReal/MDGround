@@ -51,7 +51,7 @@ function doRetrievePost(searchDiv, searchWord, loginMemberEamil) {
 				html += "      <div class='card shadow-sm'>                                                                                                                                      ";
 				html += "        <form id='imageFrm"+ value.postNo +"' name='imageFrm"+ value.postNo +"' method='get'>         ";
 				html += "		   <div class='card-header'>                                                                                                                                                                ";
-				html += "		     <div class='inline_block_div' id='postProfileImageDiv"+ value.postNo +"' name='postProfileImageDiv"+ value.postNo +"' ></div>                                                                                                                                                            ";
+				html += "		     <div class='inline_block_div' id='profileImageTd"+ value.postNo +"' name='profileImageTd"+ value.postNo +"' ></div>                                                                                                                                                            ";
 				html += "		     <button type='button' onclick='doSelectMember("+ value.postNo +", \""+ value.memberEmail +"\");' class='btn-image'><span style='font-weight: bold;'>"+ value.memberEmail +"</span></button>                                                                                                                                                                ";
 				html += "		   </div>                                                                                                                                                                ";
 				html += "		                                                                                                                                                                 ";
@@ -82,7 +82,7 @@ function doRetrievePost(searchDiv, searchWord, loginMemberEamil) {
 					doCheckStore(2, loginMemberEamil, value.postNo);
 				}
 				
-				doSelectProfileImageEachPost(value.memberEmail, value.postNo);
+				doSelectProfileImageEach(value.memberEmail, value.postNo);
 				
 			});
 			
