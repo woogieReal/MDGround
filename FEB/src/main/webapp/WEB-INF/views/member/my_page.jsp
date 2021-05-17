@@ -60,7 +60,7 @@
           	  	  </form>
           	  	</td>
           	  	<td>
-          	  	  <h2>${memberVO.email}</h2>
+          	  	  <span style="font-weight: bold;">${memberVO.email}</span>
           	  	</td>
           	  </tr>
           	  <tr>
@@ -117,48 +117,46 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-post" role="tabpanel" aria-labelledby="nav-home-tab">
             <c:if test="${postList.size() > 0}">
-			  <c:forEach var="i"  begin="0"  end="${postList.size()-1}" step="1">
-			    <div class="inline_block_div" id="my_page_post_div" style="margin: 2px;">
-	  			  <div class="col" style="width: 220px;">                                                                                                                                                   
-				    <div class="card shadow-sm">                                                                                                                                      
+			  <div class="row row-cols-3" id="my_page_post_div" style="margin: 2px;">
+			    <c:forEach var="i"  begin="0"  end="${postList.size()-1}" step="1">
+	  			  
+	  			  <div class="col" style="padding: 3px;">                                                                                                                                                   
+				    <div class="card">                                                                                                                                      
 				      <form id="imageFrm${postList.get(i).getPostNo()}" name="imageFrm${postList.get(i).getPostNo()}" method="get">                                                                                                                                                                        
-					                                                                                                                                                                 
 					     <input type="hidden" id="anyNo${postList.get(i).getPostNo()}" name="anyNo${postList.get(i).getPostNo()}" value="" >                                                                                                                                                              
-					     <div id="mainImageDiv${postList.get(i).getPostNo()}">                                                                                                                                                              
+					     <div class="thumb_nail_div_small" id="mainImageDiv${postList.get(i).getPostNo()}">                                                                                                                                                              
 					       <button type="button" class="btn-image"><img class="bd-placeholder-img card-img-top thumb_nail_img_small" onclick="doSelectPost(${postList.get(i).getPostNo()});" src="/feb${postList.get(i).getThumbNail()}"></button>                                             
 					     </div>                                                                                                                                                              
-					                                                                                                                                                                 
 				        <div class="card-body">                                                                                                                                         
-				          <span style="font-weight: bold;">${postList.get(i).getTitle()}</span>                                                                                                                                                                                                                                                                                                                    
+				          <span style="">${postList.get(i).getTitle()}</span>                                                                                                                                                                                                                                                                                                                    
 				        </div>                                                                                                                                                          
 				      </form>                                                        
 				    </div>                                                                                                                                                            
-				  </div>		  	  
-			  	</div>
-			  </c:forEach>
+				  </div>
+				  
+			    </c:forEach>
+			  </div>
 			</c:if>  
           </div>
           <div class="tab-pane fade" id="nav-bookmark" role="tabpanel" aria-labelledby="nav-profile-tab">
             <c:if test="${bookmarkList.size() > 0}">
-			  <c:forEach var="i"  begin="0"  end="${bookmarkList.size()-1}" step="1">
-			    <div class="inline_block_div" id="my_page_post_div" style="margin: 2px;">
-	  			  <div class="col" style="width: 240px;">                                                                                                                                                   
-				    <div class="card shadow-sm">                                                                                                                                      
+			  <div class="row row-cols-3" id="my_page_post_div" style="margin: 2px;">
+			    <c:forEach var="i"  begin="0"  end="${bookmarkList.size()-1}" step="1">
+	  			  <div class="col">                                                                                                                                                   
+				    <div class="card">                                                                                                                                      
 				      <form id="imageFrm${bookmarkList.get(i).getPostNo()}" name="imageFrm${bookmarkList.get(i).getPostNo()}" method="get">                                                                                                                                                                        
-					                                                                                                                                                                 
 					     <input type="hidden" id="anyNo${bookmarkList.get(i).getPostNo()}" name="anyNo${bookmarkList.get(i).getPostNo()}" value="" >                                                                                                                                                              
-					     <div id="mainImageDiv${bookmarkList.get(i).getPostNo()}">                                                                                                                                                              
+					     <div class="thumb_nail_div_small" id="mainImageDiv${bookmarkList.get(i).getPostNo()}">                                                                                                                                                              
 					       <button type="button" class="btn-image"><img class="bd-placeholder-img card-img-top thumb_nail_img_small" onclick="doSelectPost(${bookmarkList.get(i).getPostNo()});" src="/feb${bookmarkList.get(i).getThumbNail()}"></button>                                             
 					     </div>                                                                                                                                                              
-					                                                                                                                                                                 
 				        <div class="card-body">                                                                                                                                         
-				          <span style="font-weight: bold;">${bookmarkList.get(i).getTitle()}</span>                                                                                                                                                                                                                                                                                                                    
+				          <span style="">${bookmarkList.get(i).getTitle()}</span>                                                                                                                                                                                                                                                                                                                    
 				        </div>                                                                                                                                                          
 				      </form>                                                        
 				    </div>                                                                                                                                                            
 				  </div>		  	  
-			  	</div>
-			  </c:forEach>
+			    </c:forEach>
+			  </div>
 			</c:if>  
           </div>
         </div>
