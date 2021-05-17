@@ -4,10 +4,15 @@
 <%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="eachPart">
 
-<%-- ${vo} --%>
 
-    <article class="my-3" id="card">
-      <div class="container basic_div_900 squircle_div">
+<div class="bd-cheatsheet container-fluid bg-body">
+<section id="components">
+<article class="my-3" id="card">
+<div>
+<div class="bd-example">
+<div class="row  row-cols-1 row-cols-md-2 g-4">
+<div class="col" style="margin: auto;">
+<div class="card">
   		
   		<div id="follow_modal">
   			<table class="table">
@@ -114,7 +119,7 @@
             <c:if test="${postList.size() > 0}">
 			  <c:forEach var="i"  begin="0"  end="${postList.size()-1}" step="1">
 			    <div class="inline_block_div" id="my_page_post_div" style="margin: 2px;">
-	  			  <div class="col" style="width: 240px;">                                                                                                                                                   
+	  			  <div class="col" style="width: 220px;">                                                                                                                                                   
 				    <div class="card shadow-sm">                                                                                                                                      
 				      <form id="imageFrm${postList.get(i).getPostNo()}" name="imageFrm${postList.get(i).getPostNo()}" method="get">                                                                                                                                                                        
 					                                                                                                                                                                 
@@ -164,8 +169,14 @@
         </div>
  
           
-      </div>
-    </article>
+</div>
+</div>
+</div>
+</div>  
+</div>            
+</article>
+</section>
+</div>
 
 
 </div>
