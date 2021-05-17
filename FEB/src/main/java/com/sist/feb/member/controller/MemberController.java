@@ -79,8 +79,8 @@ public class MemberController {
 		MessageVO message = new MessageVO();
 		message.setMsgId(Integer.toString(memberService.doRegister(memberVO)));
 		
-		if(message.getMsgId().equals("1")) message.setMsgContents("회원 등록이 완료되었습니다.");
-		else message.setMsgContents("회원 등록에 실패하였습니다.");
+		if(message.getMsgId().equals("1")) message.setMsgContents("Successfully signed up!");
+		else message.setMsgContents("Failure to sign up..");
 		
 		Gson gson = new Gson();
 		LOG.debug("메세지: "+gson.toJson(message));
@@ -99,12 +99,12 @@ public class MemberController {
 		message.setMsgId(Integer.toString(memberService.doLoginCheck(memberVO)));
 		
 		if(message.getMsgId().equals("1")) {
-			message.setMsgContents("로그인이 완료되었습니다.");
+			message.setMsgContents("Welcome!");
 			MemberVO member = memberService.doSelectOne(memberVO);
 			session.setAttribute("member", member);
 		}
 		else {
-			message.setMsgContents("아이디와 비밀번호를 확인해 주세요.");
+			message.setMsgContents("Check your ID and Password");
 		}
 		
 		Gson gson = new Gson();
@@ -135,8 +135,8 @@ public class MemberController {
 		MessageVO message = new MessageVO();
 		message.setMsgId(Integer.toString(memberService.doCheckDuplicatedId(memberVO)));
 		
-		if(message.getMsgId().equals("1")) message.setMsgContents("이미 존재하는 이메일입니다.");
-		else message.setMsgContents("사용가능한 이메일입니다.");
+		if(message.getMsgId().equals("1")) message.setMsgContents("This email already exists.");
+		else message.setMsgContents("This email is available");
 		
 		Gson gson = new Gson();
 		LOG.debug("메세지: "+gson.toJson(message));

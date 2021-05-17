@@ -22,6 +22,7 @@
       </form>
 
       <div class="text-end">
+      <form id="moveFrm">
       	<c:choose>
       	  <c:when test="${sessionScope.member != null}">
             <button type="button" onclick="doMovePost();" class="btn btn-outline-light me-2">post</button>
@@ -35,6 +36,7 @@
             <button type="button" onclick="doMoveToSignUp();" class="btn btn-warning">Sign-up</button>
       	  </c:when>
       	</c:choose>
+      </form>
       </div>
     </div>
   </div>

@@ -4,17 +4,23 @@
 
 function doMoveToMain() {
 	console.log("doMoveToMain()");
-	location.href = "http://localhost:8099/feb/main/main_view.do";
+	var frm = document.getElementById("moveFrm");
+	frm.action = "/feb/main/main_view.do";
+	frm.submit();
 };
 
 function doMoveToSignIn() {
 	console.log("doMoveToSignIn()");
-	location.href = "http://localhost:8099/feb/member/sign_in_view.do";
+	var frm = document.getElementById("moveFrm");
+	frm.action = "/feb/member/sign_in_view.do";
+	frm.submit();
 };
 
 function doMoveToSignUp() {
 	console.log("doMoveToSignIn()");
-	location.href = "http://localhost:8099/feb/member/sign_up_view.do";
+	var frm = document.getElementById("moveFrm");
+	frm.action = "/feb/member/sign_up_view.do";
+	frm.submit();
 };
 
 function doSignIn() {
@@ -94,7 +100,7 @@ function doSignUp() {
   			
   			let parseData = JSON.parse(data);
   			alert(parseData.msgContents);
-  			window.location.href = "http://localhost:8099/feb/member/sign_in_view.do";
+  			doMoveToSignIn();
   			
   		},
   		error:function(data){//실패시 처리

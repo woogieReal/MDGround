@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 div {
-	word-break:break-all;
+	word-break:keep-all;
 }
 
 .form-floating {
@@ -16,7 +16,7 @@ div {
 }
 
 .sign_entire_div {
-	width: 400px;
+	width: 350px;
 	margin: auto;
 	padding: 0px;
 }
@@ -103,18 +103,18 @@ div {
 }
 
 .thumb_nail_img_small {
-	width: 100%; 
-	height: 220px; 
+	height: 150px;
 	object-fit: cover;
 	border: 0.5px solid lightgray;
 }
 
+
 .profile_img_my_page {
 	background-color: white;
-	width: 110px;
-	height: 110px;
+	width: 80px;
+	height: 80px;
 	object-fit: cover;
-	border-radius: 55px;
+	border-radius: 40px;
 }
 
 .profile_img_header {
@@ -160,13 +160,14 @@ div {
 }
 
 .member_simple_table_post_detail {
+	/* border: 1px solid black; */
 	border-collapse: separate;
-	border-spacing: 20px 0px;
+	/* border-spacing: 20px 0px; */
 	width: 100%;
 }
 
 .replyTable {
-	margin: 20px;
+	margin: 10px;
 }
 
 .replyTable tr {

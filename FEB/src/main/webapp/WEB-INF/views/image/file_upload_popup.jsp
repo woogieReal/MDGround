@@ -34,7 +34,7 @@
 </head>
 
 <body>
-<div style="width: 100%; margin: auto; padding: 30px;">
+<div class="container" style="width: 100%; margin: auto; padding: 30px;">
   <!-- contents -->
   <c:choose>
 	<c:when test="${fromTb == 1}">
@@ -57,9 +57,9 @@
 	
   <form action="${hContext}/image/do_upload.do" id="uploadFrm" id="uploadFrm" method="post" enctype="multipart/form-data" accept-charset="UTF-8" >
 	
-	
-	<input type="file" class="form-control" name="file_list" id="file_list" <c:if test="${fromTb == 1}">multiple="multiple"</c:if> style="width: 400px" />
-    
+	<div class="container">
+	  <input type="file" class="form-control" name="file_list" id="file_list" <c:if test="${fromTb == 1}">multiple="multiple"</c:if> />
+    </div>
   
   </form>
   <!-- //contents -->

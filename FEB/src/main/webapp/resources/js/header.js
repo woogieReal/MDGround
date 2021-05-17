@@ -50,7 +50,7 @@ function doSelectProfileImage(email) {
 function doClickProfileImage(email) {
 	console.log("doClickProfileImage()");
 	
-	var frm = document.getElementById("headerProfileImageFrm");
+	var frm = document.getElementById("moveFrm");
 	frm.action = "/feb/member/do_select_one.do";
 	
 	document.getElementById("tmpEmail").setAttribute("name", "email");

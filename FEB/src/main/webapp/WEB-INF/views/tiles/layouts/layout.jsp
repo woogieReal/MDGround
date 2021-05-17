@@ -44,19 +44,17 @@
 
 <body>
 
-	<div id="wrap">
-		<!-- header -->
-		<tiles:insertAttribute name="header" />
-		<!--// header -->
+	<!-- header -->
+	<tiles:insertAttribute name="header" />
+	<!--// header -->
 
-		<!-- container -->
-		<tiles:insertAttribute name="container" />
-		<!--// container -->
+	<!-- container -->
+	<tiles:insertAttribute name="container" />
+	<!--// container -->
 
-		<!-- footer -->
-		<tiles:insertAttribute name="footer" />
-		<!--// footer -->
-	</div>
+	<!-- footer -->
+	<tiles:insertAttribute name="footer" />
+	<!--// footer -->
 
 </body>
 

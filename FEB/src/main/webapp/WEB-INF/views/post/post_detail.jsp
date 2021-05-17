@@ -4,10 +4,15 @@
 <%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="eachPart">
 
-<%-- ${vo} --%>
-
-    <article class="my-3" id="card">
-      <div class="container basic_div squircle_div">
+<div class="bd-cheatsheet container-fluid bg-body">
+<section id="components">
+<article class="my-3" id="card">
+<div>
+<div class="bd-example">
+<div class="row  row-cols-1 row-cols-md-2 g-4">
+<div class="col" style="margin: auto;">
+<div class="card">
+    
   		
         <div class="card-header">
           <span style="font-weight: bold;" id="post_title">${vo.title}</span>
@@ -29,6 +34,13 @@
         </div>
         
 		<table class="member_simple_table_post_detail">
+		    <thead>
+		      <tr>
+		        <th scope="col" width="10%"></th>
+		        <th scope="col" width="60%"></th>
+		        <th scope="col" width="30%"></th>
+		      </tr>
+		    </thead>
 			<tbody>
 			  <tr>
 			    <td rowspan="2">
@@ -42,10 +54,18 @@
 			  	<td>
 			  	  ${vo.memberEmail}
 			  	</td>
-			  	<td rowspan="2">
-		        <c:choose>
-		          <c:when test="${sessionScope.member.email == vo.memberEmail}">
-					<div class='container btn-group i_icon_div inline_block_div'>
+			  </tr>
+			  <tr>
+			  	<td>
+			  	  ${vo.regDt}
+			  	</td>
+			  </tr>
+			</tbody>
+		</table>
+		
+		       <c:choose>
+		         <c:when test="${sessionScope.member.email == vo.memberEmail}">
+					<div class='container i_icon_div'>
 					  <form id="postViewFrm" name="postViewFrm" method="post">
 					    <input type="hidden" id="postNo" name="postNo" value="${vo.postNo}">                                                       
 					    <input type="hidden" id="imageListStr" value='${imageListStr}'>                                                       
@@ -53,21 +73,21 @@
 					    <button type='button' onclick="doDelete();" class='btn btn-sm btn-outline-secondary'>Delete</button>
 					  </form>
 					</div> 
-		          </c:when>
+		         </c:when>
 		         <c:when test="${sessionScope.member.email != vo.memberEmail && sessionScope.member != null}">
 			        <div class="container i_icon_div">
 			          <div class="inline_block_div" id="my_page_icon_follow">
 		          	    <c:choose>
 		           	  	  <c:when test="${followFlag == 0}">
-		          	  	    <button type="button" class="btn-image" onclick="doFollow('${vo.memberEmail}', '${sessionScope.member.email}');" style="margin: -5px 0px 0px 15px;" ><i class="bi bi-person-plus i_icon"></i></button>
+		          	  	    <button type="button" class="btn-image" onclick="doFollow('${vo.memberEmail}', '${sessionScope.member.email}');" ><i class="bi bi-person-plus i_icon"></i></button>
 		            	  </c:when>
 		          	  	</c:choose>
 		          	  	<c:choose>
 		          	  	  <c:when test="${followFlag == 1}">
-		          	  	    <button type="button" class="btn-image" onclick="doCancelFollow('${vo.memberEmail}', '${sessionScope.member.email}');" style="margin: -5px 0px 0px 15px;" ><i class="bi bi-person-plus-fill i_icon"></i></button>
+		          	  	    <button type="button" class="btn-image" onclick="doCancelFollow('${vo.memberEmail}', '${sessionScope.member.email}');"><i class="bi bi-person-plus-fill i_icon"></i></button>
 		          	  	  </c:when>
 		          	  	</c:choose>	          
-			          </div>
+			          </div>			        
 				      <div class="inline_block_div" id="post_icon_bookmark${vo.postNo}">
 				        <c:choose>
 				          <c:when test="${bookmarkFlag == 1}">
@@ -81,10 +101,10 @@
 				      <div class="inline_block_div" id="post_icon_heart${vo.postNo}">
 				        <c:choose>
 				          <c:when test="${likeFlag == 1}">
-				            <button type="button" onclick="doCancelStore(2, '${sessionScope.member.email}', ${vo.postNo});" class="btn-image"><i class="bi bi-heart-fill i_icon"></i></button>
+				            <button type="button" onclick="doCancelStore(2, '${sessionScope.member.email}', ${vo.postNo});" class="btn-image" style="margin: 0px;"><i class="bi bi-heart-fill i_icon"></i></button>
 				          </c:when>
 				          <c:when test="${likeFlag == 0}">
-				            <button type="button" onclick="doStore(2, '${sessionScope.member.email}', ${vo.postNo});" class="btn-image"><i class="bi bi-heart i_icon"></i></button>
+				            <button type="button" onclick="doStore(2, '${sessionScope.member.email}', ${vo.postNo});" class="btn-image" style="margin: 0px;"><i class="bi bi-heart i_icon"></i></button>
 				          </c:when>
 				        </c:choose>
 				      </div>
@@ -92,16 +112,7 @@
 		          </c:when>
 		          <c:when test="${sessionScope.member == null}">
 		          </c:when>
-		        </c:choose>		  	  	
-			  	</td>
-			  </tr>
-			  <tr>
-			  	<td>
-			  	  ${vo.regDt}
-			  	</td>
-			  </tr>
-			</tbody>
-		</table>
+		        </c:choose>		
         
 		<table class="table replyTable" style="width: 95%;">
 	   	  <thead>
@@ -131,8 +142,19 @@
         
        
           
-      </div>
-    </article>
+      
+    
+</div>
+</div>
+</div>
+</div>  
+</div>            
+</article>
+</section>
+</div>
+
+
+
 
 </div>
 <script type="text/javascript">

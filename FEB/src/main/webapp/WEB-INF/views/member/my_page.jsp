@@ -117,7 +117,7 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-post" role="tabpanel" aria-labelledby="nav-home-tab">
             <c:if test="${postList.size() > 0}">
-			  <div class="row row-cols-3" id="my_page_post_div" style="margin: 2px;">
+			  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-3" style="margin: 2px;">
 			    <c:forEach var="i"  begin="0"  end="${postList.size()-1}" step="1">
 	  			  
 	  			  <div class="col" style="padding: 3px;">                                                                                                                                                   
@@ -140,7 +140,7 @@
           </div>
           <div class="tab-pane fade" id="nav-bookmark" role="tabpanel" aria-labelledby="nav-profile-tab">
             <c:if test="${bookmarkList.size() > 0}">
-			  <div class="row row-cols-3" id="my_page_post_div" style="margin: 2px;">
+			  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-3" style="margin: 2px;">
 			    <c:forEach var="i"  begin="0"  end="${bookmarkList.size()-1}" step="1">
 	  			  <div class="col">                                                                                                                                                   
 				    <div class="card">                                                                                                                                      

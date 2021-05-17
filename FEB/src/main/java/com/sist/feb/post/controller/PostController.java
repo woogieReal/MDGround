@@ -1,6 +1,7 @@
 package com.sist.feb.post.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
@@ -158,7 +159,14 @@ public class PostController {
 		model.addAttribute("likeFlag", likeFlag);
 		model.addAttribute("followFlag", followFlag);
 		
-		model.addAttribute("profileImage", profileImage);
+		if(Objects.isNull(profileImage)) {
+			ImageVO nothingProfileImage = new ImageVO();
+			nothingProfileImage.setPath("/resources/image_source/");
+			nothingProfileImage.setSaveName("nothing.jpg");
+			model.addAttribute("profileImage", nothingProfileImage);
+		} else {
+			model.addAttribute("profileImage", profileImage);
+		}
 		
 		return "post/post_detail";
 	}

@@ -15,12 +15,9 @@
  
 function doMovePost() {
 	console.log("doMovePost()");
-	location.href = "http://localhost:8099/feb/post/post_reg_view.do";
-};
-
-function doMoveToMain() {
-	console.log("doMoveToMain()");
-	location.href = "http://localhost:8099/feb/main/main_view.do";
+	var frm = document.getElementById("moveFrm");
+	frm.action = "/feb/post/post_reg_view.do";
+	frm.submit();
 };
  
 function showPopup(frm) { 
@@ -65,7 +62,7 @@ function doUploadImages() {
       success: function(data) {
     	
     	console.log("data: " + data);
-		alert("이미지 등록이 완료되었습니다.");
+		alert("Successfully uploaded");
 
         setSendChild(data);
         window.self.close();
