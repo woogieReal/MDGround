@@ -39,4 +39,10 @@ public class MemberServiceImpl {
 	public MemberVO doSelectOne(DTO dto) throws SQLException {
 		return memberDao.doSelectOne(dto);
 	}
+	
+	public int doUpdateProfile(DTO dto) throws SQLException {
+		return memberDao.doUpdateProfile(dto);
+	}
+	
+	
 }

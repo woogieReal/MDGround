@@ -42,8 +42,9 @@
 		    name,
 		    pw,
 		    location,
-		    intro,
-		    reg_dt AS regDt
+		    reg_dt AS regDt,
+		    intro_md AS introMd,
+		    intro_html AS introHtml
 		FROM member
 		WHERE email = #{email}
 	</select>
@@ -70,6 +71,13 @@
 		WHERE following_email = #{followingEmail}
 	</select>
 
+	<!-- doUpdateProfile -->
+	<update id="doUpdateProfile" parameterType="MemberVO">
+		UPDATE member
+		SET name = #{name},
+		    pw = #{pw}
+		WHERE email = #{email}
+	</update>
 
 	
 </mapper>

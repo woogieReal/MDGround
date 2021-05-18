@@ -22,6 +22,7 @@
 	
 	<select id="doRetrieve" parameterType="SearchVO" resultType="PostVO">
 		SELECT
+			/*+ INDEX_DESC(post POST_PK) */
 		    post_no AS postNo,
 		    title AS title,
 		    text_md AS textMd,

@@ -25,22 +25,25 @@ public class MemberVO extends DTO{
 	private String name;      //이름
 	private String pw;        //비밀번호
 	private String location;  //위치
-	private String intro;     //소개글
-	private String regDt;    //등록일
+	private String regDt;     //등록일
+	private String introMd;   //소개글_md
+	private String introHtml; //소개글_html
 	
 	public MemberVO() {
 		
 	}
 
-	public MemberVO(int memberNo, String email, String name, String pw, String location, String intro, String regDt) {
+	public MemberVO(int memberNo, String email, String name, String pw, String location, String regDt, String introMd,
+			String introHtml) {
 		super();
 		this.memberNo = memberNo;
 		this.email = email;
 		this.name = name;
 		this.pw = pw;
 		this.location = location;
-		this.intro = intro;
 		this.regDt = regDt;
+		this.introMd = introMd;
+		this.introHtml = introHtml;
 	}
 
 	public int getMemberNo() {
@@ -83,14 +86,6 @@ public class MemberVO extends DTO{
 		this.location = location;
 	}
 
-	public String getIntro() {
-		return intro;
-	}
-
-	public void setIntro(String intro) {
-		this.intro = intro;
-	}
-
 	public String getRegDt() {
 		return regDt;
 	}
@@ -99,11 +94,27 @@ public class MemberVO extends DTO{
 		this.regDt = regDt;
 	}
 
+	public String getIntroMd() {
+		return introMd;
+	}
+
+	public void setIntroMd(String introMd) {
+		this.introMd = introMd;
+	}
+
+	public String getIntroHtml() {
+		return introHtml;
+	}
+
+	public void setIntroHtml(String introHtml) {
+		this.introHtml = introHtml;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [memberNo=" + memberNo + ", email=" + email + ", name=" + name + ", pw=" + pw + ", location="
-				+ location + ", intro=" + intro + ", regDt=" + regDt + ", toString()=" + super.toString() + "]";
+				+ location + ", regDt=" + regDt + ", introMd=" + introMd + ", introHtml=" + introHtml + ", toString()="
+				+ super.toString() + "]";
 	}
-
 	
 }

@@ -66,13 +66,13 @@ function doSignUp() {
 	let idCheckFlag = document.getElementById("idCheckFlag").value;
 	let checkedId = document.getElementById("checkedId").value;
 	
-	console.log("email: "+email);
-	console.log("pw: "+pw);
-	console.log("pw_check: "+pw_check);
-	console.log("name: "+name);
-	console.log("location: "+location);
-	console.log("idCheckFlag: "+idCheckFlag);
-	console.log("checkedId: "+checkedId);
+	//console.log("email: "+email);
+	//console.log("pw: "+pw);
+	//console.log("pw_check: "+pw_check);
+	//console.log("name: "+name);
+	//console.log("location: "+location);
+	//console.log("idCheckFlag: "+idCheckFlag);
+	//console.log("checkedId: "+checkedId);
 
 	if(null == email || email.trim().length == 0) { document.getElementById("email").focus(); alert("E-MAIL을 입력 하세요."); return; }
 	if(null == pw || pw.trim().length == 0) { document.getElementById("pw").focus(); alert("비밀번호를 입력 하세요."); return; }
@@ -83,7 +83,7 @@ function doSignUp() {
 	
 	if(idCheckFlag != "checked") { alert("id 중복체크를 하세요."); return; }
 	if(checkedId != email) { alert("id 중복체크를 하세요."); return; }
-	//if(!checkPassword()) {return;}
+	if(!checkPassword(email, pw)) {return;}
 
 	$.ajax({
   		type: "POST",

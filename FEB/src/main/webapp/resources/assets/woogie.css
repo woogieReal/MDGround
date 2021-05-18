@@ -16,7 +16,7 @@ div {
 }
 
 .sign_entire_div {
-	width: 350px;
+	width: 340px;
 	margin: auto;
 	padding: 0px;
 }
@@ -179,16 +179,16 @@ div {
 }
 
 /* modal */
-#follow_modal {
+.my_modal {
 	display: none;
-	width: 400px;
+	width: 360px;
 	padding: 20px;
 	background-color: #fefefe;
 	border: 1px solid #888;
 	border-radius: 3px;	
 }
 
-#follow_modal .modal_close_btn {
+.my_modal .modal_close_btn {
 	position: absolute;
 	top: 10px;
 	right: 10px;

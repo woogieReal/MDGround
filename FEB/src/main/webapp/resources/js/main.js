@@ -6,7 +6,7 @@
  *   doCheckStore(type, email, no): 로그인한 유저가 각 게시물에 대하여 북마크/좋아요를 했는지에 대한 체크와 출력
  * 
  * doSelectPost(no): 각 게시물을 클릭하면 post_detail.jsp 로 이동
- * 
+ * chageCategorySelect(loginMemberEamil): 카테고리를 선택시 해당 게시물들 출력
  * 
  * 
  * 
@@ -190,11 +190,19 @@ function doSelectPost(no) {
 function chageCategorySelect(loginMemberEamil) {
 	//console.log("chageCategorySelect()");
 	
+	let postCategory = "";
 	let changeCategory = document.getElementById("categoryMainPage").value;
+	
+	if(changeCategory == "nothing") {
+		postCategory = "nothing";
+	} else {
+		postCategory = "postCategoryNo";
+	}
+	
 	//console.log("changeCategory: "+changeCategory);
 	//console.log("loginMemberEamil: "+loginMemberEamil);
 	
-	doRetrievePost('postCategoryNo', changeCategory, 'nothing', '0', loginMemberEamil);
+	doRetrievePost(postCategory, changeCategory, 'nothing', '0', loginMemberEamil);
 	
 	
 	

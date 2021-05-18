@@ -215,5 +215,24 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping(value = "member/do_update_progfile.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doUpdateProfile(MemberVO memberVO) throws Exception {
+		
+		LOG.debug("doUpdateProfile");
+		MessageVO message = new MessageVO();
+		message.setMsgId(Integer.toString(memberService.doUpdateProfile(memberVO)));
+		
+		if(message.getMsgId().equals("1")) message.setMsgContents("Successfully edited");
+		else message.setMsgContents("Failure to edit");
+		
+		Gson gson = new Gson();
+		LOG.debug("메세지: "+gson.toJson(message));
+		
+		return gson.toJson(message);
+		
+	}
+	
 	
 }

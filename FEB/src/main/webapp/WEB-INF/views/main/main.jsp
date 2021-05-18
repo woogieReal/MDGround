@@ -9,7 +9,7 @@
 
 <%-- <c:out value="${sessionScope.member}"></c:out> --%>
 
-  <section class="py-5 text-center container">
+  <section class="py-5 text-center container"  id="featureDiv">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">
@@ -17,13 +17,14 @@
         </h1>
         <p class="lead text-muted">
           This web site provides users with special post using markdown.
-          You can see how your markdown text is affected in the preview below just by pressing Ctrl + Enter.
+          You can see how your markdown text is affected in the preview below just by pressing Ctrl + Enter (or Convert button on mobile).
           We recommend you to sign up for a member and post!
         </p>
         <div class="col-4" style="margin: auto;">
           <label for="category" class="form-label">Category</label>
           <select class="form-select form-select-lg mb-3" onchange="chageCategorySelect('${sessionScope.member.email}');" id="categoryMainPage" style="font-size: medium;" aria-label=".form-select-lg example">
-			<option value="daily life" selected="selected">daily life</option>          
+			<option value="nothing" selected="selected">entire</option>          
+			<option value="daily life">daily life</option>          
 			<option value="java">java</option>          
 			<option value="javascript">javascript</option>                 
           </select>

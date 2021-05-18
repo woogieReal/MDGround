@@ -9,7 +9,7 @@
  * doCancelFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 언팔로우
  * doFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 팔로우
  * 
- * 
+ * doEditProfile(): 프로필을 편집
  * 
  */
  
@@ -71,7 +71,7 @@ function doUploadProfileImage() {
 window.onload = function(){
 	
 	//console.log(document.getElementById('followingCountBtn'));
-	if(document.getElementById('followingCountBtn') != null){
+	if(document.getElementById('followingCountBtn') != null && document.getElementById('editShowBtn') != null){
 	
 		document.getElementById('followingCountBtn').addEventListener('click', function() {
 		    modal('follow_modal');
@@ -80,6 +80,15 @@ window.onload = function(){
 		document.getElementById('followedCountBtn').addEventListener('click', function() {
 		    modal('follow_modal');
 		});
+		
+		document.getElementById('introShowBtn').addEventListener('click', function() {
+		    modal('intro_modal');
+		});
+
+		document.getElementById('editShowBtn').addEventListener('click', function() {
+		    modal('profile_edit_modal');
+		});
+		
 		
 		function modal(id) {
 		    var zIndex = 9999;
@@ -320,5 +329,69 @@ function doFollowInFollowModal(followingEmail, followedEmail, no) {
   	});	
   		
 }
+
+function doEditProfile() {
+	console.log("doEditProfile()");
+	
+	let email = document.getElementById("profileEmail").value;
+	let realPw = document.getElementById("realPw").value;
+	
+	let newName = document.getElementById("newName").value;
+	let nowPw = document.getElementById("nowPw").value;
+	let newPw = document.getElementById("newPw").value;
+	let newPwCheck = document.getElementById("newPwCheck").value;
+	
+	if(nowPw.trim().length == 0 && newPw.trim().length == 0 && newPwCheck.trim().length == 0) {
+		nowPw = realPw;
+		newPw = realPw;
+		newPwCheck = realPw;
+	}
+	
+	if(newName.trim().length == 0) { document.getElementById("newName").focus(); alert("Enter your new name"); return; }
+	if(nowPw != realPw) { document.getElementById("nowPw").focus(); alert("This is not a correct password."); return; }
+	if(newPw.trim().length == 0)  { document.getElementById("newPw").focus(); alert("Enter your new password."); return; }
+	if(newPwCheck.trim().length == 0)  { document.getElementById("newPwCheck").focus(); alert("Confirm your new password."); return; }
+	if(newPw != newPwCheck)  { document.getElementById("newPwCheck").focus(); alert("Confirm your new password."); return; }
+	if(!checkPassword(email, newPw)) {return;}
+	
+	
+	$.ajax({
+  		type: "POST",
+  		url:"/feb/member/do_update_progfile.do",
+  		asyn:"true",
+  		dataType:"html",
+  		data:{
+  			name: newName,
+  			pw: newPw,
+  			email: email
+  		},
+  		success:function(data){//통신 성공
+  			
+  			var parseData = JSON.parse(data);
+  			
+  			if(parseData.msgId == 1){
+  				document.getElementById("nowPw").value = "";
+  				document.getElementById("newPw").value = "";
+  				document.getElementById("newPwCheck").value = "";
+  				document.getElementById("realPw").value = newPw;
+  			}
+  			
+  			alert(parseData.msgContents);
+  		
+  		},
+  		error:function(data){//실패시 처리
+  			console.log("error:"+data);
+  		}
+  	});
+	
+	
+	
+	
+	
+}
+
+
+
+
 
 

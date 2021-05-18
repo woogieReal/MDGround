@@ -14,7 +14,7 @@
 <div class="col" style="margin: auto;">
 <div class="card">
   		
-  		<div id="follow_modal">
+  		<div id="follow_modal" class="my_modal">
   			<table class="table">
   			  <thead>
   			    <tr>
@@ -27,6 +27,34 @@
   			  </tbody>
   			</table>
   			<button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
+  		</div>
+  		
+  		<div id="intro_modal" class="my_modal">
+  		  ${memberVO.introHtml }
+  		  <button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
+  		</div>
+  		
+  		<div id="profile_edit_modal" class="my_modal">
+ 		  <input type="hidden" id="profileEmail" value="${memberVO.email}">
+ 		  <input type="hidden" id="realPw" value="${memberVO.pw}">
+ 		  <div class="mb-3">
+ 		    <label for="newName" class="form-label">Name</label>
+ 		    <input type="text" class="form-control" id="newName" value="${memberVO.name}">
+ 		  </div>
+          <div class="mb-3">
+            <label for="nowPw" class="form-label">Password</label>
+ 		  	<input type="password" class="form-control" id="nowPw" value="">
+ 		  </div>
+ 		  <div class="mb-3">
+ 		  	<label for="newPw" class="form-label">New Password</label>
+ 		  	<input type="password" class="form-control" id="newPw" value="">
+ 		  </div>
+ 		  <div class="mb-3">
+ 		  	<label for="newPwCheck" class="form-label">Confirm Password</label>
+ 		  	<input type="password" class="form-control" id="newPwCheck" value="">
+ 		  </div>
+ 		  <input type="button" onclick="doEditProfile();" class="btn btn-primary btn-sm btn-right" value="Edit" id="profileEditBtn" />
+  		  <button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
   		</div>
   		
         <div class="card-header">
@@ -60,7 +88,7 @@
           	  	  </form>
           	  	</td>
           	  	<td>
-          	  	  <span style="font-weight: bold;">${memberVO.email}</span>
+          	  	  <span style="font-weight: bold; margin-left: 3px;">${memberVO.email}</span>
           	  	</td>
           	  </tr>
           	  <tr>
@@ -71,12 +99,12 @@
           	  </tr>
           	  <tr>
           	  	<td>
-          	  	  <span style="margin-left: 5px; vertical-align: super;">${memberVO.name}</span>
+          	  	  <button type="button" id="introShowBtn" class="btn-image"><span style="vertical-align: super;">${memberVO.name}</span></button>
           	  	  <c:choose>
           	  	    <c:when test="${sessionScope.member.email == memberVO.email}">
           	  	      <div class="inline_block_div">
           	  	        <form id="editFrm">
-          	  	          <button type="button" style="padding: 2px 10px; margin: -10px 0px 0px 10px;" class="btn btn-outline-primary">Edit</button>
+          	  	          <button type="button" id="editShowBtn" style="padding: 2px 10px; margin: -10px 0px 0px 10px;" class="btn btn-outline-primary">Edit</button>
           	  	        </form>
           	  	      </div>
           	  	    </c:when>

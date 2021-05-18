@@ -42,7 +42,9 @@ public class MemberDaoImpl {
 		return this.sqlSessionTemplate.selectOne(this.NAMESPACE + ".doSelectOne", dto);
 	}
 	
-	
+	public int doUpdateProfile(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.update(this.NAMESPACE + ".doUpdateProfile", dto);
+	}
 	
 	
 	
