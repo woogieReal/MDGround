@@ -181,7 +181,9 @@ div {
 /* modal */
 .my_modal {
 	display: none;
-	width: 360px;
+	/* width: 360px; */
+	/* width: 100%; */
+	max-width: 700px;
 	padding: 20px;
 	background-color: #fefefe;
 	border: 1px solid #888;

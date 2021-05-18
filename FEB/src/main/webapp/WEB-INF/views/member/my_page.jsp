@@ -10,11 +10,15 @@
 <article class="my-3" id="card">
 <div>
 <div class="bd-example">
-<div class="row  row-cols-1 row-cols-md-2 g-4">
+<div class="row row-cols-sm-1 row-cols-md-1 row-cols-lg-2  g-4">
 <div class="col" style="margin: auto;">
 <div class="card">
   		
-  		<div id="follow_modal" class="my_modal">
+  		
+  		
+        <div class="card-header">
+          
+  		<div id="follow_modal" class="container my_modal">
   			<table class="table">
   			  <thead>
   			    <tr>
@@ -29,12 +33,12 @@
   			<button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
   		</div>
   		
-  		<div id="intro_modal" class="my_modal">
+  		<div id="intro_modal" class="container my_modal">
   		  ${memberVO.introHtml }
   		  <button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
   		</div>
   		
-  		<div id="profile_edit_modal" class="my_modal">
+  		<div id="profile_edit_modal" class="container my_modal">
  		  <input type="hidden" id="profileEmail" value="${memberVO.email}">
  		  <input type="hidden" id="realPw" value="${memberVO.pw}">
  		  <div class="mb-3">
@@ -57,12 +61,10 @@
   		  <button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
   		</div>
   		
-        <div class="card-header">
-          
           <table class="member_detail_table_my_page">
           	<tbody>
           	  <tr>
-          	  	<td rowspan="3">
+          	  	<td rowspan="3"><!-- 프로필 이미지 -->
           	  	  <form name="image_frm" id="image_frm">
           	  	    <input type="hidden" name="fromTb" id="fromTb" value="2"/>
           	  	    <input type="hidden" name="fromNo" id="fromNo" value="${memberVO.memberNo}"/>
@@ -87,18 +89,18 @@
           	  	    </c:if> 
           	  	  </form>
           	  	</td>
-          	  	<td>
+          	  	<td><!-- 이메일 -->
           	  	  <span style="font-weight: bold; margin-left: 3px;">${memberVO.email}</span>
           	  	</td>
           	  </tr>
           	  <tr>
-          	  	<td style="font-size: large;">
+          	  	<td style="font-size: large;"><!-- 팔로우, 팔로워 -->
           	  	  <button type="button" onclick="doRetrieveFollowing('${memberVO.email}', '${sessionScope.member.email}');" id="followingCountBtn" class="btn-image"><span style="font-weight: bold;">Follow ${followingCount}</span></button>
           	  	  <button type="button" onclick="doRetrieveFollowed('${memberVO.email}', '${sessionScope.member.email}');" id="followedCountBtn"  class="btn-image"><span style="font-weight: bold;">Follower ${followedCount}</span></button>
           	  	</td>
           	  </tr>
           	  <tr>
-          	  	<td>
+          	  	<td><!-- 이름 -->
           	  	  <button type="button" id="introShowBtn" class="btn-image"><span style="vertical-align: super;">${memberVO.name}</span></button>
           	  	  <c:choose>
           	  	    <c:when test="${sessionScope.member.email == memberVO.email}">
@@ -145,7 +147,7 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-post" role="tabpanel" aria-labelledby="nav-home-tab">
             <c:if test="${postList.size() > 0}">
-			  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-3" style="margin: 2px;">
+			  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3" style="margin: 2px;">
 			    <c:forEach var="i"  begin="0"  end="${postList.size()-1}" step="1">
 	  			  
 	  			  <div class="col" style="padding: 3px;">                                                                                                                                                   

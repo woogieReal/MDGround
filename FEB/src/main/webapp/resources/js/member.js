@@ -71,8 +71,10 @@ function doUploadProfileImage() {
 window.onload = function(){
 	
 	//console.log(document.getElementById('followingCountBtn'));
-	if(document.getElementById('followingCountBtn') != null && document.getElementById('editShowBtn') != null){
+	if(document.getElementById('followingCountBtn') != null){
 	
+		//console.log("modal");
+		
 		document.getElementById('followingCountBtn').addEventListener('click', function() {
 		    modal('follow_modal');
 		});
@@ -85,9 +87,13 @@ window.onload = function(){
 		    modal('intro_modal');
 		});
 
-		document.getElementById('editShowBtn').addEventListener('click', function() {
-		    modal('profile_edit_modal');
-		});
+		if(document.getElementById('editShowBtn') != null) {
+		
+			document.getElementById('editShowBtn').addEventListener('click', function() {
+			    modal('profile_edit_modal');
+			});
+		}
+		
 		
 		
 		function modal(id) {
@@ -143,6 +149,8 @@ window.onload = function(){
 
 function doRetrieveFollowing(email, loginMemberEamil){
 	console.log("doRetrieveFollowing()");
+	console.log("email: "+email);
+	console.log("loginMemberEamil: "+loginMemberEamil);
 	
 	$.ajax({
   		type: "POST",
@@ -204,7 +212,7 @@ function doRetrieveFollowed(email, loginMemberEamil){
   			
 			var parseData = JSON.parse(data);
 			var html = "";
-			console.log("parseData: "+parseData);
+			//console.log("parseData: "+parseData);
 			
 			$.each(parseData, function(i, value) {
 				
@@ -239,7 +247,8 @@ function doRetrieveFollowed(email, loginMemberEamil){
 
 
 function doCheckFollowingWithLoginMember(followingEmail, followedEmail, no) {
-
+	console.log("doCheckFollowingWithLoginMember()");	
+	
 	$.ajax({
   		type: "POST",
   		url:"/feb/follow/do_check_following.do",
