@@ -118,7 +118,7 @@
 	   	  <thead>
 		  	<tr>
 		  	  <th scope="col" width="10%"></th>
-		  	  <th scope="col" width="70%"></th>
+		  	  <th scope="col" width="65%"></th>
 		  	  <th scope="col" width="20%"></th>
 		  	</tr>
 		  	<c:if test="${sessionScope.member != null}">

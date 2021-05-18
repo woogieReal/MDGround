@@ -17,8 +17,9 @@
   		
   		
         <div class="card-header">
-          
+        
   		<div id="follow_modal" class="container my_modal">
+  			<input type="button" class="btn btn-danger btn-sm btn-right modal_close_btn margin_5px_btn" value="Close"/>
   			<table class="table">
   			  <thead>
   			    <tr>
@@ -30,17 +31,38 @@
   			  <tbody id="followTable">
   			  </tbody>
   			</table>
-  			<button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
   		</div>
   		
   		<div id="intro_modal" class="container my_modal">
+  		  <input type="button" class="btn btn-sm btn-danger btn-right modal_close_btn margin_5px_btn" value="Close"/>
+  		  <c:if test="${sessionScope.member.email == memberVO.email}">
+  		    <input type="button" class="btn btn-primary btn-sm btn-right modal_close_btn margin_5px_btn" value="Edit" id="showIntroEditBtn" />
+  		  </c:if>
   		  ${memberVO.introHtml }
-  		  <button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
+  		</div>
+  		
+  		<div id="intro_edit_modal" class="container my_modal">
+  		  <input type="button" class="btn btn-sm btn-danger btn-right modal_close_btn margin_5px_btn" value="Close"/>
+  		  <input type="button" onclick="doConvert();" class="btn btn-primary btn-sm btn-right margin_5px_btn" value="Convert" id="convertBtn" />
+  		  <input type="button" onclick="doEditIntro();" class="btn btn-primary btn-sm btn-right margin_5px_btn" value="Complete" id="introEditBtn" />
+  		  <div class="mb-3">
+  		  	<label for="text" class="form-label">Text</label>
+  		  	<textarea class="form-control" id="text" onkeyup="ctrEnterkey();" rows="5" placeholder="The text you entered appears at the bottom of the post." required>${memberVO.introMd }</textarea>
+  		  </div>
+  		  <div class="mb-3">
+  		  	<label for="Preview" class="form-label">Preview</label>
+  		  	<div class="squircle_div text_div" id="Preview"></div>
+  		  </div>
+  		  <button class="btn-image" id="register_button"></button>  		  
   		</div>
   		
   		<div id="profile_edit_modal" class="container my_modal">
+  		  <input type="button" class="btn btn-sm btn-danger btn-right modal_close_btn margin_5px_btn" value="Close" />
+  		  <input type="button" onclick="doEditProfile();" class="btn btn-primary btn-sm btn-right margin_5px_btn" value="Complete" id="profileEditBtn" />
+ 		  
  		  <input type="hidden" id="profileEmail" value="${memberVO.email}">
  		  <input type="hidden" id="realPw" value="${memberVO.pw}">
+ 		  
  		  <div class="mb-3">
  		    <label for="newName" class="form-label">Name</label>
  		    <input type="text" class="form-control" id="newName" value="${memberVO.name}">
@@ -57,8 +79,6 @@
  		  	<label for="newPwCheck" class="form-label">Confirm Password</label>
  		  	<input type="password" class="form-control" id="newPwCheck" value="">
  		  </div>
- 		  <input type="button" onclick="doEditProfile();" class="btn btn-primary btn-sm btn-right" value="Edit" id="profileEditBtn" />
-  		  <button type="button" class="btn-image modal_close_btn"><span style="font-weight: bold;">X</span></button>
   		</div>
   		
           <table class="member_detail_table_my_page">

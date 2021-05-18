@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.sist.feb.cmn.MDParser;
 import com.sist.feb.cmn.MessageVO;
 import com.sist.feb.cmn.SearchVO;
 import com.sist.feb.follow.domain.FollowVO;
@@ -233,6 +234,31 @@ public class MemberController {
 		return gson.toJson(message);
 		
 	}
+	
+	@RequestMapping(value = "member/do_update_intro.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doUpdateIntro(MemberVO memberVO) throws Exception {
+		
+		LOG.debug("doUpdateIntro");
+		
+		String htmlStr = MDParser.parserFromMD(memberVO.getIntroMd());
+		memberVO.setIntroHtml(htmlStr);
+		
+		MessageVO message = new MessageVO();
+		message.setMsgId(Integer.toString(memberService.doUpdateIntro(memberVO)));
+		
+		if(message.getMsgId().equals("1")) message.setMsgContents("Successfully edited");
+		else message.setMsgContents("Failure to edit");
+		
+		Gson gson = new Gson();
+		LOG.debug("메세지: "+gson.toJson(message));
+		
+		return gson.toJson(message);
+		
+	}
+	
+	
 	
 	
 }

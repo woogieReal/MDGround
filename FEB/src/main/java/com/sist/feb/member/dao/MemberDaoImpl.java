@@ -46,6 +46,9 @@ public class MemberDaoImpl {
 		return this.sqlSessionTemplate.update(this.NAMESPACE + ".doUpdateProfile", dto);
 	}
 	
+	public int doUpdateIntro(DTO dto) throws SQLException {
+		return this.sqlSessionTemplate.update(this.NAMESPACE + ".doUpdateIntro", dto);
+	}
 	
 	
 }

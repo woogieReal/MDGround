@@ -10,6 +10,7 @@
  * doFollowInFollowModal(followingEmail, followedEmail, no): 모달 div에서 팔로우
  * 
  * doEditProfile(): 프로필을 편집
+ * doEditIntro(): 자기소개를 편집
  * 
  */
  
@@ -94,6 +95,12 @@ window.onload = function(){
 			});
 		}
 		
+		if(document.getElementById('showIntroEditBtn') != null) {
+		
+			document.getElementById('showIntroEditBtn').addEventListener('click', function() {
+			    modal('intro_edit_modal');
+			});
+		}
 		
 		
 		function modal(id) {
@@ -386,6 +393,7 @@ function doEditProfile() {
   			}
   			
   			alert(parseData.msgContents);
+  			window.location.reload();
   		
   		},
   		error:function(data){//실패시 처리
@@ -393,13 +401,39 @@ function doEditProfile() {
   		}
   	});
 	
-	
-	
-	
-	
 }
 
-
+function doEditIntro() {
+	console.log("doEditIntro()");
+	
+	let textMd = document.getElementById("text").value;
+	let email = document.getElementById("profileEmail").value;
+	
+	console.log("textMd: "+textMd);
+	console.log("email: "+email);
+	
+	$.ajax({
+  		type: "POST",
+  		url:"/feb/member/do_update_intro.do",
+  		asyn:"true",
+  		dataType:"html",
+  		data:{
+  			introMd: textMd,
+  			email: email
+  		},
+  		success:function(data){//통신 성공
+  			
+  			var parseData = JSON.parse(data);
+  			alert(parseData.msgContents);
+  			window.location.reload();
+  		
+  		},
+  		error:function(data){//실패시 처리
+  			console.log("error:"+data);
+  		}
+  	});	
+	
+}
 
 
 

@@ -82,8 +82,6 @@ public class PostController {
 		LOG.debug("doInsert");
 		
 		String htmlStr = MDParser.parserFromMD(postVO.getTextMd());
-		//LOG.debug("htmlStr: "+htmlStr);
-		
 		postVO.setTextHtml(htmlStr);
 		
 		MessageVO message = new MessageVO();

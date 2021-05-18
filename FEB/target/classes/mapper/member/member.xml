@@ -79,5 +79,17 @@
 		WHERE email = #{email}
 	</update>
 
+	<!-- doUpdateIntro -->
+	<update id="doUpdateIntro" parameterType="MemberVO">
+		UPDATE member
+		SET intro_md = #{introMd},
+		    intro_html = #{introHtml}
+		WHERE email = #{email}
+	</update>
+
+
+
+
+
 	
 </mapper>
