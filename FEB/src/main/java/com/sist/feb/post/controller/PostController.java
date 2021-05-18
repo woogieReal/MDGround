@@ -146,7 +146,7 @@ public class PostController {
 			followFlag = followService.doCheckFollowing(followVO);
 		}
 		
-		MemberVO outVO = memberService.doSelectOne(new MemberVO(0, postOutVO.getMemberEmail(), null, null, null, null, null));
+		MemberVO outVO = memberService.doSelectOne(new MemberVO(0, postOutVO.getMemberEmail(), null, null, null, null, null, null));
 		ImageVO profileImage = imageService.doSelectProfileImage(outVO);
 		
 		Gson gson = new Gson();
