@@ -19,6 +19,7 @@ function doMovePost() {
 	frm.action = "/feb/post/post_reg_view.do";
 	frm.submit();
 };
+
  
 function showPopup(frm) { 
 	console.log('showPopup()');
@@ -54,7 +55,6 @@ function doUploadImages() {
       url: "/feb/image/do_upload.do",
       enctype: 'multipart/form-data',
       data: form, 
-      //dataType: 'text',
       type: 'POST',
       async: 'false',
       processData: false,
@@ -65,7 +65,7 @@ function doUploadImages() {
 		alert("Successfully uploaded");
 
         setSendChild(data);
-        window.self.close();
+        document.getElementById("file_upload_modal_close_btn").click();
 
       },
       error: function(data) {
@@ -84,14 +84,14 @@ function setSendChild(param) {
 	
 	console.log("jsonString: " + jsonString);
 	
-	opener.document.getElementById("imageList").value = jsonString; 
+	document.getElementById("imageList").value = jsonString; 
 	
 	var tmpImageList = JSON.parse(jsonString);
 	console.log(tmpImageList);
 	
 	var cnt = 0;
 	
-	opener.document.getElementById("uploadImageView").value = "";
+	document.getElementById("uploadImageView").value = "";
 	
 	var html = "";
 	html += "<ul class='list-group mb-3'>";
@@ -111,15 +111,12 @@ function setSendChild(param) {
 	
 	console.log(html);
 	
-	//$("#uploadImageView").append(html);
-	opener.document.getElementById("uploadImageView").innerHTML=html;
+	document.getElementById("uploadImageView").innerHTML=html;
 	
-	//$("#imageCntView").empty();
-	opener.document.getElementById("imageCntView").value = "";
+	document.getElementById("imageCntView").value = "";
 	
 	var html2 = "<span class='badge bg-primary rounded-pill'>"+cnt+"</span>";
-	//$("#imageCntView").append(html2);
-	opener.document.getElementById("imageCntView").innerHTML=html2;
+	document.getElementById("imageCntView").innerHTML=html2;
 	
 }
 

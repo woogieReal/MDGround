@@ -15,28 +15,40 @@
 	
 	      <!-- 이미지 등록 칸으로 만들 곳 -->
 	      <div class="col-md-5 col-lg-4 order-md-last">
-	
+	      
 	        <form name="image_frm" id="image_frm">
-	        
 	          <input type="hidden" name="fromTb" id="fromTb" value="1"/>
-				
 	          <h4 class="d-flex justify-content-between align-items-center mb-3">
 	            <span class="text-primary">Images</span>
 	            
 	            <!-- 등록한 이미지가 몇 개인지 보여 줄 칸 -->
 	            <div id="imageCntView"></div>
 	            
-	            <button type="button" class="btn btn-outline-primary me-2" onclick="showPopup(this.form);">add</button>
-	          
+	            <button type="button" id="fileUploadShowBtn" class="btn btn-outline-primary me-2" >add</button>
 	          </h4>
 				
 			  <!-- 업로드한 이미지 목록 출력 -->	
 	          <div id="uploadImageView" name="uploadImageView">
 	          </div>
-	          
 	        </form>
 	      </div>
 	      <!--// 이미지 등록 칸으로 만들 곳 -->
+	      
+	      
+	      <div id="file_upload_modal" class="container my_modal">
+	        <input type="button" id="file_upload_modal_close_btn" class="btn btn-sm btn-danger btn-right modal_close_btn margin_5px_btn" value="Close"/>
+	        <input type="button" onclick="doUploadImages();" id="file_upload" class="btn btn-primary btn-sm btn-right margin_5px_btn" value="Upload" />
+	        
+	        <h3>Post Images Upload</h3>
+	        <hr/>
+	        
+	        <form action="/feb/image/do_upload.do" id="uploadFrm" id="uploadFrm" method="post" enctype="multipart/form-data" accept-charset="UTF-8" >
+	          <div class="container">
+	            <input type="file" class="form-control" name="file_list" id="file_list" multiple="multiple"/>
+	          </div>
+	        </form>
+	      </div>
+	      
 	
 	      <div class="col-md-7 col-lg-8">
 	        <form class="needs-validation" name="post_frm" id="post_frm" novalidate>

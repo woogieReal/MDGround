@@ -80,6 +80,20 @@
  		  	<input type="password" class="form-control" id="newPwCheck" value="">
  		  </div>
   		</div>
+
+	      <div id="file_upload_modal" class="container my_modal">
+	        <input type="button" id="file_upload_modal_close_btn" class="btn btn-sm btn-danger btn-right modal_close_btn margin_5px_btn" value="Close"/>
+	        <input type="button" onclick="doUploadProfileImage();" id="file_upload" class="btn btn-primary btn-sm btn-right margin_5px_btn" value="Upload" />
+	        
+	        <h3>Profile Image Upload</h3>
+	        <hr/>
+	        
+	        <form id="uploadFrm" id="uploadFrm" method="post" enctype="multipart/form-data" accept-charset="UTF-8" >
+	          <div class="container">
+	            <input type="file" class="form-control" name="file_list" id="file_list"/>
+	          </div>
+	        </form>
+	      </div>
   		
           <table class="member_detail_table_my_page">
           	<tbody>
@@ -92,7 +106,7 @@
           	  	    <input type="hidden" name="profileImageName" id="profileImageName" value="${profileImage.saveName}"/>
           	  	    
           	  	    <c:if test="${sessionScope.member.email == memberVO.email}">
-          	  	      <button type="button" onclick="showPopup(this.form);" class="btn-image">
+          	  	      <button type="button" id="fileUploadShowBtn" class="btn-image">
           	  	    </c:if>  
           	  	      <img class="bd-placeholder-img profile_img_my_page" 
           	  	        <c:choose>
