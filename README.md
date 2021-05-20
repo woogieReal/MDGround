@@ -15,7 +15,8 @@
 
 ​
 ## 마크다운 언어 변환 라이브러리
- * flexmark-java <https://github.com/vsch/flexmark-java/>
+ * flexmark-java <https://github.com/vsch/flexmark-java>
 
+​
 ## 웹사이트 이용
-  * MDGround <http://3.36.223.73:8080/feb/main/main_view.do/>
+  * MDGround <http://3.36.223.73:8080/feb/main/main_view.do>
