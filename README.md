@@ -39,3 +39,10 @@
 
 * Mobile
 <img src="/README_file/main_mobile.png" width="70%" />
+
+### 게시물 상세
+* PC
+<img src="/README_file/post_view_pc.png" width="70%" />
+
+* Mobile
+<img src="/README_file/post_view_mobile.png" width="70%" />
