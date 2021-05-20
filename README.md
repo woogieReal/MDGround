@@ -21,14 +21,14 @@
 ## 웹사이트 이용
   * MDGround <http://3.36.223.73:8080/feb/main/main_view.do>
   * 마크다운 언어를 이용한 포스트 예시
-  <img src="/README_file/markdown_post_example.gif" width="100%" />
+  <img src="/README_file/markdown_post_example.gif" width="70%" />
 
 ​
 ## 작동모습
 
 # 포스트
 * PC
-<img src="/README_file/post_example_pc.png" width="100%" />
+<img src="/README_file/post_example_pc.png" width="70%" />
 
 * Mobile
-<img src="/README_file/post_example_mobile.png" width="100%" />
+<img src="/README_file/post_example_mobile.png" width="70%" />
