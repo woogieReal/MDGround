@@ -15,7 +15,7 @@
 
 ​
 ## 마크다운 언어 변환 라이브러리
- * flexmark-java <https://github.com/vsch/flexmark-java>
+ * flexmark-java (0.62.2 version) <https://github.com/vsch/flexmark-java>
 
 ​
 ## 웹사이트 이용
