@@ -46,3 +46,20 @@
 
 * Mobile
 <img src="/README_file/post_view_mobile.png" width="70%" />
+
+### 마이페이지
+* PC
+<img src="/README_file/my_page_pc.png" width="70%" />
+
+* Mobile
+<img src="/README_file/my_page_mobile.png" width="70%" />
+
+* PC
+<img src="/README_file/intro_pc.png" width="70%" />
+<img src="/README_file/follow_pc.png" width="70%" />
+<img src="/README_file/profile_image_pc.png" width="70%" />
+
+* Mobile
+<img src="/README_file/profile_follow_intro_mobile.png" width="70%" />
+
+
