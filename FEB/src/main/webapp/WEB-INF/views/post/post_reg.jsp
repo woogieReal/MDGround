@@ -30,6 +30,9 @@
 			  <!-- 업로드한 이미지 목록 출력 -->	
 	          <div id="uploadImageView" name="uploadImageView">
 	          </div>
+	          
+
+	          
 	        </form>
 	      </div>
 	      <!--// 이미지 등록 칸으로 만들 곳 -->

@@ -99,9 +99,9 @@ function setSendChild(param) {
 	$.each(tmpImageList, function(i, value) {
 		
 		if(cnt == 0){
-			html += "<li class='list-group-item d-flex justify-content-between lh-sm'> "+ value.orgName +" <input type = 'radio' class='form-check-input' name = 'selectImage' value = '"+i+"' checked='checked' onclick='clickWhichMainImage("+i+");'></li>";
+			html += "<li class='list-group-item d-flex justify-content-between lh-sm'> <img style='width: 200px; height: 50px; object-fit: cover; border-radius: 5px;' src='/feb"+ value.path + value.saveName +"'> <input type = 'radio' style='font-size: 32px;' class='form-check-input' name = 'selectImage' value = '"+i+"' checked='checked' onclick='clickWhichMainImage("+i+");'></li>";
 		} else {
-			html += "<li class='list-group-item d-flex justify-content-between lh-sm'> "+ value.orgName +" <input type = 'radio' class='form-check-input' name = 'selectImage' value = '"+i+"' onclick='clickWhichMainImage("+i+");' ></li>";
+			html += "<li class='list-group-item d-flex justify-content-between lh-sm'> <img style='width: 200px; height: 50px; object-fit: cover; border-radius: 5px;' src='/feb"+ value.path + value.saveName +"'> <input type = 'radio' style='font-size: 32px;' class='form-check-input' name = 'selectImage' value = '"+i+"' onclick='clickWhichMainImage("+i+");' ></li>";
 		}
 		
 		cnt += 1;
