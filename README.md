@@ -26,7 +26,7 @@
 ​
 ## 작동모습
 
-# 포스트
+### 포스트
 * PC
 <img src="/README_file/post_example_pc.png" width="70%" />
 
