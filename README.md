@@ -34,6 +34,9 @@ flexmark-java (0.62.2 version)
    + &lt;pre&gt;&lt;code&gt; ... &lt;/code&gt;,&lt;/pre&gt; 태그 부분 옅은 회색의 배경색을 추가 **(2021-05-24)**
  
  * 마크다운 언어를 모르는 사용자는 게시물 작성이 불편하다는 일반 사용자 의견 **(2021-05-24)**
+   + 게시물 작성 텍스트 박스 위에 셀렉트 박스를 추가
+   + 드롭다운 옵션 중에서 요소(ex. title, list)를 선택해 add 버튼을 누르면 텍스트 박스에 추가 되는 방식
+   + 선택 가능 요소: title, bold, italic, underline, code line, code block, list, link **(2021-05-25)**
 
 ​
 ## 웹사이트 이용
