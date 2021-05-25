@@ -47,7 +47,7 @@
   		  <input type="button" onclick="doEditIntro();" class="btn btn-primary btn-sm btn-right margin_5px_btn" value="Complete" id="introEditBtn" />
   		  <div class="mb-3">
   		  	<label for="text" class="form-label">Text</label>
-  		  	<textarea class="form-control" id="text" onkeyup="ctrEnterkey();" rows="5" placeholder="The text you entered appears at the bottom of the post." required>${memberVO.introMd }</textarea>
+  		  	<textarea class="form-control" id="text" onkeyup="if(event.keyCode == 13 && window.event.ctrlKey) javascript:enterKey('convert');" rows="5" placeholder="The text you entered appears at the bottom of the post." required>${memberVO.introMd }</textarea>
   		  </div>
   		  <div class="mb-3">
   		  	<label for="Preview" class="form-label">Preview</label>

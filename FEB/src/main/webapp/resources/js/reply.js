@@ -11,8 +11,8 @@
  
 function doRetrieveReply(no, loginMemberEmail){
 	//console.log("doRetrieveReply()");
-	console.log("postNo: "+no);
-	console.log("loginMember: "+loginMemberEmail);
+	//console.log("postNo: "+no);
+	//console.log("loginMember: "+loginMemberEmail);
 	
 	$.ajax({
   		type: "POST",
@@ -66,9 +66,9 @@ function doInsertReply() {
 	var no = document.getElementById("postNoInReply").value;
 	var email = document.getElementById("emailInReply").value;
 	
-	console.log(text);
-	console.log(no);
-	console.log(email);
+	//console.log(text);
+	//console.log(no);
+	//console.log(email);
 	
 	$.ajax({
   		type: "POST",
@@ -101,7 +101,7 @@ function doInsertReply() {
 
 
 function doDeleteReply(postNo ,replyNo, loginMemberEmail) {
-	console.log("doDeleteReply()");
+	//console.log("doDeleteReply()");
 	
 	$.ajax({
   		type: "POST",
@@ -127,12 +127,6 @@ function doDeleteReply(postNo ,replyNo, loginMemberEmail) {
   		}
   	});	
 
-}
-
-function doInsertReplyByEnter() {
-	
-	if (window.event.keyCode == 13) doInsertReply();
-	
 }
 
 

@@ -14,7 +14,7 @@
  */
  
 function doMovePost() {
-	console.log("doMovePost()");
+	//console.log("doMovePost()");
 	var frm = document.getElementById("moveFrm");
 	frm.action = "/feb/post/post_reg_view.do";
 	frm.submit();
@@ -22,11 +22,11 @@ function doMovePost() {
 
  
 function showPopup(frm) { 
-	console.log('showPopup()');
+	//console.log('showPopup()');
 	if(document.getElementById("fromTb").value == 1) {
 		document.getElementById("whichMainImage").value = "";
 	} if(document.getElementById("fromTb").value == 2) {
-		console.log(document.getElementById("fromNo").value);
+		//console.log(document.getElementById("fromNo").value);
 	}
  
     // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
@@ -47,7 +47,7 @@ function showPopup(frm) {
 
 function doUploadImages() {
 
-  console.log('doUploadImages()');
+  //console.log('doUploadImages()');
   
   var form = new FormData(document.getElementById("uploadFrm"));
   
@@ -61,7 +61,7 @@ function doUploadImages() {
       contentType: false,
       success: function(data) {
     	
-    	console.log("data: " + data);
+    	//console.log("data: " + data);
 		alert("Successfully uploaded");
 
         setSendChild(data);
@@ -78,16 +78,16 @@ function doUploadImages() {
 //popup에서 가져온 값 처리
 function setSendChild(param) {
 	
-	console.log("param: " + param);
+	//console.log("param: " + param);
 	
 	var jsonString = JSON.stringify(param);
 	
-	console.log("jsonString: " + jsonString);
+	//console.log("jsonString: " + jsonString);
 	
 	document.getElementById("imageList").value = jsonString; 
 	
 	var tmpImageList = JSON.parse(jsonString);
-	console.log(tmpImageList);
+	//console.log(tmpImageList);
 	
 	var cnt = 0;
 	
@@ -109,7 +109,7 @@ function setSendChild(param) {
 	
 	html += "</ul>";
 	
-	console.log(html);
+	//console.log(html);
 	
 	document.getElementById("uploadImageView").innerHTML=html;
 	
@@ -121,12 +121,12 @@ function setSendChild(param) {
 }
 
 function clickWhichMainImage(i){
-	console.log("clickWhichMainImage"+i);
+	//console.log("clickWhichMainImage"+i);
 	document.getElementById("whichMainImage").value = i;
 }
 
 function post(){
-	console.log("post()");
+	//console.log("post()");
 	
 	let title = document.getElementById("title").value;
 	let text = document.getElementById("text").value;
@@ -137,14 +137,14 @@ function post(){
 	let fromTb = document.getElementById("fromTb").value;
 	let mainImage = document.getElementById("whichMainImage").value;
 	
-	console.log("title: "+title);
-	console.log("category: "+category);
-	console.log("text: "+text);
-	console.log("memberEmail: "+memberEmail);
+	//console.log("title: "+title);
+	//console.log("category: "+category);
+	//console.log("text: "+text);
+	//console.log("memberEmail: "+memberEmail);
 	
-	console.log("imageList: "+imageList);
-	console.log("fromTb: "+fromTb);
-	console.log("mainImage: "+mainImage);
+	//console.log("imageList: "+imageList);
+	//console.log("fromTb: "+fromTb);
+	//console.log("mainImage: "+mainImage);
 	
 	$.ajax({
   		type: "POST",
@@ -161,7 +161,7 @@ function post(){
   			
   			var parseData = JSON.parse(data);
   			
-  			console.log(imageList);
+  			//console.log(imageList);
   			
   			if(parseData.msgId == 1 && imageList != ""){
 	  			
@@ -207,7 +207,7 @@ function post(){
 }
 
 function doConvert() {
-	console.log("doConvert()");
+	//console.log("doConvert()");
 	var text = document.getElementById("text").value;
 	//console.log("text: "+text);
 	
@@ -227,36 +227,27 @@ function doConvert() {
   			
   		},
   		error:function(data){//실패시 처리
-  			console.log("error:"+data);
+  			//console.log("error:"+data);
   		}
   	});			
 	
 }
 
-function ctrEnterkey() {
-	
-	if (window.event.keyCode == 13 && window.event.ctrlKey){
-		console.log("ctrEnterkey()");
-		doConvert();
-	}
-		
-}
-
 function doMoveToEdit() {
-	console.log("doMoveToEdit()");
+	//console.log("doMoveToEdit()");
 	var frm = document.getElementById("postViewFrm");
 	frm.action = "/feb/post/do_edit_post.do";
 	frm.submit();	
 }
 
 function doDelete() {
-	console.log("doDelete()");
+	//console.log("doDelete()");
 	
 	let postNo = document.getElementById("postNo").value;
 	let imageList = document.getElementById("imageListStr").value;
-	console.log("postNo: "+postNo);
-	console.log("imageList: "+imageList);
-	console.log("stringify: "+JSON.stringify(imageList));
+	//console.log("postNo: "+postNo);
+	//console.log("imageList: "+imageList);
+	//console.log("stringify: "+JSON.stringify(imageList));
 	
 	$.ajax({
   		type: "POST",
@@ -325,15 +316,15 @@ function edit(){
 	let fromTb = document.getElementById("fromTb").value;
 	let mainImage = document.getElementById("whichMainImage").value;
 	
-	console.log("title: "+title);
-	console.log("text: "+text);
-	console.log("category: "+category);
-	console.log("postNo: "+postNo);
+	//console.log("title: "+title);
+	//console.log("text: "+text);
+	//console.log("category: "+category);
+	//console.log("postNo: "+postNo);
 	
-	console.log("imageListDel: "+imageListDel);
-	console.log("imageList: "+imageList);
-	console.log("fromTb: "+fromTb);
-	console.log("mainImage: "+mainImage);
+	//console.log("imageListDel: "+imageListDel);
+	//console.log("imageList: "+imageList);
+	//console.log("fromTb: "+fromTb);
+	//console.log("mainImage: "+mainImage);
 	
 	$.ajax({
   		type: "POST",

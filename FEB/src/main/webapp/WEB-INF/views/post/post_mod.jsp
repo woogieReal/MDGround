@@ -73,8 +73,20 @@
 	            </div>
 	
 	            <div class="col-12">
-	              <label for="text" class="form-label">Text</label><input type="button" onclick="doConvert();" class="btn btn-primary btn-sm btn-right" value="Convert" id="convertBtn" />
-	              <textarea class="form-control" id="text" onkeyup="ctrEnterkey();" rows="10" placeholder="The text you entered appears at the bottom of the post." required>${vo.textMd}</textarea>
+	              <label for="text" class="form-label">Text</label>
+	              <select onkeyup="grammerEnterkey();" class="form-select form-select-sm" id="grammerCategory" style="max-width: 150px; display: inline; margin-left: 20px">
+	                <option>title</option>
+	                <option>bold</option>
+	                <option>italic</option>
+	                <option>underline</option>
+	                <option>code line</option>
+	                <option>code block</option>
+	                <option>list</option>
+	                <option>link</option>
+	              </select>
+	              <input type="button" onclick="doAddGrammer();" class="btn btn-success btn-sm" value="Add" id="grammerAddBtn" />	              
+	              <input type="button" onclick="doConvert();" class="btn btn-primary btn-sm btn-right" value="Convert" id="convertBtn" />
+	              <textarea class="form-control" id="text" onkeyup="if(event.keyCode == 13 && window.event.ctrlKey) javascript:enterKey('convert');" rows="10" placeholder="The text you entered appears at the bottom of the post." required>${vo.textMd}</textarea>
 	            </div>
 
 	            <div class="col-12">

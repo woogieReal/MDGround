@@ -158,8 +158,40 @@ window.onload = function() {
 
 }
 
+function doAddGrammer() {
+	//console.log("doAddGrammer()");
+	
+	let whichGrammer = document.getElementById("grammerCategory").value;
+	let originalText = document.getElementById("text").value;
+	let modifiedText = "";
+	
+	//console.log("whichGrammer: "+whichGrammer);
+	//console.log("originalText: "+originalText);
+	
+	switch(whichGrammer){
+		case "title": modifiedText = originalText + "# title \n## title \n### title"; break;
+		case "bold": modifiedText = originalText + "**emphasize**"; break;
+		case "italic": modifiedText = originalText + "_itailic_"; break;
+		case "underline": modifiedText = originalText + "<u>underline</u>"; break;
+		case "code line": modifiedText = originalText + "`code`"; break;
+		case "code block": modifiedText = originalText + "```\ncode \nblock \n```"; break;
+		case "list": modifiedText = originalText + "list \n * Abc \n * Def \n   * aaa \n   * bbb \n   * ccc \n * Ghi"; break;
+		case "link": modifiedText = originalText + "[link](http://3.36.223.73:8080/feb/main/main_view.do)"; break;
+	}
+	
+	document.getElementById("text").value = modifiedText;
+	
+}
 
-
+function enterKey(which) {
+	console.log("which: "+which);
+	switch(which){
+		case "sign_in": doSignIn(); break;
+		case "convert": doConvert(); break;
+		case "reply": doInsertReply(); break;
+		
+	}
+}
 
  
  

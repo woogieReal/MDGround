@@ -24,7 +24,7 @@ function doMoveToSignUp() {
 };
 
 function doSignIn() {
-	console.log("doSignIn()");
+	//console.log("doSignIn()");
 	let email = document.getElementById("email").value;
 	let pw = document.getElementById("pw").value;
 	

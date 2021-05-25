@@ -126,7 +126,7 @@
 		  	    <td colspan="2">
 		  	      <input type="hidden" id="postNoInReply" value="${vo.postNo}">
 		  	      <input type="hidden" id="emailInReply" value="${sessionScope.member.email}">
-		  	      <input type="text"   id="replyText" onkeyup="doInsertReplyByEnter();" class="form-control">
+		  	      <input type="text"   id="replyText" onkeyup="if(event.keyCode == 13) javascript:enterKey('reply');" class="form-control">
 		  	    </td>
 		  	    <td>
 		  	      <button type="submit" onclick="doInsertReply();" class="btn btn-primary">Click</button>

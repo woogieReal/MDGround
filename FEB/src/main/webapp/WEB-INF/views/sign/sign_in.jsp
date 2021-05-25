@@ -6,11 +6,11 @@
 			<form>
 				<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 				<div class="form-floating">
-					<input type="email" class="form-control" id="email" placeholder="name@example.com">
+					<input type="email" onkeyup="if(event.keyCode == 13) javascript:enterKey('sign_in');" class="form-control" id="email" placeholder="name@example.com">
 					<label for="memberId">Email address</label>
 				</div>
 				<div class="form-floating">
-					<input type="password" class="form-control" id="pw" placeholder="Password">
+					<input type="password" onkeyup="if(event.keyCode == 13) javascript:enterKey('sign_in');" class="form-control" id="pw" placeholder="Password">
 					<label for="pw">Password</label>
 				</div>
 			</form>
