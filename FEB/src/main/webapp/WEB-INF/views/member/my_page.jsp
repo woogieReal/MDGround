@@ -61,7 +61,6 @@
   		  <input type="button" onclick="doEditProfile();" class="btn btn-primary btn-sm btn-right margin_5px_btn" value="Complete" id="profileEditBtn" />
  		  
  		  <input type="hidden" id="profileEmail" value="${memberVO.email}">
- 		  <input type="hidden" id="realPw" value="${memberVO.pw}">
  		  
  		  <div class="mb-3">
  		    <label for="newName" class="form-label">Name</label>

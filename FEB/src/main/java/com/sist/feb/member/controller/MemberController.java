@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +52,8 @@ public class MemberController {
 	@Autowired
 	StorageServiceImpl storageService;
 	
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 //	▼ 생성자 ==============================================================	
 
 	public MemberController() {}
@@ -77,6 +80,9 @@ public class MemberController {
 	public String doRegister(MemberVO memberVO) throws Exception {
 		
 		LOG.debug("doRegister");
+		
+		memberVO.setPw(encoder.encode(memberVO.getPw()));
+		
 		MessageVO message = new MessageVO();
 		message.setMsgId(Integer.toString(memberService.doRegister(memberVO)));
 		
@@ -97,7 +103,12 @@ public class MemberController {
 		
 		LOG.debug("doLoginCheck");
 		MessageVO message = new MessageVO();
-		message.setMsgId(Integer.toString(memberService.doLoginCheck(memberVO)));
+		
+		if(encoder.matches(memberVO.getPw(), memberService.doSelectOne(memberVO).getPw())) {
+			message.setMsgId("1");
+		} else {
+			message.setMsgId("0");
+		}
 		
 		if(message.getMsgId().equals("1")) {
 			message.setMsgContents("Welcome!");
@@ -223,7 +234,34 @@ public class MemberController {
 		
 		LOG.debug("doUpdateProfile");
 		MessageVO message = new MessageVO();
+		
+		if(memberVO.getPw().equals("")) {
+			memberVO.setPw(memberService.doSelectOne(memberVO).getPw());
+		} else {
+			memberVO.setPw(encoder.encode(memberVO.getPw()));
+		}
+		
 		message.setMsgId(Integer.toString(memberService.doUpdateProfile(memberVO)));
+		
+		if(message.getMsgId().equals("1")) message.setMsgContents("Successfully edited");
+		else message.setMsgContents("Failure to edit");
+		
+		Gson gson = new Gson();
+		LOG.debug("메세지: "+gson.toJson(message));
+		
+		return gson.toJson(message);
+		
+	}
+	
+	@RequestMapping(value = "member/do_update_name.do", method = RequestMethod.POST
+			,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doUpdateName(MemberVO memberVO) throws Exception {
+		
+		LOG.debug("doUpdateName");
+		MessageVO message = new MessageVO();
+		
+		message.setMsgId(Integer.toString(memberService.doUpdateName(memberVO)));
 		
 		if(message.getMsgId().equals("1")) message.setMsgContents("Successfully edited");
 		else message.setMsgContents("Failure to edit");
@@ -258,7 +296,24 @@ public class MemberController {
 		
 	}
 	
-	
+	@RequestMapping(value="member/do_check_pw.do",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String doCheckPW(Model model, MemberVO inVO) throws Exception {
+		
+		LOG.debug("doCheckPW");
+		MessageVO message = new MessageVO();
+		
+		if(encoder.matches(inVO.getPw(), memberService.doSelectOne(inVO).getPw())) {
+			message.setMsgId("1");
+		}
+		
+		if(message.getMsgId().equals("1")) message.setMsgContents("correct");
+		else message.setMsgContents("This is not a correct password.");
+		
+		Gson gson = new Gson();
+		return gson.toJson(message);
+		
+	}	
 	
 	
 }

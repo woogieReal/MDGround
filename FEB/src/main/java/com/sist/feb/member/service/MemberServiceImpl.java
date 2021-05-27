@@ -43,6 +43,10 @@ public class MemberServiceImpl {
 	public int doUpdateProfile(DTO dto) throws SQLException {
 		return memberDao.doUpdateProfile(dto);
 	}
+
+	public int doUpdateName(DTO dto) throws SQLException {
+		return memberDao.doUpdateName(dto);
+	}
 	
 	public int doUpdateIntro(DTO dto) throws SQLException {
 		return memberDao.doUpdateIntro(dto);

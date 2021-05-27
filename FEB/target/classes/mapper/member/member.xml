@@ -78,6 +78,14 @@
 		    pw = #{pw}
 		WHERE email = #{email}
 	</update>
+	
+	<!-- doUpdateName -->
+	<update id="doUpdateName" parameterType="MemberVO">
+		UPDATE member
+		SET name = #{name}
+		WHERE email = #{email}
+	</update>
+	
 
 	<!-- doUpdateIntro -->
 	<update id="doUpdateIntro" parameterType="MemberVO">

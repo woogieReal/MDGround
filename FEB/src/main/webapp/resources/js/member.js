@@ -264,58 +264,100 @@ function doFollowInFollowModal(followingEmail, followedEmail, no) {
 
 function doEditProfile() {
 	console.log("doEditProfile()");
-	
+
 	let email = document.getElementById("profileEmail").value;
-	let realPw = document.getElementById("realPw").value;
-	
-	let newName = document.getElementById("newName").value;
 	let nowPw = document.getElementById("nowPw").value;
-	let newPw = document.getElementById("newPw").value;
-	let newPwCheck = document.getElementById("newPwCheck").value;
+	let newName = document.getElementById("newName").value;
 	
-	if(nowPw.trim().length == 0 && newPw.trim().length == 0 && newPwCheck.trim().length == 0) {
-		nowPw = realPw;
-		newPw = realPw;
-		newPwCheck = realPw;
+	if(nowPw.trim().length == 0){
+	
+		$.ajax({
+			type: "POST",
+			url:"/feb/member/do_update_name.do",
+			asyn:"true",
+			dataType:"html",
+			data:{
+				name: newName,
+				email: email
+			},
+			success:function(data){//통신 성공
+				
+				var parseData = JSON.parse(data);
+				alert(parseData.msgContents);
+				window.location.reload();
+			
+			},
+			error:function(data){//실패시 처리
+				console.log("error:"+data);
+			}
+		});		
+			
+	} else {
+	
+		$.ajax({
+			type: "POST",
+			url:"/feb/member/do_check_pw.do",
+			asyn:"true",
+			dataType:"html",
+			data:{
+				email: email,
+				pw: nowPw
+			},
+			success:function(data){//통신 성공
+				
+				var parseData = JSON.parse(data);
+				
+				if(parseData.msgId == 1){
+	
+					let newPw = document.getElementById("newPw").value;
+					let newPwCheck = document.getElementById("newPwCheck").value;
+					
+					if(newName.trim().length == 0) { document.getElementById("newName").focus(); alert("Enter your new name"); return; }
+					if(newPw.trim().length == 0)  { document.getElementById("newPw").focus(); alert("Enter your new password."); return; }
+					if(newPwCheck.trim().length == 0)  { document.getElementById("newPwCheck").focus(); alert("Confirm your new password."); return; }
+					if(newPw != newPwCheck)  { document.getElementById("newPwCheck").focus(); alert("Confirm your new password."); return; }
+					if(!checkPassword(email, newPw)) {return;}
+					
+					$.ajax({
+						type: "POST",
+						url:"/feb/member/do_update_progfile.do",
+						asyn:"true",
+						dataType:"html",
+						data:{
+							name: newName,
+							pw: newPw,
+							email: email
+						},
+						success:function(data){//통신 성공
+							
+							var parseData = JSON.parse(data);
+							
+							if(parseData.msgId == 1){
+								document.getElementById("nowPw").value = "";
+								document.getElementById("newPw").value = "";
+								document.getElementById("newPwCheck").value = "";
+							}
+							
+							alert(parseData.msgContents);
+							window.location.reload();
+						
+						},
+						error:function(data){//실패시 처리
+							console.log("error:"+data);
+						}
+					});
+				
+				} else {
+					alert(parseData.msgContents);
+				}
+			
+			},
+			error:function(data){//실패시 처리
+				console.log("error:"+data);
+			}
+		});		
+	
 	}
-	
-	if(newName.trim().length == 0) { document.getElementById("newName").focus(); alert("Enter your new name"); return; }
-	if(nowPw != realPw) { document.getElementById("nowPw").focus(); alert("This is not a correct password."); return; }
-	if(newPw.trim().length == 0)  { document.getElementById("newPw").focus(); alert("Enter your new password."); return; }
-	if(newPwCheck.trim().length == 0)  { document.getElementById("newPwCheck").focus(); alert("Confirm your new password."); return; }
-	if(newPw != newPwCheck)  { document.getElementById("newPwCheck").focus(); alert("Confirm your new password."); return; }
-	if(!checkPassword(email, newPw)) {return;}
-	
-	
-	$.ajax({
-  		type: "POST",
-  		url:"/feb/member/do_update_progfile.do",
-  		asyn:"true",
-  		dataType:"html",
-  		data:{
-  			name: newName,
-  			pw: newPw,
-  			email: email
-  		},
-  		success:function(data){//통신 성공
-  			
-  			var parseData = JSON.parse(data);
-  			
-  			if(parseData.msgId == 1){
-  				document.getElementById("nowPw").value = "";
-  				document.getElementById("newPw").value = "";
-  				document.getElementById("newPwCheck").value = "";
-  				document.getElementById("realPw").value = newPw;
-  			}
-  			
-  			alert(parseData.msgContents);
-  			window.location.reload();
-  		
-  		},
-  		error:function(data){//실패시 처리
-  			console.log("error:"+data);
-  		}
-  	});
 	
 }
 
