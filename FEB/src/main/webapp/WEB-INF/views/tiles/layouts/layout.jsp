@@ -17,6 +17,8 @@
 	<meta name="generator" content="Hugo 0.82.0">
 	<title>MDGround</title>
 
+	<link rel="shortcut icon" href="${hContext}/resources/image_source/MDGround_Favicon.ico" type="image/x-icon">
+
 	<script src="${hContext}/resources/js/jquery.min.js"></script>
 	<script src="${hContext}/resources/js/bootstrap.min.js"></script>
 
