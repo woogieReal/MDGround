@@ -39,7 +39,7 @@ flexmark-java (0.62.2 version)
    + 선택 가능 요소: title, bold, italic, underline, code line, code block, list, link **(2021-05-25)**
  * 보안 관련 **(2021-05-26~)**
    + spring-security-web 라이브러리를 사용하여 사용자 비밀번호 암호화 **(2021-05-27)**
-
+ * Favicon 추가 **(2021-05-29)**
 ​
 ## 웹사이트 이용
  * **MDGround** [링크](http://3.36.223.73:8080/feb/main/main_view.do)
