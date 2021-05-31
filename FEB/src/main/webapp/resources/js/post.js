@@ -96,12 +96,16 @@ function setSendChild(param) {
 	var html = "";
 	html += "<ul class='list-group mb-3'>";
 	
+	let imageNm = "uploadImage";
+	
 	$.each(tmpImageList, function(i, value) {
 		
+		//console.log("onclick: " + imageNm + i);
+		
 		if(cnt == 0){
-			html += "<li class='list-group-item d-flex justify-content-between lh-sm'> <img style='width: 200px; height: 50px; object-fit: cover; border-radius: 5px;' src='/feb"+ value.path + value.saveName +"'> <input type = 'radio' style='font-size: 32px;' class='form-check-input' name = 'selectImage' value = '"+i+"' checked='checked' onclick='clickWhichMainImage("+i+");'></li>";
+			html += "<li class='list-group-item d-flex justify-content-between lh-sm'> <img style='width: 200px; height: 50px; object-fit: cover; border-radius: 5px;' id='uploadImage"+i+"' onclick='changeImageSize("+ imageNm + i +")' src='/feb"+ value.path + value.saveName +"'> <input type = 'radio' style='font-size: 32px;' class='form-check-input' name = 'selectImage' value = '"+i+"' checked='checked' onclick='clickWhichMainImage("+i+");'></li>";
 		} else {
-			html += "<li class='list-group-item d-flex justify-content-between lh-sm'> <img style='width: 200px; height: 50px; object-fit: cover; border-radius: 5px;' src='/feb"+ value.path + value.saveName +"'> <input type = 'radio' style='font-size: 32px;' class='form-check-input' name = 'selectImage' value = '"+i+"' onclick='clickWhichMainImage("+i+");' ></li>";
+			html += "<li class='list-group-item d-flex justify-content-between lh-sm'> <img style='width: 200px; height: 50px; object-fit: cover; border-radius: 5px;' id='uploadImage"+i+"' onclick='changeImageSize("+ imageNm + i +")' src='/feb"+ value.path + value.saveName +"'> <input type = 'radio' style='font-size: 32px;' class='form-check-input' name = 'selectImage' value = '"+i+"' onclick='clickWhichMainImage("+i+");' ></li>";
 		}
 		
 		cnt += 1;
@@ -384,5 +388,22 @@ function edit(){
   			console.log("error:"+data);
   		}
   	});
+	
+}
+
+function changeImageSize(image) {
+	//console.log(image);
+	
+	//let imagetmp = document.getElementById(image);
+	let imagetmp = image;
+	
+	//console.log(imagetmp);
+	//console.log(imagetmp.style.height);
+	
+	if(imagetmp.style.height == '50px'){
+		imagetmp.style.height = "100%";
+	} else {
+		imagetmp.style.height = '50px';
+	}
 	
 }

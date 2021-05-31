@@ -22,9 +22,9 @@ div {
 }
 
 .basic_div {
-	width: 800px;
-	margin: auto;
-	padding: 0px;
+	max-width: 1000px;
+	/* margin: auto;
+	padding: 0px; */
 }
 
 .squircle_div {

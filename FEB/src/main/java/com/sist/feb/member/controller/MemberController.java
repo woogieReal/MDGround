@@ -186,6 +186,9 @@ public class MemberController {
 				case "daily life": postVO.setThumbNail("/resources/image_source/markdown.png"); break;
 				case "java": postVO.setThumbNail("/resources/image_source/java.png"); break;
 				case "javascript": postVO.setThumbNail("/resources/image_source/javascript.png"); break;
+				case "typescript": postVO.setThumbNail("/resources/image_source/Typescript.png"); break;
+				case "react": postVO.setThumbNail("/resources/image_source/react.png"); break;
+				case "next": postVO.setThumbNail("/resources/image_source/nextjs.jpg"); break;
 				}
 			//LOG.debug("postVO.getThumbNail(): "+postVO.getThumbNail());
 			} else {
@@ -205,6 +208,9 @@ public class MemberController {
 				case "daily life": postVO.setThumbNail("/resources/image_source/markdown.png"); break;
 				case "java": postVO.setThumbNail("/resources/image_source/java.png"); break;
 				case "javascript": postVO.setThumbNail("/resources/image_source/javascript.png"); break;
+				case "typescript": postVO.setThumbNail("/resources/image_source/Typescript.png"); break;
+				case "react": postVO.setThumbNail("/resources/image_source/react.png"); break;
+				case "next": postVO.setThumbNail("/resources/image_source/nextjs.jpg"); break;
 				}
 				//LOG.debug("postVO.getThumbNail(): "+postVO.getThumbNail());
 			} else {

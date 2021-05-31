@@ -5,12 +5,12 @@
 <div class="eachPart">
 
 
-<div class="bd-cheatsheet container-fluid bg-body">
+<div class="bd-cheatsheet container-fluid bg-body" style="max-width: 800px;">
 <section id="components">
 <article class="my-3" id="card">
 <div>
 <div class="bd-example">
-<div class="row row-cols-sm-1 row-cols-md-1 row-cols-lg-2  g-4">
+<div class="row row-cols-sm-1 row-cols-md-1 row-cols-lg-1  g-4">
 <div class="col" style="margin: auto;">
 <div class="card">
   		

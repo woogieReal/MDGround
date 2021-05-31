@@ -1,0 +1,5 @@
+01. post_reg 카테고리
+02. post_mod 카테고리
+03. main.js doSelectMainImage(no, category)
+04. MemberController doSelectOne()
+05. main.jsp 카테고리 

@@ -29,11 +29,11 @@
 				
 			  <!-- 업로드한 이미지 목록 출력 -->	
 	          <div id="uploadImageView" name="uploadImageView">
+	          
 	          </div>
 	          
-
-	          
 	        </form>
+	        
 	      </div>
 	      <!--// 이미지 등록 칸으로 만들 곳 -->
 	      
@@ -72,6 +72,9 @@
 				  	<option value="daily life" selected="selected">daily life</option>          
 				  	<option value="java">java</option>          
 				  	<option value="javascript">javascript</option>                 
+				  	<option value="typescript">typescript</option>                 
+				  	<option value="react">react</option>                 
+				  	<option value="next">next</option>                 
 	              </select>
 	            </div>
 	

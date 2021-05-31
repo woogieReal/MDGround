@@ -68,7 +68,10 @@
 	              <select class="form-select form-select-lg mb-3" id="category" style="font-size: medium;" aria-label=".form-select-lg example">
 				  	<option value="daily life" <c:if test="${vo.category == 'daily life'}">selected</c:if> >daily life</option>          
 				  	<option value="java" <c:if test="${vo.category == 'java'}">selected</c:if> >java</option>                 
-				  	<option value="javascript" <c:if test="${vo.category == 'javascript'}">selected</c:if> >javascript</option>                 
+				  	<option value="javascript" <c:if test="${vo.category == 'javascript'}">selected</c:if> >javascript</option>
+				  	<option value="typescript" <c:if test="${vo.category == 'typescript'}">selected</c:if> >typescript</option>                 
+				  	<option value="react" <c:if test="${vo.category == 'react'}">selected</c:if> >react</option>                 
+				  	<option value="next" <c:if test="${vo.category == 'next'}">selected</c:if> >next</option> 				  	                 
 	              </select>
 	            </div>
 	

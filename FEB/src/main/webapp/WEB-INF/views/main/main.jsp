@@ -27,6 +27,9 @@
 			<option value="daily life">daily life</option>          
 			<option value="java">java</option>          
 			<option value="javascript">javascript</option>                 
+			<option value="typescript">typescript</option>                 
+			<option value="react">react</option>                 
+			<option value="next">next</option>                 
           </select>
         </div>          
       </div>
@@ -36,7 +39,8 @@
   <div class="album py-5 bg-light">
     <div class="container">
 
-      <div id="mainPostsDiv" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"></div>
+      <!-- <div id="mainPostsDiv" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"></div> -->
+      <div id="mainPostsDiv" class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
       
     </div>
   </div>
