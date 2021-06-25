@@ -46,6 +46,7 @@ flexmark-java (0.62.2 version)
    + 게시물 조회 화면 크기 최대 900px로 확대
    + 마이 페이지 화면 크기 최대 800px로 확대
  * 카테고리 추가(typescript, react, next) **(2021-05-31)**
+ * 카테고리 추가(programming) **(2021-06-25)**
 
 ​
 ## 웹사이트 이용
