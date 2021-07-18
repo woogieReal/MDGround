@@ -45,6 +45,7 @@
 	<!-- doRetrieve -->
 	<select id="doRetrieve" parameterType="ImageVO" resultType="ImageVO">
 		SELECT
+			/*+ INDEX_ASC(image PK_IMAGE) */
 		    image_no AS imageNo,
 		    main_image AS mainImage,
 		    org_name AS orgName,

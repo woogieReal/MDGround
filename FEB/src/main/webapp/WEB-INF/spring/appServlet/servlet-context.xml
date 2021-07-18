@@ -25,7 +25,7 @@
 
 	<!-- 파일 업로드 객체 설정 --> 
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
-		<beans:property name="maxUploadSize" value="104857600"/><!-- 100MB --> 
+		<beans:property name="maxUploadSize" value="1048576000"/><!-- 1000MB --> 
 		<beans:property name="defaultEncoding" value="UTF-8"></beans:property>
 	</beans:bean>
 	

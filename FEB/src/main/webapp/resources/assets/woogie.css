@@ -207,7 +207,22 @@ pre {
 	padding: 15px;
 }
 
+h3 {
+	color: #c62828;
+}
 
+h4 {
+	color: #0d47a1;
+}
 
+h5 {
+	color: green;
+}
 
- 
+li {
+	margin-bottom: 5px; 
+}
+
+li > ul, ol {
+	margin-bottom: 20px; 
+}

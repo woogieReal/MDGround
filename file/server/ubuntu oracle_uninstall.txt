@@ -1,0 +1,18 @@
+sudo service oracle-xe stop
+dpkg --purge oracle-xe
+
+sudo rm -rf /u01/app/oracle/
+sudo rm /etc/default/oracle-xe
+sudo update-rc.d -f oracle-xe remove
+sudo rm /sbin/chkconfig /etc/rc2.d/S01shm_load /etc/sysctl.d/60-oracle.conf
+sudo rm /etc/init.d/oracle-shm
+sudo rm /etc/oratab
+sudo userdel -r oracle
+sudo delgroup dba
+
+cd /etc/init.d/
+sudo rm oracle-xe
+
+
+
+

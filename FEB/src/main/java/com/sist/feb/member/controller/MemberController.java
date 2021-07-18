@@ -184,6 +184,7 @@ public class MemberController {
 				//LOG.debug("************null****************");
 				switch (postVO.getCategory()) {
 				case "daily life": postVO.setThumbNail("/resources/image_source/markdown.png"); break;
+				case "programming": postVO.setThumbNail("/resources/image_source/markdown.png"); break;
 				case "java": postVO.setThumbNail("/resources/image_source/java.png"); break;
 				case "javascript": postVO.setThumbNail("/resources/image_source/javascript.png"); break;
 				case "typescript": postVO.setThumbNail("/resources/image_source/Typescript.png"); break;
@@ -206,6 +207,7 @@ public class MemberController {
 				//LOG.debug("************null****************");
 				switch (postVO.getCategory()) {
 				case "daily life": postVO.setThumbNail("/resources/image_source/markdown.png"); break;
+				case "programming": postVO.setThumbNail("/resources/image_source/markdown.png"); break;
 				case "java": postVO.setThumbNail("/resources/image_source/java.png"); break;
 				case "javascript": postVO.setThumbNail("/resources/image_source/javascript.png"); break;
 				case "typescript": postVO.setThumbNail("/resources/image_source/Typescript.png"); break;

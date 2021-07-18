@@ -122,6 +122,7 @@ function doSelectMainImage(no, category) {
   			} else if(parseData == null){
   				switch(category){
   					case "daily life": srcValue="/resources/image_source/markdown.png";   break;
+  					case "programming": srcValue="/resources/image_source/markdown.png";   break;
   					case "java":       srcValue="/resources/image_source/java.png";       break;
   					case "javascript": srcValue="/resources/image_source/javascript.png"; break;
   					case "typescript": srcValue="/resources/image_source/Typescript.png"; break;

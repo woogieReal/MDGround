@@ -25,6 +25,7 @@
           <select class="form-select form-select-lg mb-3" onchange="chageCategorySelect('${sessionScope.member.email}');" id="categoryMainPage" style="font-size: medium;" aria-label=".form-select-lg example">
 			<option value="nothing" selected="selected">entire</option>          
 			<option value="daily life">daily life</option>          
+			<option value="programming">programming</option>          
 			<option value="java">java</option>          
 			<option value="javascript">javascript</option>                 
 			<option value="typescript">typescript</option>                 
