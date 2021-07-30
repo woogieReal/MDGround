@@ -6,7 +6,6 @@
 <main>
 
 
-
 <%-- <c:out value="${sessionScope.member}"></c:out> --%>
 
   <section class="py-5 text-center container"  id="featureDiv">

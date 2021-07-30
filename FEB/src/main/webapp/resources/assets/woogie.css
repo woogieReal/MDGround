@@ -76,6 +76,23 @@ div {
 	word-spacing: 10px;
 }
 
+.thumb_nail_img_div {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;	
+}
+
+.thumb_nail_small_div {
+	overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+}
 
 
 
@@ -96,15 +113,15 @@ div {
 }
 
 .thumb_nail_img {
-	width: 100%; 
-	height: 300px; 
-	object-fit: cover;
+	/* width: 100%;
+	height: 300px;
+	object-fit: cover; */
 	border: 0.5px solid lightgray;
 }
 
 .thumb_nail_img_small {
-	height: 150px;
-	object-fit: cover;
+	/* height: 150px;
+	object-fit: cover; */
 	border: 0.5px solid lightgray;
 }
 
