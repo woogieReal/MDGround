@@ -4,14 +4,12 @@
 
 	<insert id="doInsert" parameterType="PostVO">
 		INSERT INTO post (
-		    post_no,
 		    title,
 		    text_md,
 		    text_html,
 		    category,
 		    member_email
 		) VALUES (
-		    post_seq.nextval,
 		    #{title},
 		    #{textMd},
 		    #{textHtml},
@@ -22,7 +20,6 @@
 	
 	<select id="doRetrieve" parameterType="SearchVO" resultType="PostVO">
 		SELECT
-			/*+ INDEX_DESC(post POST_PK) */
 		    post_no AS postNo,
 		    title AS title,
 		    text_md AS textMd,
@@ -31,9 +28,9 @@
 		    like_cnt AS likeCnt,
 		    hate_cnt AS hateCnt,
 		    category AS category,
-			CASE WHEN TO_CHAR(SYSDATE,'YYYY/MM/DD') = TO_CHAR(reg_dt,'YYYY/MM/DD')           
-				THEN TO_CHAR(reg_dt,'HH24:MI')                                               
-			ELSE TO_CHAR(reg_dt,'YYYY/MM/DD')                                                
+			CASE WHEN DATE_FORMAT(CURRENT_TIMESTAMP,'%Y/%m/%d') = DATE_FORMAT(reg_dt,'%Y/%m/%d')           
+				THEN DATE_FORMAT(reg_dt,'%T')                                               
+			ELSE DATE_FORMAT(reg_dt,'%Y/%m/%d')                                                
 			END AS regDt,
 		    mod_dt AS modDt,
 		    member_email AS memberEmail
@@ -49,6 +46,7 @@
 				AND member_email = #{searchWord2}
 			</when>
 		</choose>			
+        ORDER BY postNo DESC
 	</select>
 
 	<select id="doSelect" parameterType="PostVO" resultType="PostVO">
@@ -61,9 +59,9 @@
 		    like_cnt AS likeCnt,
 		    hate_cnt AS hateCnt,
 		    category AS category,
-			CASE WHEN TO_CHAR(SYSDATE,'YYYY/MM/DD') = TO_CHAR(reg_dt,'YYYY/MM/DD')           
-				THEN TO_CHAR(reg_dt,'HH24:MI')                                               
-			ELSE TO_CHAR(reg_dt,'YYYY/MM/DD')                                                
+			CASE WHEN DATE_FORMAT(CURRENT_TIMESTAMP,'%Y/%m/%d') = DATE_FORMAT(reg_dt,'%Y/%m/%d')           
+				THEN DATE_FORMAT(reg_dt,'%T')                                               
+			ELSE DATE_FORMAT(reg_dt,'%Y/%m/%d')                                                
 			END AS regDt,
 		    mod_dt AS modDt,
 		    member_email AS memberEmail
@@ -78,7 +76,7 @@
 		    text_md = #{textMd},
 		    text_html = #{textHtml},
 		    category = #{category},
-		    mod_dt = sysdate
+		    mod_dt = CURRENT_TIMESTAMP
 		WHERE post_no = #{postNo}
 	</update>
 	

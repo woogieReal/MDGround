@@ -4,15 +4,13 @@
 
 	<insert id="doStore" parameterType="StorageVO">
 		INSERT INTO storage (
-		    storage_no,
 		    store_type,
 		    reg_dt,
 		    member_email,
 		    post_no
 		) VALUES (
-		    STORAGE_SEQ.nextval,
 		    #{storeType},
-		    sysdate,
+		    CURRENT_TIMESTAMP,
 		    #{memberEmail},
 		    #{postNo}
 		)	
@@ -43,9 +41,9 @@
 		    t1.like_cnt AS likeCnt,
 		    t1.hate_cnt AS hateCnt,
 		    t1.category AS category,
-			CASE WHEN TO_CHAR(SYSDATE,'YYYY/MM/DD') = TO_CHAR(t1.reg_dt,'YYYY/MM/DD')           
-				THEN TO_CHAR(t1.reg_dt,'HH24:MI')                                               
-			ELSE TO_CHAR(t1.reg_dt,'YYYY/MM/DD')                                                
+			CASE WHEN DATE_FORMAT(CURRENT_TIMESTAMP,'%Y/%m/%d') = DATE_FORMAT(t1.reg_dt,'%Y/%m/%d')           
+				THEN DATE_FORMAT(t1.reg_dt,'%T')                                               
+			ELSE DATE_FORMAT(t1.reg_dt,'%Y/%m/%d')                                                
 			END AS regDt,
 		    t1.mod_dt AS modDt,
 		    t1.member_email AS memberEmail

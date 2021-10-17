@@ -3,14 +3,13 @@
 <mapper namespace="com.sist.feb.image">
 
 	<select id="doInquirePostSeqCurr" resultType="int">
-		Select post_seq.currval 
-		From dual	
+		SELECT IFNULL(MAX(post_no), 0)
+		FROM post
 	</select>
 	
 	<!-- doInsert -->
 	<insert id="doInsert" parameterType="ImageVO">
 		INSERT INTO image (
-		    image_no,
 		    main_image,
 		    org_name,
 		    save_name,
@@ -22,7 +21,6 @@
 		    from_no,
 		    reg_dt
 		) VALUES (
-		    IMAGE_SEQ.nextval,
 		    #{mainImage},
 		    #{orgName},
 		    #{saveName},
@@ -32,7 +30,7 @@
 		    #{fileExt},
 		    #{fromTb},
 		    #{fromNo},
-		    SYSDATE
+		    CURRENT_TIMESTAMP
 		)	
 	</insert>
 	
@@ -45,7 +43,6 @@
 	<!-- doRetrieve -->
 	<select id="doRetrieve" parameterType="ImageVO" resultType="ImageVO">
 		SELECT
-			/*+ INDEX_ASC(image PK_IMAGE) */
 		    image_no AS imageNo,
 		    main_image AS mainImage,
 		    org_name AS orgName,
@@ -60,6 +57,7 @@
 		FROM image
 		WHERE from_tb = #{fromTb}
 		AND from_no = #{fromNo}	
+		ORDER BY imageNo ASC
 	</select>	
 	
 	<!-- doSelectMainImage -->

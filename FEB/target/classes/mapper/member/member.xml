@@ -4,14 +4,12 @@
 
 	<!-- doRegister -->
 	<insert id="doRegister" parameterType="MemberVO">
-		INSERT INTO MEMBER (
-				member_no,
+		INSERT INTO member (
 				email,  
 				name,     
 				pw,       
 				location     
 		)VALUES (       
-				MEMBER_SEQ.nextval,
 				#{email},         
 				#{name},         
 				#{pw},         

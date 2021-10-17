@@ -246,6 +246,7 @@ function doMoveToEdit() {
 
 function doDelete() {
 	//console.log("doDelete()");
+	if(!window.confirm('really?')) return;
 	
 	let postNo = document.getElementById("postNo").value;
 	let imageList = document.getElementById("imageListStr").value;

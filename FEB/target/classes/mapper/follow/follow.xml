@@ -27,15 +27,13 @@
 	<!-- doFollow -->
 	<insert id="doFollow" parameterType="FollowVO">
 		INSERT INTO follow (
-		    follow_no,
 		    following_email,
 		    followed_email,
 		    reg_dt
 		) VALUES (
-		    FOLLOW_SEQ.nextval,
 		    #{followingEmail},
 		    #{followedEmail},
-		    sysdate
+		    CURRENT_TIMESTAMP
 		)	
 	</insert>
 

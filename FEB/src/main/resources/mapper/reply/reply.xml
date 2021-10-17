@@ -4,7 +4,6 @@
 	
 	<insert id="doInsert" parameterType="ReplyVO">
 		INSERT INTO reply (
-		    reply_no,
 		    contents,
 		    depth,
 		    parent_reply,
@@ -13,12 +12,11 @@
 		    post_no,
 		    member_email
 		) VALUES (
-		    REPLY_SEQ.nextval,
 		    #{contents},
 		    #{depth},
 		    #{parentReply},
 		    #{deleteCheck},
-		    sysdate,
+		    CURRENT_TIMESTAMP,
 		    #{postNo},
 		    #{memberEmail}
 		)	
@@ -32,20 +30,20 @@
 	
 	<select id="doRetrieve" parameterType="PostVO" resultType="ReplyVO">
 		SELECT
-			/*+ INDEX_ASC(reply REPLY_PK) */
 		    reply_no AS replyNo,
 		    contents AS contents,
 		    depth AS depth,
 		    parent_reply AS parentReply,
 		    delete_check AS deleteCheck,
-			CASE WHEN TO_CHAR(SYSDATE,'YYYY/MM/DD') = TO_CHAR(reg_dt,'YYYY/MM/DD')           
-				THEN TO_CHAR(reg_dt,'HH24:MI')                                               
-			ELSE TO_CHAR(reg_dt,'YYYY/MM/DD')                                                
+			CASE WHEN DATE_FORMAT(CURRENT_TIMESTAMP,'%Y/%m/%d') = DATE_FORMAT(reg_dt,'%Y/%m/%d')           
+				THEN DATE_FORMAT(reg_dt,'%T')                                               
+			ELSE DATE_FORMAT(reg_dt,'%Y/%m/%d')                                                
 			END AS regDt,
 		    post_no AS postNo,
 		    member_email AS memberEmail
 		FROM reply
 		WHERE post_no = #{postNo}	
+		ORDER BY replyNo ASC
 	</select>
 	
 	<delete id="doDelete" parameterType="ReplyVO">

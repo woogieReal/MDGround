@@ -46,7 +46,8 @@ public class ImageController {
 	
 //	final String BASIC_PATH = "C:\\Users\\123wo\\OneDrive\\문서\\GitHub\\MDGround\\FEB\\src\\main\\webapp\\resources\\upload";
 //	final String BASIC_PATH = "/var/lib/tomcat8/webapps/feb/resources/upload";
-	final String BASIC_PATH = "/var/lib/tomcat8/webapps/upload";
+//	final String BASIC_PATH = "/var/lib/tomcat8/webapps/upload";
+	final String BASIC_PATH = "/Users/gimjaeug/Documents/MDGround/FEB/src/main/webapp/resources/upload";
 	
 	
 //	▼ 생성자 ==============================================================	
